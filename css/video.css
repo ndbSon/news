@@ -1,0 +1,127 @@
+
+.kkk{
+  height: 100vh;
+}
+
+section.videowrapper {
+  position: relative;
+  height: 0;
+  padding-bottom: 56.25%;
+  margin-bottom: 50px;
+  background: #000;
+}
+
+.videowrapper iframe,.videowrapper video {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+h1.play-video {
+  text-transform: capitalize;
+  text-align: center;
+  color: #ff5733;
+}
+
+/** Use .sticky */
+
+.ytvideo .is-sticky,.videoTag .is-sticky{
+  position: fixed;
+  right: 3px;
+  bottom: 3px;
+  top: auto;
+  left: auto;
+  max-width: 420px;
+  max-height: 237px;
+  width: 420px;
+  height: 237px;
+  -webkit-animation-name: fadeInUp;
+  animation-name: fadeInUp;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+.gradient-overlay {
+  position: fixed;
+  right: 3px;
+  bottom: 3px;
+  top: auto;
+  left: auto;
+  max-width: 420px;
+  max-height: 237px;
+  width: 420px;
+  height: 237px;
+  opacity: .01;
+  background: #000;
+  z-index: 1;
+  display: none;
+}
+
+
+i.fa.fa-arrows-alt {
+  position: fixed;
+  right: 8px;
+  bottom: 5px;
+  top: auto;
+  left: auto;
+  color: #fff;
+  z-index: 2;
+  cursor: pointer;
+  display: none;
+}
+
+.close-button {
+  position: fixed;
+  box-sizing: border-box;
+  display: block;
+  right: 24px;
+  bottom: 260px;
+  top: auto;
+  left: auto;
+  -webkit-animation-name: fadeInUp;
+  animation-name: fadeInUp;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  display: none;
+}
+
+.close-button:before,
+.close-button:after {
+  width: 20px;
+  height: 5px;
+  transform: rotate(-45deg);
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  background-color: #4F2121;
+  transition: all 0.2s ease-out;
+}
+
+.close-button:after {
+  transform: rotate(45deg);
+}
+
+.close-button:hover:after {
+  transform: rotate(-45deg);
+}
+
+.close-button:hover:before {
+  transform: rotate(45deg);
+}
+
+
+/*///////////////////////////////////////*/
+.video-info{
+  background-color: #ff5733;
+  display: inline-table;
+}
+
+
+
