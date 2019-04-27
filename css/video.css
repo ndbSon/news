@@ -3,12 +3,13 @@
   height: 100vh;
 }
 
-section.videowrapper {
+.videowrapper {
   position: relative;
   height: 0;
   padding-bottom: 56.25%;
   margin-bottom: 50px;
-  background: #000;
+  background:black;
+  top:20px;
 }
 
 .videowrapper iframe,.videowrapper video {
@@ -17,6 +18,7 @@ section.videowrapper {
   width: 100%;
   top: 0;
   left: 0;
+ 
 }
 
 h1.play-video {
@@ -43,6 +45,7 @@ h1.play-video {
   animation-duration: 1s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
+  z-index: 900;
 }
 .gradient-overlay {
   position: fixed;
@@ -121,6 +124,7 @@ i.fa.fa-arrows-alt {
 .video-info{
   background-color: #ff5733;
   display: inline-table;
+  height: 100vh;
 }
 
 
