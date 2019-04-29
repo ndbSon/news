@@ -119,13 +119,9 @@ function videoTagPlayerhandler(e) {
         if (e.target == videoTagId[i]) {
 
             if (e.type == "playing") {
-
                 currentPlayer = videoTagId[i];
-
                 videoTagId[i].classList.remove("is-paused");
-
-                videoTagId[i].classList.add("is-playing");
-
+               videoTagId[i].classList.add("is-playing");
                 break;
 
             }
@@ -182,8 +178,6 @@ function videoTagPlayerhandler(e) {
 
             fullScreenIcon.style.display = "none";
 
-
-
         }
 
     }
@@ -231,12 +225,7 @@ function videoTagPlayerhandler(e) {
 
 function onPlayerStateChange(event) {
 
-
-
     /*Play Rules*/
-
-
-
     for (i = 0; i < ytPlayerId.length; i++) {
 
         if (ytPlayerId[i].getPlayerState() === 1) {
@@ -523,7 +512,7 @@ function inViewPort() {
 
         var videoParentLocal = currentPlayer.parentElement.getBoundingClientRect();
 
-        return videoParentLocal.bottom > 0 &&
+        return videoParentLocal.bottom > 600 &&
 
             videoParentLocal.right > 0 &&
 
