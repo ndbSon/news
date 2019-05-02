@@ -2,13 +2,6 @@ html {
     scroll-behavior: smooth;
 }
 
-.header {
-    position: fixed !important;
-    top: 0;
-    z-index: 900;
-    width: 100%;
-}
-
 .page {
     margin-top: 60px;
 }
