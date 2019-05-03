@@ -101,16 +101,22 @@ a:hover {
 }
 
 .dropdown-menu {
-    transition: all 1s;
-    opacity: 0 !important;
-    height: 0 !important;
+    display: none;
+    position: absolute;
+    background-color: #343a40;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-menu a {
+    color: #FFF;
 }
 
 .dropdown:hover .dropdown-menu,
 .dropdown:active .dropdown-menu {
     display: block;
     opacity: 1 !important;
-    height: 300% !important;
 }
 
 .media-body p {
