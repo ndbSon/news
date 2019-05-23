@@ -1129,35 +1129,50 @@
     <!--Dang Nhap-->
 
     <div id="id01" class="modal">
-        <form class="modal-content animate" action="#" method="post">
-            <div class="imgcontainer">
-                <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-                <img class="rounded-circle" src="https://www.gmkfreelogos.com/logos/S/img/SQ.gif" alt="Avatar" width="100px" height="100px">
-            </div>
-
-            <div class="container">
-                <label for="uname"><b>Username</b></label>
-                <input class="input1" type="text" placeholder="Enter Username" name="uname" required>
-
-                <label for="psw"><b>Password</b></label>
-                <input class="input1" type="password" placeholder="Enter Password" name="psw" required>
-
-                <div class="row">
-                    <button class="buttonlg col-6" type="submit">Login</button>
-                    <button class="cancelbtn col-6" type="button" onclick="document.getElementById('id01').style.display='none'">Cancel</button>
-
+        <div class="container">
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="card col-6">
+                    <article class="card-body">
+                        <a href="" class="float-right btn btn-outline-primary">Sign up</a>
+                        <h4 class="card-title mb-4 mt-1">Sign in</h4>
+                        <p>
+                            <a href="/auth/fb" class="btn btn-block btn-outline-primary"> <i class="fab fa-facebook-f"></i>   Login via facebook</a>
+                        </p>
+                        <hr>
+                        <form action="/SQ/login" method="post">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Enter Username" name="username" required>
+                            </div>
+                            <!-- form-group// -->
+                            <div class="form-group">
+                                <input type="password" class="form-control" placeholder="Enter Password" name="password" required>
+                            </div>
+                            <!-- form-group// -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary btn-block"> Login  </button>
+                                    </div>
+                                    <!-- form-group// -->
+                                </div>
+                                <div class="col-md-6 text-right">
+                                    <a class="small" href="#">Forgot password?</a>
+                                </div>
+                            </div>
+                            <!-- .row// -->
+                        </form>
+                    </article>
                 </div>
-                <label>
-                    <input type="checkbox" checked="checked" name="remember"> Remember me
-                </label>
+                <div class="col-3"></div>
             </div>
 
-            <div class="container mb-3" style="background-color:#f1f1f1">
+        </div>
 
-                <span class="psw ">Forgot <a href="#">password?</a></span>
-            </div>
-        </form>
+        <!-- card.// -->
+
     </div>
+
 
 
 
@@ -1183,7 +1198,7 @@
 <script src="js/jquery.nice-select.min.js"></script>
 <script src="js/owl.carousel.min.js"></script>
 <script src="js/mail-script.js"></script>
-
+<script src="js/dangnhap.js"></script>
 
 
 </html>

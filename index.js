@@ -2,10 +2,17 @@ var express = require("express");
 var app = express();
 var db = require("./units/db");
 var db_Trang = require("./units/db_Trang");
+var bodyParser = require('body-parser');
+//
 var passport = require('passport');
 var passportfb = require('passport-facebook').Strategy;
+var LocalStrategy = require('passport-local').Strategy;
+//
 var session = require('express-session')
+
 app.use(express.static("public"));
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.set("view engine", "ejs");
 app.set("views", "./html");
 
@@ -25,7 +32,16 @@ app.get("/", function(req, res) {
 });
 
 app.get("/1/AmNhac", function(req, res) {
-    res.render("AmNhac01");
+    db_Trang.AmNhac()
+        .then(rows => {
+            res.render("AmNhac", {
+                data: rows[0],
+            });
+        }).catch(err => {
+            console.log(err);
+            res.end('error occured.')
+        });
+
 });
 
 app.get("/:rou", (req, res) => {
@@ -59,7 +75,7 @@ app.get("/ChuDe/:rou", (req, res) => {
 })
 
 
-
+//login facebook
 
 app.get("/SQ/login", function(req, res) {
     res.render('login');
@@ -84,4 +100,32 @@ passport.use(new passportfb({
 
 passport.serializeUser((user, done) => {
     done(null, user.id)
+})
+
+////////////////////////////
+//login 
+
+app.post("/SQ/login", passport.authenticate('local', {
+    failureRedirect: '/11',
+    successRedirect: '/Thoi_Su'
+}));
+passport.use(new LocalStrategy((username, password, done) => {
+    if (username == 1 && password == 1) {
+        return done(null, 1);
+    } else {
+        return done(null, false);
+    }
+}))
+
+passport.serializeUser((user, done) => {
+    done(null, user)
+})
+
+passport.deserializeUser((user, done) => {
+    if (user == 1) {
+        return done(null, user);
+    } else {
+        return done(null, false);
+    }
+
 })
