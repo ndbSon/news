@@ -125,7 +125,12 @@
                     <div class="box">
                         <div class="box-header">
                             <h3 class="box-title">Danh Sách Bài Viết</h3>
-
+                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-simple btn-xs">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                            <button type="button" rel="tooltip" title="Remove" class="btn btn-simple btn-xs">
+                                    <i class="fa fa-times"></i>
+                                </button>
                             <div class="box-tools">
                                 <div class="input-group input-group-sm" style="width: 150px;">
                                     <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
@@ -143,8 +148,9 @@
                                     <th>ID</th>
                                     <th>Tiêu Đề</th>
                                     <th>Ngày Gửi</th>
-                                    <th>Status</th>
-                                    <th>Reason</th>
+                                    <th>Tình Trạng</th>
+                                    <th>Chuyên Mục</th>
+                                    <th>Select</th>
                                 </tr>
                                 <tr>
                                     <td>183</td>
@@ -152,6 +158,12 @@
                                     <td>11-7-2014</td>
                                     <td><span class="label label-success ">Approved</span></td>
                                     <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                                    <td>
+                                        <div class="checkbox">
+                                            <input id="checkbox1" type="checkbox">
+                                            <label for="checkbox1"></label>
+                                        </div>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>219</td>
@@ -159,6 +171,12 @@
                                     <td>11-7-2014</td>
                                     <td><span class="label label-warning ">Pending</span></td>
                                     <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                                    <td>
+                                        <div class="checkbox">
+                                            <input id="checkbox2" type="checkbox">
+                                            <label for="checkbox2"></label>
+                                        </div>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>657</td>
@@ -166,6 +184,12 @@
                                     <td>11-7-2014</td>
                                     <td><span class="label label-primary ">Approved</span></td>
                                     <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                                    <td>
+                                        <div class="checkbox">
+                                            <input id="checkbox3" type="checkbox">
+                                            <label for="checkbox3"></label>
+                                        </div>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>175</td>
@@ -173,6 +197,12 @@
                                     <td>11-7-2014</td>
                                     <td><span class="label label-danger ">Denied</span></td>
                                     <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                                    <td>
+                                        <div class="checkbox">
+                                            <input id="checkbox4" type="checkbox">
+                                            <label for="checkbox4"></label>
+                                        </div>
+                                    </td>
                                 </tr>
                             </table>
                         </div>
