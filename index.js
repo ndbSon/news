@@ -22,6 +22,7 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 app.listen(3000);
 
@@ -31,22 +32,10 @@ app.get("/", function(req, res) {
     res.render("Trang_Chu");
 });
 
-app.get("/1/AmNhac", function(req, res) {
-    db_Trang.AmNhac()
-        .then(rows => {
-            res.render("AmNhac", {
-                data: rows[0],
-            });
-        }).catch(err => {
-            console.log(err);
-            res.end('error occured.')
-        });
-
-});
 
 app.get("/:rou", (req, res) => {
-    var i = req.params.rou;
-    db_Trang.Trang_The_Loai(i)
+    var rou = req.params.rou;
+    db_Trang.Trang_The_Loai(rou)
         .then(rows => {
             console.log(rows.ChuDe);
             res.render("TrangTheLoai", {
@@ -60,8 +49,8 @@ app.get("/:rou", (req, res) => {
 })
 
 app.get("/ChuDe/:rou", (req, res) => {
-    var i = req.params.rou;
-    db_Trang.Trang_Chu_De(i)
+    var rou = req.params.rou;
+    db_Trang.Trang_Chu_De(rou)
         .then(rows => {
             res.render("Trang_Chu_De", {
                 data: rows,
@@ -73,13 +62,47 @@ app.get("/ChuDe/:rou", (req, res) => {
             res.end('error occured.')
         });
 })
+app.get("/:rou/:id", (req, res) => {
+    //  var rou = req.params.rou;
+    var id = req.params.id;
+    db_Trang.Trang_Bao(id)
+        .then(rows => {
+            res.render("Trang_Bao", {
+                data: rows[0],
+            });
+        }).catch(err => {
+            console.log(err);
+            res.end('error occured.')
+        });
+})
+
+
+
+app.get("/SQ/page", function(req, res) {
+    res.render('page');
+});
+
+app.post("/SQ/page", urlencodedParser, (req, res) => {
+    var nd = req.body.editor1;
+    db_Trang.addBinhLuan(2, nd, 2, 2)
+        .then(rows => {
+            res.send("add thanh cong");
+        }).catch(err => {
+            console.log(err);
+            res.end('error occured.')
+        });
+
+})
+
+
+
+
+
 
 
 //login facebook
 
-app.get("/SQ/login", function(req, res) {
-    res.render('login');
-});
+
 app.get("/auth/fb/cb", passport.authenticate('facebook', {
     failureRedirect: '/',
     successRedirect: '/'

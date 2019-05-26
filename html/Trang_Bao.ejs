@@ -2,42 +2,64 @@
 <html lang="zxx" class="no-js">
 
 <head>
-    <!-- Mobile Specific Meta -->
+    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Favicon-->
-    <link rel="shortcut icon" href="img/fav.png">
-    <!-- Author Meta -->
-    <meta name="author" content="colorlib">
-    <!-- Meta Description -->
-    <meta name="description" content="">
-    <!-- Meta Keyword -->
-    <meta name="keywords" content="">
-    <!-- meta character set -->
-    <meta charset="UTF-8">
-    <!-- Site Title -->
-    <title>THỜI SỰ</title>
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
-    <!--
-		CSS
-		============================================= -->
-    <link rel="stylesheet" href="css/linearicons.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/nice-select.css">
-    <link rel="stylesheet" href="css/animate.min.css">
-    <link rel="stylesheet" href="css/owl.carousel.css">
-    <link rel="stylesheet" href="css/jquery-ui.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/breaking-news-ticker.css">
-    <link rel="stylesheet" href="css/video.css">
 
-
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/breaking-news-ticker.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/linearicons.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/magnific-popup.css">
+    <link rel="stylesheet" href="../css/nice-select.css">
+    <link rel="stylesheet" href="../css/animate.min.css">
+    <link rel="stylesheet" href="../css/owl.carousel.css">
+    <link rel="stylesheet" href="../css/jquery-ui.css">
+    <link rel="stylesheet" href="../css/video.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Alfa+Slab+One" rel="stylesheet">
     <!--JS-->
-    <script type="text/javascript" src="js/video.js"></script>
-    <script type="text/javascript" src="js/date_time.js"></script>
+    <script type="text/javascript" src="../js/openlightbox.js"></script>
+    <script type="text/javascript" src="../js/video.js"></script>
+    <script type="text/javascript" src="../js/date_time.js"></script>
+    <title>Những cặp tình nhân tin đồn gây chú ý của showbiz Việt</title>
+</head>
+
+<!-- Mobile Specific Meta -->
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- Favicon-->
+<link rel="shortcut icon" href="img/fav.png">
+<!-- Author Meta -->
+<meta name="author" content="colorlib">
+<!-- Meta Description -->
+<meta name="description" content="">
+<!-- Meta Keyword -->
+<meta name="keywords" content="">
+<!-- meta character set -->
+<meta charset="UTF-8">
+<!-- Site Title -->
+<title>Âm Nhạc</title>
+<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+<!--CSS============================================= -->
+<link rel="stylesheet" href="../css/linearicons.css">
+<link rel="stylesheet" href="../css/font-awesome.min.css">
+<link rel="stylesheet" href="../css/bootstrap.css">
+<link rel="stylesheet" href="../css/magnific-popup.css">
+<link rel="stylesheet" href="../css/nice-select.css">
+<link rel="stylesheet" href="../css/animate.min.css">
+<link rel="stylesheet" href="../css/owl.carousel.css">
+<link rel="stylesheet" href="../css/jquery-ui.css">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/breaking-news-ticker.css">
+<link rel="stylesheet" href="../css/video.css">
+
+
+<!--JS-->
+<script type="text/javascript" src="../js/video.js"></script>
+<script type="text/javascript" src="../js/date_time.js"></script>
 </head>
 
 <body onload="startTime()">
@@ -66,7 +88,7 @@
             <div class="container">
                 <div class="row justify-content-between align-items-center">
                     <div class="col-lg-4 col-md-4 col-sm-12 logo-left no-padding">
-                        <a href="/">
+                        <a href="/news/html/Trang_Chu.html">
                             <img class="img-fluid" src="" alt="">
                         </a>
                     </div>
@@ -130,7 +152,6 @@
             </div>
         </div>
     </header>
-
     <div class="site-main-container">
         <!-- Start top-post Area -->
         <section class="top-post-area pt-10">
@@ -139,11 +160,14 @@
                     <div class="col-lg-12">
                         <div class="hero-nav-area">
                             <h1 class="text-white">
-                                <%=TheLoai%>
+                                <%=data.ChuDe%>
                             </h1>
                             <p class="text-white link-nav"><a href="/">Home </a> <span class="lnr lnr-arrow-right"></span>
-                                <a href="/<%=TheLoai%>">
-                                    <%=TheLoai%>
+                                <a href="/<%=data.TenTheLoai%>">
+                                    <%=data.TenTheLoai%>
+                                </a><span class="lnr lnr-arrow-right"></span>
+                                <a href="/ChuDe/<%=data.TenChuDe%>">
+                                    <%=data.ChuDe%>
                                 </a>
                             </p>
                         </div>
@@ -157,72 +181,122 @@
             <div class="container no-padding">
                 <div class="row">
                     <div class="col-lg-8 post-list">
-                        <!-- Start latest-post Area -->
-                        <div class="latest-post-wrap">
-                            <h4 class="cat-title">
-                                <%=TheLoai%>
-                            </h4>
-                            <% data.forEach(function(i){%>
-                                <div class="single-latest-post row align-items-center">
-                                    <div class="col-lg-5 post-left">
-                                        <div class="feature-img relative">
-                                            <div class="overlay overlay-bg"></div>
-                                            <img class="img-fluid" src="<%= i.src%>" alt="Card image cap">
-                                        </div>
-                                        <ul class="tags">
-                                            <li>
-                                                <a href="/ChuDe/<%=i.TenChuDe%>">
-                                                    <%= i.TenChuDe%>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-lg-7 post-right">
-                                        <a href="/<%=TheLoai%>/<%=i.ID%>">
-                                            <h4>
-                                                <%= i.TieuDe%>
-                                            </h4>
+                        <!-- Start single-post Area -->
+                        <div class="single-post-wrap">
+                            <div class="content-wrap">
+                                <ul class="tags mt-10">
+                                    <li>
+                                        <a href="/ChuDe/<%=data.TenChuDe%>">
+                                            <%=data.TenChuDe%>
                                         </a>
-                                        <ul class="meta">
-                                            <li><a href="#"><span class="lnr lnr-user"></span>Mark wiens</a></li>
-                                            <li><a href="#"><span class="lnr lnr-calendar-full"></span>03 April, 2018</a>
-                                            </li>
-                                            <li><a href="#"><span class="lnr lnr-bubble"></span>06 Comments</a></li>
-                                        </ul>
-                                        <p class="excert">
-                                            <%= i.TomTat%>
-                                        </p>
-                                        <p>
-                                            <a href="html/Tags_01.html" class="badge badge-primary">Primary</a>
-                                            <a href="html/Tags_02.html" class="badge badge-secondary">Secondary</a>
-                                            <a href="html/Tags_03.html" class="badge badge-success">Success</a>
-                                            <a href="html/Tags_04.html" class="badge badge-danger">Danger</a>
-                                            <a href="html/Tags_05.html" class="badge badge-warning">Warning</a>
+                                    </li>
+                                </ul>
+                                <h3>
+                                    <%=data.TieuDe%>
+                                </h3>
+                                <ul class="meta pb-20">
+                                    <li><a href="#"><span class="lnr lnr-user"></span>Hiểu Nguyệt</a></li>
+                                    <li><a href="#"><span class="lnr lnr-calendar-full"></span><%=data.GioDang%></a></li>
+                                    <li><a href="#"><span class="lnr lnr-bubble"></span>06 </a></li>
+                                </ul>
+                                <%-data.NoiDung%>
+                                    <p text-weight="bold" ;>Tags :
+                                        <a href="/news/html/Tags_01.html" class="badge badge-primary">Primary</a>
+                                        <a href="/news/html/Tags_02.html" class="badge badge-secondary">Secondary</a>
+                                        <a href="/news/html/Tags_03.html" class="badge badge-success">Success</a>
+                                        <a href="/news/html/Tags_04.html" class="badge badge-danger">Danger</a>
+                                        <a href="/news/html/Tags_05.html" class="badge badge-warning">Warning</a>
 
-                                        </p>
+
+                                    </p>
+                                    <div class="comment-sec-area">
+                                        <div class="container">
+                                            <div class="row flex-column">
+                                                <h6>3 Comments</h6>
+                                                <div class="comment-list">
+                                                    <div class="single-comment justify-content-between d-flex">
+                                                        <div class="user justify-content-between d-flex">
+                                                            <div class="thumb">
+                                                                <img src="/news/image/c1.jpg" alt="">
+                                                            </div>
+                                                            <div class="desc">
+                                                                <h5><a href="#">Chipu</a></h5>
+                                                                <p class="date">December 4, 2017 at 3:12 pm </p>
+                                                                <p class="comment">
+                                                                    Good job!!
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="reply-btn">
+                                                            <a href="" class="btn-reply text-uppercase">reply</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="comment-list left-padding">
+                                                    <div class="single-comment justify-content-between d-flex">
+                                                        <div class="user justify-content-between d-flex">
+                                                            <div class="thumb">
+                                                                <img src="/news/image/c2.jpg" alt="">
+                                                            </div>
+                                                            <div class="desc">
+                                                                <h5><a href="#">Sơn Tùng</a></h5>
+                                                                <p class="date">December 4, 2017 at 3:12 pm </p>
+                                                                <p class="comment">
+                                                                    That's good!!
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="reply-btn">
+                                                            <a href="" class="btn-reply text-uppercase">reply</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="comment-list">
+                                                    <div class="single-comment justify-content-between d-flex">
+                                                        <div class="user justify-content-between d-flex">
+                                                            <div class="thumb">
+                                                                <img src="/news/image/c3.jpg" alt="">
+                                                            </div>
+                                                            <div class="desc">
+                                                                <h5><a href="#">Hồ Ngọc Hà</a></h5>
+                                                                <p class="date">December 4, 2017 at 3:12 pm </p>
+                                                                <p class="comment">
+                                                                    Too Bad !!
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="reply-btn">
+                                                            <a href="" class="btn-reply text-uppercase">reply</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
-                                </div>
-                                <%});%>
-
-
-
-                                    </br>
-                                    <nav aria-label="Page navigation example">
-                                        <ul class="pagination justify-content-center">
-                                            <li class="page-item disabled">
-                                                <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                            </li>
-                                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#">Next</a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-
+                                    <div class="comment-form">
+                                        <h4>Post Comment</h4>
+                                        <form action="/SQ/page" method="post">
+                                            <div class="form-group form-inline">
+                                                <div class="form-group col-lg-6 col-md-12 name">
+                                                    <input type="text" class="form-control" id="name" placeholder="Enter Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Name'">
+                                                </div>
+                                                <div class="form-group col-lg-6 col-md-12 email">
+                                                    <input type="email" class="form-control" id="email" placeholder="Enter email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="subject" placeholder="Subject" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Subject'">
+                                            </div>
+                                            <div class="form-group">
+                                                <textarea class="form-control mb-10" rows="5" name="message" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required=""></textarea>
+                                            </div>
+                                            <button type="submit" class="primary-btn text-uppercase">Post Comment</button>
+                                        </form>
+                                    </div>
+                            </div>
+                            <!-- End single-post Area -->
                         </div>
-                        <!-- End latest-post Area -->
                     </div>
                     <div class="col-lg-4">
                         <div class="sidebars-area">
@@ -230,12 +304,12 @@
                                 <h6 class="title">Bài Viết Liên Quan</h6>
                                 <div class="single-list flex-row d-flex">
                                     <div class="thumb">
-                                        <a href="html/AmNhac01.html">
+                                        <a href="/news/html/AmNhac01.html">
                                             <img src="https://i-giaitri.vnecdn.net/2019/04/25/justin-bieber-ariana-grande-4902-1556161888.jpg" alt="Card image cap" width="100px" height="80px">
                                         </a>
                                     </div>
                                     <div class="details">
-                                        <a href="html/AmNhac01.html">
+                                        <a href="/news/html/AmNhac01.html">
                                             <h6>Ariana Grande bênh vực Justin Bieber sau sự cố hát nhép </h6>
                                         </a>
                                         <ul class="meta">
@@ -248,11 +322,11 @@
 
                                 <div class="single-list flex-row d-flex">
                                     <div class="thumb">
-                                        <a href="html/AmNhac02.html">
+                                        <a href="/news/html/AmNhac02.html">
                                             <img src="https://i-giaitri.vnecdn.net/2019/04/09/872786000-w500-7955-1554783491.png" alt="Card image cap" width="100px" height="80px"></a>
                                     </div>
                                     <div class="details">
-                                        <a href="html/AmNhac02.html">
+                                        <a href="/news/html/AmNhac02.html">
                                             <h6>Sơn Tùng M-TP: 'Với âm nhạc, tôi chưa bao giờ muốn dừng lại'</h6>
                                         </a>
                                         <ul class="meta">
@@ -265,12 +339,12 @@
 
                                 <div class="single-list flex-row d-flex">
                                     <div class="thumb">
-                                        <a href="html/GiaoThong01.html">
+                                        <a href="/news/html/GiaoThong01.html">
                                             <img src="https://i-vnexpress.vnecdn.net/2019/04/28/tai-nan-lien-hoan-7354-1556413454.jpg" alt="Card image cap" width="100px" height="80px">
                                         </a>
                                     </div>
                                     <div class="details">
-                                        <a href="html/AmNhac01.html">
+                                        <a href="/news/html/AmNhac01.html">
                                             <h6>Ariana Grande bênh vực Justin Bieber sau sự cố hát nhép </h6>
                                         </a>
                                         <ul class="meta">
@@ -283,11 +357,11 @@
 
                                 <div class="single-list flex-row d-flex">
                                     <div class="thumb">
-                                        <a href="html/AmNhac02.html">
+                                        <a href="/news/html/AmNhac02.html">
                                             <img src="https://i-giaitri.vnecdn.net/2019/04/09/872786000-w500-7955-1554783491.png" alt="Card image cap" width="100px" height="80px"></a>
                                     </div>
                                     <div class="details">
-                                        <a href="html/AmNhac02.html">
+                                        <a href="/news/html/AmNhac02.html">
                                             <h6>Sơn Tùng M-TP: 'Với âm nhạc, tôi chưa bao giờ muốn dừng lại'</h6>
                                         </a>
                                         <ul class="meta">
@@ -299,12 +373,12 @@
                                 </div>
                                 <div class="single-list flex-row d-flex">
                                     <div class="thumb">
-                                        <a href="html/GiaoThong01.html">
+                                        <a href="/news/html/GiaoThong01.html">
                                             <img src="https://i-vnexpress.vnecdn.net/2019/04/28/tai-nan-lien-hoan-7354-1556413454.jpg" alt="Card image cap" width="100px" height="80px">
                                         </a>
                                     </div>
                                     <div class="details">
-                                        <a href="html/AmNhac01.html">
+                                        <a href="/news/html/AmNhac01.html">
                                             <h6>Ariana Grande bênh vực Justin Bieber sau sự cố hát nhép </h6>
                                         </a>
                                         <ul class="meta">
@@ -355,7 +429,6 @@
                 </div>
             </div>
         </section>
-        <!-- End latest-post Area -->
     </div>
 
     <!-- start footer Area -->
@@ -431,23 +504,25 @@
         </div>
     </footer>
     <!-- End footer Area -->
-    <script src="js/jquery-2.2.4.min.js"></script>
+
+
+    <script src="../js/jquery-2.2.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
-    <script src="js/easing.min.js"></script>
-    <script src="js/hoverIntent.js"></script>
-    <script src="js/superfish.min.js"></script>
-    <script src="js/jquery.ajaxchimp.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/mn-accordion.js"></script>
-    <script src="js/jquery-ui.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/mail-script.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/breaking-news-ticker.min.js"></script>
-    <script type="text/javascript" src="js/BM.js"></script>
+    <script src="../js/easing.min.js"></script>
+    <script src="../js/hoverIntent.js"></script>
+    <script src="../js/superfish.min.js"></script>
+    <script src="../js/jquery.ajaxchimp.min.js"></script>
+    <script src="../js/jquery.magnific-popup.min.js"></script>
+    <script src="../js/mn-accordion.js"></script>
+    <script src="../js/jquery-ui.js"></script>
+    <script src="../js/jquery.nice-select.min.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="../js/mail-script.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/breaking-news-ticker.min.js"></script>
+    <script type="text/javascript" src="../js/BM.js"></script>
 </body>
 
 </html>
