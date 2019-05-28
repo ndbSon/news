@@ -31,6 +31,47 @@ app.get("/", function(req, res) {
     res.render("Trang_Chu");
 });
 
+
+app.get("/admin/dashboard/1", function(req, res) {
+    res.render("dashboard");
+});
+
+
+app.get("/admin/BaiViet/1", function(req, res) {
+    res.render("BaiViet");
+});
+
+app.get("/admin/NguoiDung/1", function(req, res) {
+    res.render("NguoiDung");
+});
+
+app.get("/admin/ChuyenMuc/1", function(req, res) {
+    res.render("ChuyenMuc");
+});
+
+app.get("/admin/Tags/1", function(req, res) {
+    res.render("Tags");
+});
+
+app.get("/admin/PV/2", function(req, res) {
+    res.render("PV");
+});
+
+app.get("/admin/BTV/2", function(req, res) {
+    res.render("BTV");
+});
+
+app.get("/admin/VietBai_PV/2", function(req, res) {
+    res.render("VietBai_PV");
+});
+
+app.get("/admin/account/1", function(req, res) {
+    res.render("accountadmin");
+});
+app.get("/admin/account/2", function(req, res) {
+    res.render("account");
+});
+
 app.get("/1/AmNhac", function(req, res) {
     db_Trang.AmNhac()
         .then(rows => {
