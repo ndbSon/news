@@ -38,6 +38,9 @@
     <!--JS-->
     <script type="text/javascript" src="js/video.js"></script>
     <script type="text/javascript" src="js/date_time.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 </head>
 
 
@@ -1134,13 +1137,18 @@
                 <div class="col-3"></div>
                 <div class="card col-6">
                     <article class="card-body">
-                        <a href="" class="float-right btn btn-outline-primary">Sign up</a>
+                        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                        <hr>
+                        <a href="#" class="float-right btn btn-outline-primary" onclick="document.getElementById('id01').style.display='none'">
+                            <i onclick="document.getElementById('id02').style.display='block' " style="width:auto; height: 500px;">Sign up</i>
+                        </a>
                         <h4 class="card-title mb-4 mt-1">Sign in</h4>
                         <p>
-                            <a href="/auth/fb" class="btn btn-block btn-outline-primary"> <i class="fab fa-facebook-f"></i>   Login via facebook</a>
+                            <a href="/auth/fb/1" name="button" class="btn btn-block btn-outline-primary"> <i class="fab fa-facebook-f"></i>   Login with facebook</a>
                         </p>
+
                         <hr>
-                        <form action="/SQ/login" method="post">
+                        <form action="/SQ/login/1" method="post">
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="Enter Username" name="username" required>
                             </div>
@@ -1173,32 +1181,75 @@
 
     </div>
 
+    <div id="id02" class="modal">
+        <div class="container">
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="card col-6">
+                    <article class="card-body">
+                        <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+                        <hr>
+                        <h4 class="card-title mb-4 mt-1">Sign in</h4>
+                        <form action="" method="post" novalidate id="registerForm">
+                            <div class="form-group">
+                                <label for="txtUsername">Username</label>
+                                <input type="text" class="form-control" id="txtUsername" name="username" autofocus>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtPassword">Password</label>
+                                <input type="password" class="form-control" id="txtPassword" name="password">
+                            </div>
+                            <div class="form-group">
+                                <label for="txtConfirm">Confirm</label>
+                                <input type="password" class="form-control" id="txtConfirm" name="confirm">
+                            </div>
+                            <!-- form-group// -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary btn-block">sign up </button>
+                                    </div>
+                                    <!-- form-group// -->
+                                </div>
+
+                            </div>
+                            <!-- .row// -->
+                        </form>
+                    </article>
+                </div>
+                <div class="col-3"></div>
+            </div>
+
+        </div>
+
+    </div>
 
 
 
+
+
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js " integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q " crossorigin="anonymous "></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js " integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl " crossorigin="anonymous "></script>
+    <script src="js/breaking-news-ticker.min.js "></script>
+    <script type="text/javascript " src="js/BM.js "></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+    <script src="js/easing.min.js"></script>
+    <script src="js/hoverIntent.js"></script>
+    <script src="js/superfish.min.js"></script>
+    <script src="js/jquery.ajaxchimp.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/mn-accordion.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/mail-script.js"></script>
+    <script src="js/dangnhap.js"></script>
 
 </body>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js " integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN " crossorigin="anonymous "></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js " integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q " crossorigin="anonymous "></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js " integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl " crossorigin="anonymous "></script>
-<script src="js/breaking-news-ticker.min.js "></script>
-<script type="text/javascript " src="js/BM.js "></script>
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
-<script src="js/easing.min.js"></script>
-<script src="js/hoverIntent.js"></script>
-<script src="js/superfish.min.js"></script>
-<script src="js/jquery.ajaxchimp.min.js"></script>
-<script src="js/jquery.magnific-popup.min.js"></script>
-<script src="js/mn-accordion.js"></script>
-<script src="js/jquery-ui.js"></script>
-<script src="js/jquery.nice-select.min.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/mail-script.js"></script>
-<script src="js/dangnhap.js"></script>
-
 
 </html>

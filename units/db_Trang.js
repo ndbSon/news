@@ -10,7 +10,8 @@ module.exports = {
     Trang_Bao: id => {
         return db.load('SELECT bt.*,tlcd.TenTheLoai FROM news.baiviet as  bt,news.tlcd as tlcd where tlcd.TenChuDe=bt.ChuDe and bt.ID=' + id + '')
     },
-    addBinhLuan: (ID, NoiDung, IDNguoiBinhLuan, IDBaiViet) => {
-        return db.load('INSERT INTO `news`.`binhluan` (`ID`, `NoiDung`, `IDNguoiBinhLuan`, `IDBaiViet`) VALUES ("' + ID + '", "' + NoiDung + '", "' + IDNguoiBinhLuan + '", "' + IDBaiViet + '");')
-    }
+    addBinhLuan: (NoiDung, IDNguoiBinhLuan, IDBaiViet) => {
+        return db.load('INSERT INTO `news`.`binhluan` (`NoiDung`, `IDNguoiBinhLuan`, `IDBaiViet`) VALUES ("' + NoiDung + '", "' + IDNguoiBinhLuan + '", "' + IDBaiViet + '");')
+    },
+
 }
