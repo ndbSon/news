@@ -12,34 +12,33 @@ $(document).ready(function($) {
     //Khi bàn phím được nhấn và thả ra thì sẽ chạy phương thức này
     $('#registerForm').validate({
         rules: {
-            username: {
+            Signusername: {
                 required: true,
                 remote: {
                     url: '/account/is-available'
                 }
             },
-            password: {
+            Signpassword: {
                 required: true,
                 minlength: 6
             },
             confirm: {
                 required: true,
-                equalTo: $('[name="password"]')
+                equalTo: $('#txtPassword')
             },
-
         },
         messages: {
-            username: {
-                required: 'Your username is required.',
-                remote: 'Your username has been taken, please take another.'
+            Signusername: {
+                required: 'Bạn Chưa Nhập Tên',
+                remote: 'Tên Đăng Nhập Đã Tồn Tại'
             },
-            password: {
-                required: 'Your password is required.',
-                minlength: 'Your password must have at least 6 characters.'
+            Signpassword: {
+                required: 'Nhập Password',
+                minlength: 'Password Phải Trên 6 Kí Tự'
             },
             confirm: {
-                required: 'Your password does not match.',
-                equalTo: 'Your password does not match.'
+                required: 'Không Trùng Với Mật Khẩu Đã Nhập',
+                equalTo: 'Không Trùng Với Mật Khẩu Đã Nhập'
             },
 
         },

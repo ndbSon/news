@@ -28,13 +28,14 @@ app.listen(3000);
 
 
 
-app.get("/", function(req, res) {
-    res.render("Trang_Chu");
-});
-
 
 app.get("/admin/dashboard/1", function(req, res) {
-    res.render("dashboard");
+    if (req.isAuthenticated()) {
+        res.render("dashboard");
+    } else {
+        res.redirect("../../");
+    }
+
 });
 
 
@@ -66,6 +67,22 @@ app.get("/admin/VietBai_PV/2", function(req, res) {
     res.render("VietBai_PV");
 });
 
+app.post("/admin/postbaiviet", urlencodedParser, (req, res) => {
+    var TieuDe = req.body.TieuDe;
+    var TomTat = req.body.TomTat;
+    var NoiDung = req.body.NoiDung;
+    var ChuDe = req.body.ChuDe;
+    console.log(NoiDung);
+    db_Trang.addBaiViet(TieuDe, TomTat, NoiDung, ChuDe)
+        .then(rows => {
+            res.send('thanh cong r nhen');
+        }).catch(err => {
+            res.end('error occured.');
+        });
+
+})
+
+
 app.get("/admin/account/1", function(req, res) {
     res.render("accountadmin");
 });
@@ -73,27 +90,28 @@ app.get("/admin/account/2", function(req, res) {
     res.render("account");
 });
 
-app.get("/1/AmNhac", function(req, res) {
-    db_Trang.AmNhac()
+
+app.get("/", function(req, res) {
+    Promise.all([db_Trang.BaiVietXemNhieu()])
         .then(rows => {
-            res.render("AmNhac", {
-                data: rows[0],
+            res.render("Trang_Chu", {
+                XemNhieu: rows[0],
             });
         }).catch(err => {
             console.log(err);
             res.end('error occured.')
         });
-
 });
+
 
 app.get("/:rou", (req, res) => {
     var rou = req.params.rou;
-    db_Trang.Trang_The_Loai(rou)
+    Promise.all([db_Trang.Trang_The_Loai(rou), db_Trang.BaiVietXemNhieu()])
         .then(rows => {
-            console.log(rows.ChuDe);
             res.render("TrangTheLoai", {
-                data: rows,
-                TheLoai: rows[0].TenTheLoai
+                data: rows[0],
+                XemNhieu: rows[1],
+                TheLoai: rows[0][0].TenTheLoai
             });
         }).catch(err => {
             console.log(err);
@@ -103,25 +121,27 @@ app.get("/:rou", (req, res) => {
 
 app.get("/ChuDe/:rou", (req, res) => {
     var rou = req.params.rou;
-    db_Trang.Trang_Chu_De(rou)
+    Promise.all([db_Trang.Trang_Chu_De(rou), db_Trang.BaiVietXemNhieu()])
         .then(rows => {
             res.render("Trang_Chu_De", {
-                data: rows,
-                TheLoai: rows[0].TenTheLoai,
-                ChuDe: rows[0].TenChuDe
+                data: rows[0],
+                XemNhieu: rows[1],
+                TheLoai: rows[0][0].TenTheLoai,
+                ChuDe: rows[0][0].TenChuDe
             });
         }).catch(err => {
             console.log(err);
             res.end('error occured.')
         });
 })
-app.get("/:rou/:id", (req, res) => {
-    //  var rou = req.params.rou;
+app.get("/BaiViet/:id", (req, res) => {
+    var rou = req.params.rou;
     var id = req.params.id;
-    db_Trang.Trang_Bao(id)
+    Promise.all([db_Trang.Trang_Bao(id), db_Trang.BaiVietXemNhieu(), db_Trang.addLuotXem(id)])
         .then(rows => {
             res.render("Trang_Bao", {
-                data: rows[0],
+                data: rows[0][0],
+                XemNhieu: rows[1],
             });
         }).catch(err => {
             console.log(err);
@@ -129,27 +149,49 @@ app.get("/:rou/:id", (req, res) => {
         });
 })
 
-
+//Bình Luận còn sửa
 
 app.get("/SQ/page", function(req, res) {
     res.render('page');
 });
 
-app.post("/SQ/page", urlencodedParser, (req, res) => {
-    var nd = req.body.editor1;
-    db_Trang.addBinhLuan(2, nd, 2, 2)
+app.post("/SQ/addBinhLuan", urlencodedParser, (req, res) => {
+    var nd = req.body.message;
+    var ID = req.body.ID;
+    db_Trang.addBinhLuan(nd, 2, ID)
         .then(rows => {
-            res.send("add thanh cong");
+            res.redirect("../../BaiViet/" + ID);
         }).catch(err => {
-            console.log(err);
             res.end('error occured.')
         });
 
 })
 
 
+//sign in
 
+app.get('/account/is-available', (req, res) => {
+    var user = req.query.Signusername;
+    db_Trang.singleByUserName(user).then(rows => {
+        if (rows.length > 0) {
+            return res.json(false);
+        }
+        return res.json(true);
+    })
+})
 
+app.post("/SQ/signin/1", urlencodedParser, (req, res) => {
+    var Signusername = req.body.Signusername;
+    var Signpassword = req.body.Signpassword;
+    db_Trang.addQuanTri(Signusername, Signusername, Signpassword, 1)
+        .then(rows => {
+            res.redirect("../../");
+        }).catch(err => {
+            console.log(err);
+            res.end('error occured.')
+        });
+
+})
 
 
 
@@ -158,9 +200,9 @@ app.post("/SQ/page", urlencodedParser, (req, res) => {
 
 app.get("/auth/fb/cb", passport.authenticate('facebook', {
     failureRedirect: '/',
-    successRedirect: '/'
+    successRedirect: '/admin/dashboard/1'
 }));
-app.get("/auth/fb", passport.authenticate('facebook', { scope: ['email'] }));
+app.get("/auth/fb/1", passport.authenticate('facebook', { scope: ['email'] }));
 
 passport.use(new passportfb({
         clientID: "380139526042888",
@@ -169,28 +211,37 @@ passport.use(new passportfb({
         profileFields: ['email', 'gender', 'locale', 'displayName']
     },
     (accessToken, refreshToken, profile, done) => {
-        console.log(profile);
-        return done();
+        if (username == 1 && password == 1) {
+            return done(null, 1);
+        } else {
+            return done(null, false);
+        }
     }
 ))
 
-passport.serializeUser((user, done) => {
-    done(null, user.id)
-})
+
 
 ////////////////////////////
 //login 
 
-app.post("/SQ/login", passport.authenticate('local', {
+app.post("/SQ/login/1", passport.authenticate('local', {
     failureRedirect: '/11',
-    successRedirect: '/Thoi_Su'
+    successRedirect: "/admin/dashboard/1"
 }));
 passport.use(new LocalStrategy((username, password, done) => {
-    if (username == 1 && password == 1) {
-        return done(null, 1);
-    } else {
-        return done(null, false);
-    }
+    db_Trang.listAcount(username).then(rows => {
+        if (rows.length < 0) {
+            return done(null, false);
+        } else {
+            if (rows[0].MatKhau == password) {
+                return done(null, username);
+            } else {
+                return done(null, false);
+            }
+        }
+
+    })
+
 }))
 
 passport.serializeUser((user, done) => {
@@ -198,10 +249,12 @@ passport.serializeUser((user, done) => {
 })
 
 passport.deserializeUser((user, done) => {
-    if (user == 1) {
-        return done(null, user);
-    } else {
-        return done(null, false);
-    }
+    db_Trang.listAcount(user).then(rows => {
+        if (rows.length > 0) {
+            return done(null, user);
+        } else {
+            return done(null, false);
+        }
 
+    })
 })

@@ -88,176 +88,84 @@
                     </div>
                 </div>
             </nav>
-            <div class="row">
-                <div class="col-md-1"></div>
-                <div class="col-md-8">
+            <form action="/admin/postbaiviet" method="post">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-8">
 
-                    <h1>Viết Bài</h1>
+                        <h1>Viết Bài</h1>
 
-                    <h3>Tiêu Đề</h3>
-                    <textarea name="editor1"></textarea>
-                    <script type="text/javascript">
-                        config = {};
-                        config.entities_latin = false;
+                        <h3>Tiêu Đề</h3>
+                        <div class="form-group">
+                            <textarea class="form-control mb-10" rows="5" name="TieuDe" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required=""></textarea>
+                        </div>
 
-                        config.toolbarGroups = [{
-                            name: 'document',
-                            groups: ['mode', 'document', 'doctools']
-                        }, {
-                            name: 'clipboard',
-                            groups: ['clipboard', 'undo']
-                        }, {
-                            name: 'editing',
-                            groups: ['find', 'selection', 'spellchecker', 'editing']
-                        }, {
-                            name: 'forms',
-                            groups: ['forms']
-                        }, {
-                            name: 'basicstyles',
-                            groups: ['basicstyles', 'cleanup']
-                        }, {
-                            name: 'paragraph',
-                            groups: ['list', 'indent', 'blocks', 'align', 'bidi', 'paragraph']
-                        }, {
-                            name: 'links',
-                            groups: ['links']
-                        }, {
-                            name: 'insert',
-                            groups: ['insert']
-                        }, {
-                            name: 'styles',
-                            groups: ['styles']
-                        }, {
-                            name: 'colors',
-                            groups: ['colors']
-                        }, {
-                            name: 'tools',
-                            groups: ['tools']
-                        }, {
-                            name: 'others',
-                            groups: ['others']
-                        }, {
-                            name: 'about',
-                            groups: ['about']
-                        }];
+                        <h3>Tóm Tắt</h3>
+                        <div class="form-group">
+                            <textarea class="form-control mb-10" rows="5" name="TomTat" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required=""></textarea>
+                        </div>
 
-                        config.removeButtons = 'Source,NewPage,Save,Print,Templates,PasteText,PasteFromWord,Replace,Scayt,Form,Checkbox,Radio,TextField,Textarea,Select,Button,HiddenField,ImageButton,Strike,Subscript,Superscript,CopyFormatting,RemoveFormat,NumberedList,BulletedList,Outdent,Indent,CreateDiv,Language,Link,Unlink,Anchor,EasyImageUpload,Flash,Table,HorizontalRule,Smiley,Iframe,PageBreak,Maximize,ShowBlocks,SelectAll,Preview,Find,About';
+                        <h3>Nội Dung</h3>
+                        <textarea name="NoiDung"></textarea>
+                        <script>
+                            config = {};
+                            config.entities_latin = false;
+                            config.toolbarGroups = [{
+                                    name: 'document',
+                                    groups: ['mode', 'document', 'doctools']
+                                }, {
+                                    name: 'clipboard',
+                                    groups: ['clipboard', 'undo']
+                                }, {
+                                    name: 'editing',
+                                    groups: ['find', 'selection', 'spellchecker', 'editing']
+                                }, {
+                                    name: 'styles',
+                                    groups: ['styles']
+                                },
+                                '/', {
+                                    name: 'basicstyles',
+                                    groups: ['basicstyles', 'cleanup']
+                                }, {
+                                    name: 'forms',
+                                    groups: ['forms']
+                                }, {
+                                    name: 'paragraph',
+                                    groups: ['list', 'indent', 'blocks', 'align', 'bidi', 'paragraph']
+                                }, {
+                                    name: 'links',
+                                    groups: ['links']
+                                }, {
+                                    name: 'insert',
+                                    groups: ['insert']
+                                }, {
+                                    name: 'colors',
+                                    groups: ['colors']
+                                }, {
+                                    name: 'tools',
+                                    groups: ['tools']
+                                }, {
+                                    name: 'others',
+                                    groups: ['others']
+                                }, {
+                                    name: 'about',
+                                    groups: ['about']
+                                }
+                            ];
 
-                        CKEDITOR.replace('editor1', config);
-                    </script>
+                            config.removeButtons = 'Source,PasteText,PasteFromWord,Replace,Scayt,Textarea,Button,HiddenField,ImageButton,Strike,Subscript,Superscript,CopyFormatting,RemoveFormat,CreateDiv,Language,Unlink,Anchor,Flash,Iframe,SelectAll,About,Templates,Preview,ShowBlocks';
 
-                    <h3>Tóm Tắt</h3>
-                    <textarea name="editor2"></textarea>
-                    <script>
-                        config = {};
-                        config.entities_latin = false;
-                        config.toolbarGroups = [{
-                            name: 'document',
-                            groups: ['mode', 'document', 'doctools']
-                        }, {
-                            name: 'clipboard',
-                            groups: ['clipboard', 'undo']
-                        }, {
-                            name: 'editing',
-                            groups: ['find', 'selection', 'spellchecker', 'editing']
-                        }, {
-                            name: 'forms',
-                            groups: ['forms']
-                        }, {
-                            name: 'basicstyles',
-                            groups: ['basicstyles', 'cleanup']
-                        }, {
-                            name: 'paragraph',
-                            groups: ['list', 'indent', 'blocks', 'align', 'bidi', 'paragraph']
-                        }, {
-                            name: 'links',
-                            groups: ['links']
-                        }, {
-                            name: 'insert',
-                            groups: ['insert']
-                        }, {
-                            name: 'styles',
-                            groups: ['styles']
-                        }, {
-                            name: 'colors',
-                            groups: ['colors']
-                        }, {
-                            name: 'tools',
-                            groups: ['tools']
-                        }, {
-                            name: 'others',
-                            groups: ['others']
-                        }, {
-                            name: 'about',
-                            groups: ['about']
-                        }];
-
-                        config.removeButtons = 'Source,NewPage,Save,Print,Templates,PasteText,PasteFromWord,Replace,Scayt,Form,Checkbox,Radio,TextField,Textarea,Select,Button,HiddenField,ImageButton,Strike,Subscript,Superscript,CopyFormatting,RemoveFormat,NumberedList,BulletedList,Outdent,Indent,CreateDiv,Language,Link,Unlink,Anchor,EasyImageUpload,Flash,Table,HorizontalRule,Smiley,Iframe,PageBreak,Maximize,ShowBlocks,SelectAll,Preview,Find,About';
-
-                        CKEDITOR.replace('editor2', config);
-                    </script>
-
-                    <h3>Nội Dung</h3>
-                    <textarea name="editor3"></textarea>
-                    <script>
-                        config = {};
-                        config.entities_latin = false;
-                        config.toolbarGroups = [{
-                                name: 'document',
-                                groups: ['mode', 'document', 'doctools']
-                            }, {
-                                name: 'clipboard',
-                                groups: ['clipboard', 'undo']
-                            }, {
-                                name: 'editing',
-                                groups: ['find', 'selection', 'spellchecker', 'editing']
-                            }, {
-                                name: 'styles',
-                                groups: ['styles']
-                            },
-                            '/', {
-                                name: 'basicstyles',
-                                groups: ['basicstyles', 'cleanup']
-                            }, {
-                                name: 'forms',
-                                groups: ['forms']
-                            }, {
-                                name: 'paragraph',
-                                groups: ['list', 'indent', 'blocks', 'align', 'bidi', 'paragraph']
-                            }, {
-                                name: 'links',
-                                groups: ['links']
-                            }, {
-                                name: 'insert',
-                                groups: ['insert']
-                            }, {
-                                name: 'colors',
-                                groups: ['colors']
-                            }, {
-                                name: 'tools',
-                                groups: ['tools']
-                            }, {
-                                name: 'others',
-                                groups: ['others']
-                            }, {
-                                name: 'about',
-                                groups: ['about']
-                            }
-                        ];
-
-                        config.removeButtons = 'Source,PasteText,PasteFromWord,Replace,Scayt,Textarea,Button,HiddenField,ImageButton,Strike,Subscript,Superscript,CopyFormatting,RemoveFormat,CreateDiv,Language,Unlink,Anchor,Flash,Iframe,SelectAll,About,Templates,Preview,ShowBlocks';
-
-                        CKEDITOR.replace('editor3', config);
-                    </script>
+                            CKEDITOR.replace('NoiDung', config);
+                        </script>
+                    </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="col-md-1"></div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <h3>Chuyên Mục</h3>
-                        <select class="form-control select2" style="width: 100%;">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <h3>Chuyên Mục</h3>
+                            <select class="form-control select2" name="ChuDe" style="width: 100%;">
                                   <option selected="selected">Kinh Doanh</option>
                                   <option>Âm Nhạc</option>
                                   <option>Phim Ảnh</option>
@@ -265,13 +173,13 @@
                                   <option>TTTG</option>
                                   <option>Mobile</option>
                                   <option>Doanh Nhân</option>
-                                </select>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <h3>Gắn Tags</h3>
-                        <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Tags" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <h3>Gắn Tags</h3>
+                            <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Tags" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                       <option>A</option>
                                       <option>B</option>
                                       <option>C</option>
@@ -280,21 +188,16 @@
                                       <option>F</option>
                                       <option>G</option>
                                     </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--multiple" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="-1"><ul class="select2-selection__rendered"><li class="select2-search select2-search--inline"><input class="select2-search__field" type="search" tabindex="-1" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" role="textbox" aria-autocomplete="list" placeholder="Tags" style="width: 397.725px;"></li></ul></span></span>
-                        <span class="dropdown-wrapper" aria-hidden="true"></span>
-                        </span>
-                        <span class="dropdown-wrapper" aria-hidden="true"></span>
+                            <span class="dropdown-wrapper" aria-hidden="true"></span>
+                            </span>
+                            <span class="dropdown-wrapper" aria-hidden="true"></span>
 
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-8"></div>
-            <button type="submit" class="btn btn-info btn-fill">Xác Nhận</button>
-            </nav>
-
-
-
-
-
+                <div class="col-md-8"></div>
+                <button type="submit" class="btn btn-info btn-fill">Xác Nhận</button>
+            </form>
         </div>
 
     </div>
