@@ -24,7 +24,9 @@
     <script type="text/javascript" src="../js/openlightbox.js"></script>
     <script type="text/javascript" src="../js/video.js"></script>
     <script type="text/javascript" src="../js/date_time.js"></script>
-    <title>Những cặp tình nhân tin đồn gây chú ý của showbiz Việt</title>
+    <title>
+        <%=data.TieuDe%>
+    </title>
 </head>
 
 <!-- Mobile Specific Meta -->
@@ -40,7 +42,9 @@
 <!-- meta character set -->
 <meta charset="UTF-8">
 <!-- Site Title -->
-<title>Âm Nhạc</title>
+<title>
+    <%=data.ChuDe%>
+</title>
 <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
 <!--CSS============================================= -->
 <link rel="stylesheet" href="../css/linearicons.css">
@@ -166,7 +170,7 @@
                                 <a href="/<%=data.TenTheLoai%>">
                                     <%=data.TenTheLoai%>
                                 </a><span class="lnr lnr-arrow-right"></span>
-                                <a href="/ChuDe/<%=data.TenChuDe%>">
+                                <a href="/ChuDe/<%=data.ChuDe%>">
                                     <%=data.ChuDe%>
                                 </a>
                             </p>
@@ -186,8 +190,8 @@
                             <div class="content-wrap">
                                 <ul class="tags mt-10">
                                     <li>
-                                        <a href="/ChuDe/<%=data.TenChuDe%>">
-                                            <%=data.TenChuDe%>
+                                        <a href="/ChuDe/<%=data.ChuDe%>">
+                                            <%=data.ChuDe%>
                                         </a>
                                     </li>
                                 </ul>
@@ -277,12 +281,13 @@
                                     <div class="comment-form">
                                         <h4>Post Comment</h4>
                                         <form action="/SQ/addBinhLuan" method="post">
-                                            <input type="hidden" name="ID" value="<%=data.ID%>" />
+                                            <input type="hidden" id="ID" name="ID" value="<%=data.ID%>" />
                                             <div class="form-group">
                                                 <textarea class="form-control mb-10" rows="5" name="message" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required=""></textarea>
                                             </div>
-                                            <button type="submit" class="primary-btn text-uppercase">Post Comment</button>
+                                            <button type="submit" id="cmt" class="primary-btn text-uppercase">Post Comment</button>
                                         </form>
+                                        <label><%=mess%></label>
                                     </div>
                             </div>
                             <!-- End single-post Area -->

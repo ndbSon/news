@@ -29,6 +29,6 @@ module.exports = {
         return db.load('UPDATE `news`.`baiviet` SET `SoLuotXem` = `SoLuotXem`+1 WHERE (`ID` = "' + ID + '");')
     },
     addBaiViet: (TieuDe, TomTat, NoiDung, ChuDe) => {
-        return db.load('INSERT INTO `news`.`baiviet` (`TieuDe`, `TomTat`, `HinhAnh`, `NoiDung`, `GioDang`, `TrangThai`, `SoLuotThich`, `SoLuotXem`, `DoUuTien`, `ChuDe`, `AnhDaiDien`) VALUES ("' + TieuDe + '", "' + TomTat + '", 19, "' + NoiDung + '", current_timestamp(), 1, 1, 1, 1, "' + ChuDe + '", "ádsadas");')
+        return db.load('INSERT INTO `news`.`baiviet` (`TieuDe`, `TomTat`, `HinhAnh`, `NoiDung`, `GioDang`, `TrangThai`, `SoLuotThich`, `SoLuotXem`, `DoUuTien`, `ChuDe`, `AnhDaiDien`) VALUES ("' + TieuDe + '", "' + TomTat + '", 19, ' + NoiDung + ', current_timestamp(), 1, 1, 1, 1, "' + ChuDe + '", "ádsadas");')
     }
 }

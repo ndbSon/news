@@ -3,6 +3,8 @@ var app = express();
 var db = require("./units/db");
 var db_Trang = require("./units/db_Trang");
 var bodyParser = require('body-parser');
+
+
 //
 var passport = require('passport');
 var passportfb = require('passport-facebook').Strategy;
@@ -31,11 +33,10 @@ app.listen(3000);
 
 app.get("/admin/dashboard/1", function(req, res) {
     if (req.isAuthenticated()) {
-        res.render("dashboard");
+        res.render("dashboard", { user: req.user });
     } else {
         res.redirect("../../");
     }
-
 });
 
 
@@ -70,13 +71,13 @@ app.get("/admin/VietBai_PV/2", function(req, res) {
 app.post("/admin/postbaiviet", urlencodedParser, (req, res) => {
     var TieuDe = req.body.TieuDe;
     var TomTat = req.body.TomTat;
-    var NoiDung = req.body.NoiDung;
+    var NoiDung = "'" + String(req.body.NoiDung) + "'";
     var ChuDe = req.body.ChuDe;
-    console.log(NoiDung);
     db_Trang.addBaiViet(TieuDe, TomTat, NoiDung, ChuDe)
         .then(rows => {
-            res.send('thanh cong r nhen');
+            res.send('thanh cong');
         }).catch(err => {
+            console.log(err);
             res.end('error occured.');
         });
 
@@ -137,11 +138,13 @@ app.get("/ChuDe/:rou", (req, res) => {
 app.get("/BaiViet/:id", (req, res) => {
     var rou = req.params.rou;
     var id = req.params.id;
+    var mess = "";
     Promise.all([db_Trang.Trang_Bao(id), db_Trang.BaiVietXemNhieu(), db_Trang.addLuotXem(id)])
         .then(rows => {
             res.render("Trang_Bao", {
                 data: rows[0][0],
                 XemNhieu: rows[1],
+                mess,
             });
         }).catch(err => {
             console.log(err);
@@ -156,16 +159,26 @@ app.get("/SQ/page", function(req, res) {
 });
 
 app.post("/SQ/addBinhLuan", urlencodedParser, (req, res) => {
-    var nd = req.body.message;
     var ID = req.body.ID;
-    db_Trang.addBinhLuan(nd, 2, ID)
-        .then(rows => {
-            res.redirect("../../BaiViet/" + ID);
-        }).catch(err => {
-            res.end('error occured.')
-        });
+    if (req.isAuthenticated()) {
+        var nd = req.body.message;
+        var nguoibinhluan = req.user.ID;
+
+        db_Trang.addBinhLuan(nd, nguoibinhluan, ID)
+            .then(rows => {
+                mess = "thanhcong"
+                res.redirect("../../BaiViet/" + ID, { mess });
+            }).catch(err => {
+                res.end('error occured.')
+            });
+    } else {
+        mess = "sadsadasdas"
+        res.redirect("../../BaiViet/" + ID, { mess });
+    }
 
 })
+
+
 
 
 //sign in
@@ -190,7 +203,6 @@ app.post("/SQ/signin/1", urlencodedParser, (req, res) => {
             console.log(err);
             res.end('error occured.')
         });
-
 })
 
 
@@ -199,7 +211,7 @@ app.post("/SQ/signin/1", urlencodedParser, (req, res) => {
 
 
 app.get("/auth/fb/cb", passport.authenticate('facebook', {
-    failureRedirect: '/',
+    failureRedirect: '/account/KTlogin',
     successRedirect: '/admin/dashboard/1'
 }));
 app.get("/auth/fb/1", passport.authenticate('facebook', { scope: ['email'] }));
@@ -211,6 +223,7 @@ passport.use(new passportfb({
         profileFields: ['email', 'gender', 'locale', 'displayName']
     },
     (accessToken, refreshToken, profile, done) => {
+
         if (username == 1 && password == 1) {
             return done(null, 1);
         } else {
@@ -230,18 +243,16 @@ app.post("/SQ/login/1", passport.authenticate('local', {
 }));
 passport.use(new LocalStrategy((username, password, done) => {
     db_Trang.listAcount(username).then(rows => {
-        if (rows.length < 0) {
-            return done(null, false);
+        if (rows.length === 0) {
+            return done(null, false, { message: 'Invalid username.' });
         } else {
             if (rows[0].MatKhau == password) {
-                return done(null, username);
+                return done(null, rows[0]);
             } else {
-                return done(null, false);
+                return done(null, false, { message: 'Sai Mật Khẩu hoặc username' });
             }
         }
-
     })
-
 }))
 
 passport.serializeUser((user, done) => {
@@ -249,12 +260,11 @@ passport.serializeUser((user, done) => {
 })
 
 passport.deserializeUser((user, done) => {
-    db_Trang.listAcount(user).then(rows => {
+    db_Trang.listAcount(user.TenDangNhap).then(rows => {
         if (rows.length > 0) {
             return done(null, user);
         } else {
             return done(null, false);
         }
-
     })
 })
