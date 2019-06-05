@@ -29,30 +29,81 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 app.listen(3000);
 
 
-
-
 app.get("/admin/dashboard/1", function(req, res) {
     if (req.isAuthenticated()) {
-        res.render("dashboard", { user: req.user });
+        Promise.all([db_Trang.BaiViet(" "), db_Trang.NguoiDung()])
+            .then(rows => {
+                res.render("dashboard", {
+                    SoBaiViet: rows[0].length,
+                    SoNguoiDung: rows[1],
+                    BaiViet: rows[0],
+                    NguoiDung: rows[1],
+                    user: req.user
+                });
+            })
     } else {
         res.redirect("../../");
     }
 });
 
+app.get("/admin/BaiViet/show=:id", function(req, res) {
+    if (req.isAuthenticated()) {
+        var id = parseInt(req.params.id) || 1;
+        var dau = (id - 1) * 5;
+        var sql = "LIMIT " + 5 + " OFFSET " + dau;
 
-app.get("/admin/BaiViet/1", function(req, res) {
-    res.render("BaiViet");
+        db_Trang.BaiViet(sql).then(rows => {
+            res.render("BaiViet", {
+                BaiViet: rows,
+                show: id,
+                dau: dau + 5,
+            });
+        })
+    } else {
+        res.redirect("../../");
+    }
 });
 
 app.get("/admin/NguoiDung/1", function(req, res) {
-    res.render("NguoiDung");
+    if (req.isAuthenticated()) {
+        Promise.all([db_Trang.NguoiDung()])
+            .then(rows => {
+                res.render("NguoiDung", {
+                    NguoiDung: rows[1],
+                    user: req.user
+                });
+            })
+    } else {
+        res.redirect("../../");
+    }
 });
 
 app.get("/admin/ChuyenMuc/1", function(req, res) {
-    res.render("ChuyenMuc");
+    if (req.isAuthenticated()) {
+        db_Trang.ChuyenMuc().then(rows => {
+            res.render("ChuyenMuc", {
+                ChuyenMuc: rows,
+            });
+        })
+    } else {
+        res.redirect("../../");
+    }
 });
+app.post("/admin/postTenTheLoai", urlencodedParser, (req, res) => {
+    var TenTheLoai = req.body.TenTheLoai;
+    db_Trang.addTenTheLoai(TenTheLoai)
+        .then(rows => {
+            res.redirect("../../admin/ChuyenMuc/1");
+        }).catch(err => {
+            console.log(err);
+            res.end('error occured.');
+        });
+
+})
+
 
 app.get("/admin/Tags/1", function(req, res) {
+    //res.render("Tags_01");
     res.render("Tags");
 });
 
@@ -211,7 +262,7 @@ app.post("/SQ/signin/1", urlencodedParser, (req, res) => {
 
 
 app.get("/auth/fb/cb", passport.authenticate('facebook', {
-    failureRedirect: '/account/KTlogin',
+    failureRedirect: '/',
     successRedirect: '/admin/dashboard/1'
 }));
 app.get("/auth/fb/1", passport.authenticate('facebook', { scope: ['email'] }));
@@ -223,12 +274,18 @@ passport.use(new passportfb({
         profileFields: ['email', 'gender', 'locale', 'displayName']
     },
     (accessToken, refreshToken, profile, done) => {
-
-        if (username == 1 && password == 1) {
-            return done(null, 1);
-        } else {
-            return done(null, false);
-        }
+        console.log(profile._json.name);
+        console.log(profile._json.id);
+        db_Trang.listAcount(String(profile._json.name)).then(rows => {
+            if (rows.length > 0) {
+                return done(null, rows[0]);
+            } else {
+                db_Trang.addQuanTri(String(profile._json.id), String(profile._json.name), String(profile._json.id), 1)
+                    .then(rows => {
+                        return done(null, rows[0]);
+                    })
+            }
+        })
     }
 ))
 

@@ -62,7 +62,7 @@
                         </a>
                     </li>
                     <li class="active">
-                        <a href="/admin/BaiViet/1">
+                        <a href="/admin/BaiViet/show=1">
                             <i class="pe-7s-note2"></i>
                             <p>Quản Lý Bài Viết</p>
                         </a>
@@ -88,7 +88,7 @@
                 <div class="container-fluid">
                     <div class="navbar-header">
 
-                        <a class="navbar-brand" href="/admin/BaiViet/1">Quản Lý Bài Viết</a>
+                        <a class="navbar-brand" href="/admin/BaiViet/show=1">Quản Lý Bài Viết</a>
                     </div>
                     <div class="collapse navbar-collapse">
 
@@ -126,16 +126,6 @@
                                                     <input type="search" placeholder=""
                                                         aria-controls="example1"></label></div>
                                         </div>
-                                        <div class="col-sm-2">
-                                            <div id="example1_length"><label>Show
-                                                    <select name="example1_length" aria-controls="example1">
-                                                        <option value="10">10</option>
-                                                        <option value="25">25</option>
-                                                        <option value="50">50</option>
-                                                        <option value="100">100</option>
-                                                    </select> entries</label></div>
-                                        </div>
-
                                     </div>
                                     <table class="table table-hover table-striped">
                                         <thead>
@@ -148,49 +138,83 @@
                                             <th>Tình Trạng</th>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td><a href="#">01</a></td>
-                                                <td>Sơn Tùng M-TP: 'Với âm nhạc, tôi chưa bao giờ muốn dừng lại'</td>
-                                                <th>Minh Quân</th>
-                                                <td>Âm Nhạc</td>
-                                                <td>#SonTung, #Vpop</td>
-                                                <td>1/1/2019</td>
-                                                <td><span class="label label-success">Xuất Bản</span></td>
+                                            <%BaiViet.forEach(function(item){%>
+                                                <tr>
+                                                    <td>
+                                                        <a href="#">
+                                                            <%=item.ID%>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <%=item.TieuDe%>
+                                                    </td>
+                                                    <th>
+                                                        <%=item.TacGia%>
+                                                    </th>
+                                                    <td>
+                                                        <%=item.ChuDe%>
+                                                    </td>
+                                                    <td>#SonTung, #Vpop</td>
+                                                    <td>
+                                                        <%=item.GioDang%>
+                                                    </td>
+                                                    <%if(item.TrangThai==1){%>
+                                                        <td><span class="label label-success">Xuất Bản</span></td>
+                                                        <% }else if(item.TrangThai==2){%>
+                                                            <td><span class="label label-danger">Draft</span></td>
+                                                            <%  }%>
+                                                </tr>
+                                                <%})%>
 
-                                            </tr>
-                                            <tr>
-                                                <td><a href="#">01</a></td>
-                                                <td>Sơn Tùng M-TP: 'Với âm nhạc, tôi chưa bao giờ muốn dừng lại'</td>
-                                                <th>Minh Quân</th>
-                                                <td>Âm Nhạc</td>
-                                                <td>#SonTung, #Vpop</td>
-                                                <td>1/1/2019</td>
-                                                <td><span class="label label-danger">Draft</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="#">01</a></td>
-                                                <td>Sơn Tùng M-TP: 'Với âm nhạc, tôi chưa bao giờ muốn dừng lại'</td>
-                                                <th>Minh Quân</th>
-                                                <td>Âm Nhạc</td>
-                                                <td>#SonTung, #Vpop</td>
-                                                <td>1/1/2019</td>
-                                                <td><span class="label label-success">Xuất Bản</span></td>
 
-                                            </tr>
-                                            <tr>
-                                                <td><a href="#">01</a></td>
-                                                <td>Sơn Tùng M-TP: 'Với âm nhạc, tôi chưa bao giờ muốn dừng lại'</td>
-                                                <th>Minh Quân</th>
-                                                <td>Âm Nhạc</td>
-                                                <td>#SonTung, #Vpop</td>
-                                                <td>1/1/2019</td>
-                                                <td><span class="label label-danger">Draft</span></td>
-                                            </tr>
                                         </tbody>
                                     </table>
 
                                 </div>
+
                             </div>
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center">
+
+                                    <li class="page-item ">
+                                        <a class="page-link" href="/admin/BaiViet/show=<%=show-1%>" tabindex="0">Previous</a>
+                                    </li>
+
+                                    <li class="page-item active">
+                                        <a class="page-link" href="/admin/BaiViet/show=<%=show%>">
+                                            <%=show%>
+                                        </a>
+                                    </li>
+                                    <%if(BaiViet.length < 5){%>
+                                        <li class="page-item disabled">
+                                            <%}else{%>
+                                                <li class="page-item">
+                                                    <%}%>
+                                                        <a class="page-link" href="/admin/BaiViet/show=<%=show+1%>">
+                                                            <%=show+1%>
+                                                        </a>
+                                                </li>
+                                                <%if(BaiViet.length < 5){%>
+                                                    <li class="page-item disabled">
+                                                        <%}else{%>
+                                                            <li class="page-item">
+                                                                <%}%>
+
+                                                                    <a class="page-link" href="/admin/BaiViet/show=<%=show+2%>">
+                                                                        <%=show+2%>
+                                                                    </a>
+                                                            </li>
+                                                            <%if(BaiViet.length < 5){%>
+                                                                <li class="page-item disabled">
+                                                                    <%}else{%>
+                                                                        <li class="page-item">
+                                                                            <%}%>
+                                                                                <a class="page-link" href="/admin/BaiViet/show=<%=show+1%>">Next</a>
+
+
+                                                                        </li>
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                 </div>

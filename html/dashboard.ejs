@@ -50,7 +50,7 @@
             <div class="sidebar-wrapper">
                 <div class="logo">
                     <a href="http://www.creative-tim.com" class="simple-text">
-                        Creative Tim
+                        Quản Trị Viên
                     </a>
                 </div>
 
@@ -68,7 +68,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/admin/BaiViet/1">
+                        <a href="/admin/BaiViet/show=1">
                             <i class="pe-7s-note2"></i>
                             <p>Quản Lý Bài Viết</p>
                         </a>
@@ -126,7 +126,9 @@
                             <!-- small box -->
                             <div class="small-box bg-aqua">
                                 <div class="inner">
-                                    <h3>150</h3>
+                                    <h3>
+                                        <%=SoBaiViet%>
+                                    </h3>
 
                                     <p>Bài Viết</p>
                                 </div>
@@ -325,53 +327,35 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td><a href="#">01</a></td>
-                                            <td>Sơn Tùng M-TP: 'Với âm nhạc, tôi chưa bao giờ muốn dừng lại'</td>
-                                            <th>Minh Quân</th>
-                                            <td>Âm Nhạc</td>
-                                            <td>#SonTung, #Vpop</td>
-                                            <td>1/1/2019</td>
-                                            <td><span class="label label-success">Xuất Bản</span></td>
-
-                                        </tr>
-                                        <tr>
-                                            <td><a href="#">01</a></td>
-                                            <td>Sơn Tùng M-TP: 'Với âm nhạc, tôi chưa bao giờ muốn dừng lại'</td>
-                                            <th>Minh Quân</th>
-                                            <td>Âm Nhạc</td>
-                                            <td>#SonTung, #Vpop</td>
-                                            <td>1/1/2019</td>
-                                            <td><span class="label label-danger">Draft</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="#">01</a></td>
-                                            <td>Sơn Tùng M-TP: 'Với âm nhạc, tôi chưa bao giờ muốn dừng lại'</td>
-                                            <th>Minh Quân</th>
-                                            <td>Âm Nhạc</td>
-                                            <td>#SonTung, #Vpop</td>
-                                            <td>1/1/2019</td>
-                                            <td><span class="label label-success">Xuất Bản</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="#">01</a></td>
-                                            <td>Sơn Tùng M-TP: 'Với âm nhạc, tôi chưa bao giờ muốn dừng lại'</td>
-                                            <th>Minh Quân</th>
-                                            <td>Âm Nhạc</td>
-                                            <td>#SonTung, #Vpop</td>
-                                            <td>1/1/2019</td>
-                                            <td><span class="label label-danger">Draft</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="#">01</a></td>
-                                            <td>Sơn Tùng M-TP: 'Với âm nhạc, tôi chưa bao giờ muốn dừng lại'</td>
-                                            <th>Minh Quân</th>
-                                            <td>Âm Nhạc</td>
-                                            <td>#SonTung, #Vpop</td>
-                                            <td>1/1/2019</td>
-                                            <td><span class="label label-danger">Draft</span></td>
-                                        </tr>
-
+                                        <%BaiViet.forEach(function(item){%>
+                                            <%  if(item.TrangThai==2){%>
+                                                <tr>
+                                                    <td>
+                                                        <a href="#">
+                                                            <%=item.ID%>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <%=item.TieuDe%>
+                                                    </td>
+                                                    <th>
+                                                        <%=item.TacGia%>
+                                                    </th>
+                                                    <td>
+                                                        <%=item.ChuDe%>
+                                                    </td>
+                                                    <td>#SonTung, #Vpop</td>
+                                                    <td>
+                                                        <%=item.GioDang%>
+                                                    </td>
+                                                    <%if(item.TrangThai==1){%>
+                                                        <td><span class="label label-success">Xuất Bản</span></td>
+                                                        <% }else if(item.TrangThai==2){%>
+                                                            <td><span class="label label-danger">Draft</span></td>
+                                                            <%  }%>
+                                                </tr>
+                                                <%  }%>
+                                                    <% })%>
                                     </tbody>
                                 </table>
                             </div>

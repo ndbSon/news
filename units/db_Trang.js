@@ -1,14 +1,23 @@
 var db = require("../units/db");
 
 module.exports = {
+    BaiViet: sql => {
+        return db.load('SELECT * FROM news.baiviet ' + sql + '')
+    },
+    NguoiDung: () => {
+        return db.load('SELECT * FROM news.quantri')
+    },
+    ChuyenMuc: () => {
+        return db.load('SELECT * FROM news.theloai')
+    },
     Trang_The_Loai: id => {
-        return db.load('SELECT bt.ID,bt.AnhDaiDien,bt.TieuDe,bt.TomTat,bt.GioDang,tlcd.TenChuDe,tlcd.TenTheLoai FROM news.baiviet as bt ,news.tlcd as tlcd where news.tlcd.TenChuDe = news.bt.ChuDe and  news.tlcd.TenTheLoai like "' + id + '";');
+        return db.load('SELECT bt.ID,bt.AnhDaiDien,bt.TieuDe,bt.TomTat,bt.GioDang,cd.TenChuDe,tl.TenTheLoai FROM news.baiviet as bt ,news.chude as cd, news.theloai as tl where news.cd.TenChuDe = news.bt.ChuDe and news.cd.IDTheLoai=news.tl.ID  and news.tl.TenTheLoai like  "' + id + '";');
     },
     Trang_Chu_De: id => {
-        return db.load('SELECT bt.ID,bt.TieuDe,bt.AnhDaiDien,bt.TomTat,bt.GioDang,tlcd.TenChuDe,tlcd.TenTheLoai FROM news.baiviet as bt ,news.tlcd as tlcd where news.tlcd.TenChuDe = news.bt.ChuDe and  news.tlcd.TenChuDe like "' + id + '";');
+        return db.load('SELECT bt.ID,bt.AnhDaiDien,bt.TieuDe,bt.TomTat,bt.GioDang,cd.TenChuDe,tl.TenTheLoai FROM news.baiviet as bt ,news.chude as cd, news.theloai as tl where news.cd.TenChuDe = news.bt.ChuDe and news.cd.IDTheLoai=news.tl.ID  and news.cd.TenChuDe like  "' + id + '";');
     },
     Trang_Bao: id => {
-        return db.load('SELECT bt.*,tlcd.TenTheLoai FROM news.baiviet as  bt,news.tlcd as tlcd where tlcd.TenChuDe=bt.ChuDe and bt.ID=' + id + '')
+        return db.load('SELECT bt.*,tl.TenTheLoai FROM news.baiviet as  bt,news.chude as cd, news.theloai as tl where cd.TenChuDe=bt.ChuDe and cd.IDTheLoai=tl.ID and bt.ID=' + id + '')
     },
     addBinhLuan: (NoiDung, IDNguoiBinhLuan, IDBaiViet) => {
         return db.load('INSERT INTO `news`.`binhluan` (`NoiDung`, `IDNguoiBinhLuan`, `IDBaiViet`) VALUES ("' + NoiDung + '", "' + IDNguoiBinhLuan + '", "' + IDBaiViet + '");')
@@ -30,5 +39,10 @@ module.exports = {
     },
     addBaiViet: (TieuDe, TomTat, NoiDung, ChuDe) => {
         return db.load('INSERT INTO `news`.`baiviet` (`TieuDe`, `TomTat`, `HinhAnh`, `NoiDung`, `GioDang`, `TrangThai`, `SoLuotThich`, `SoLuotXem`, `DoUuTien`, `ChuDe`, `AnhDaiDien`) VALUES ("' + TieuDe + '", "' + TomTat + '", 19, ' + NoiDung + ', current_timestamp(), 1, 1, 1, 1, "' + ChuDe + '", "ádsadas");')
-    }
+    },
+    addTenTheLoai: (TenTheLoai) => {
+        return db.load('INSERT INTO `news`.`theloai` (`TenTheLoai`) VALUES ("' + TenTheLoai + '")')
+    },
+
+
 }

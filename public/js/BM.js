@@ -15,7 +15,4 @@ $(document).ready(function($) {
 
     ////////////////////////////////
 
-    $('#btnxacnhan').click(function() {
-        alert("Ádsads");
-    })
 });
