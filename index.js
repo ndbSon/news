@@ -29,13 +29,13 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 app.listen(3000);
 
 
-app.get("/admin/dashboard/1", function(req, res) {
+app.get("/admin/dashboard/1", function (req, res) {
     if (req.isAuthenticated()) {
         Promise.all([db_Trang.BaiViet(" "), db_Trang.NguoiDung()])
             .then(rows => {
                 res.render("dashboard", {
                     SoBaiViet: rows[0].length,
-                    SoNguoiDung: rows[1],
+                    SoNguoiDung: rows[1].length,
                     BaiViet: rows[0],
                     NguoiDung: rows[1],
                     user: req.user
@@ -46,7 +46,7 @@ app.get("/admin/dashboard/1", function(req, res) {
     }
 });
 
-app.get("/admin/BaiViet/show=:id", function(req, res) {
+app.get("/admin/BaiViet/show=:id", function (req, res) {
     if (req.isAuthenticated()) {
         var id = parseInt(req.params.id) || 1;
         var dau = (id - 1) * 5;
@@ -64,7 +64,7 @@ app.get("/admin/BaiViet/show=:id", function(req, res) {
     }
 });
 
-app.get("/admin/NguoiDung/1", function(req, res) {
+app.get("/admin/NguoiDung/1", function (req, res) {
     if (req.isAuthenticated()) {
         Promise.all([db_Trang.NguoiDung()])
             .then(rows => {
@@ -78,72 +78,158 @@ app.get("/admin/NguoiDung/1", function(req, res) {
     }
 });
 
-app.get("/admin/ChuyenMuc/1", function(req, res) {
+app.get("/admin/ChuyenMuc/1", function (req, res) {
     if (req.isAuthenticated()) {
-        db_Trang.ChuyenMuc().then(rows => {
-            res.render("ChuyenMuc", {
-                ChuyenMuc: rows,
-            });
-        })
+        Promise.all([db_Trang.TheLoai(""), db_Trang.ChuDe("")])
+            .then(rows => {
+                res.render("ChuyenMuc", {
+                    TheLoai: rows[0],
+                    ChuDe: rows[1]
+                });
+            })
     } else {
         res.redirect("../../");
     }
 });
-app.post("/admin/postTenTheLoai", urlencodedParser, (req, res) => {
-    var TenTheLoai = req.body.TenTheLoai;
-    db_Trang.addTenTheLoai(TenTheLoai)
-        .then(rows => {
-            res.redirect("../../admin/ChuyenMuc/1");
-        }).catch(err => {
-            console.log(err);
-            res.end('error occured.');
-        });
+
+
+app.post("/admin/editChuDe", urlencodedParser, (req, res) => {
+    if (req.isAuthenticated()) {
+        var TenChuDe = req.body.EditTenChuDe;
+        var IDTenTheLoai = req.body.EditIDTenTheLoai;
+        var IDChuDe = req.body.IDChuDe;
+        db_Trang.editTenChuDe(TenChuDe, IDTenTheLoai, IDChuDe)
+            .then(rows => {
+                res.redirect("../../admin/ChuyenMuc/1");
+            })
+    } else {
+        res.redirect("../../");
+    }
+});
+app.post("/admin/editTheLoai", urlencodedParser, (req, res) => {
+    if (req.isAuthenticated()) {
+        var TenTheLoai = req.body.EditTenTheLoai;
+        var ID = req.body.IDTheLoai;
+        db_Trang.editTenTheLoai(TenTheLoai, ID)
+            .then(rows => {
+                res.redirect("../../admin/ChuyenMuc/1");
+            })
+    } else {
+        res.redirect("../../");
+    }
+})
+
+app.post("/admin/addTenTheLoai", urlencodedParser, (req, res) => {
+    if (req.isAuthenticated()) {
+        var TenTheLoai = req.body.addTenTheLoai;
+        db_Trang.addTenTheLoai(TenTheLoai)
+            .then(rows => {
+                res.redirect("../../admin/ChuyenMuc/1");
+            }).catch(err => {
+                console.log(err);
+                res.end('error occured.');
+            });
+    } else {
+        res.redirect("../../");
+    }
 
 })
 
+app.post("/admin/addTenChuDe", urlencodedParser, (req, res) => {
+    if (req.isAuthenticated()) {
+        var TenChuDe = req.body.addTenChuDe;
+        var id = req.body.addIDTheLoai;
+        db_Trang.addTenChuDe(TenChuDe, id)
+            .then(rows => {
+                res.redirect("../../admin/ChuyenMuc/1");
+            }).catch(err => {
+                console.log(err);
+                res.end('error occured.');
+            });
+    } else {
+        res.redirect("../../");
+    }
+})
 
-app.get("/admin/Tags/1", function(req, res) {
-    //res.render("Tags_01");
+
+
+app.get("/admin/deleteTenChuDe/:id", function (req, res) {
+    if (req.isAuthenticated()) {
+        var id = req.params.id;
+        db_Trang.deleteTenChuDe(id)
+            .then(rows => {
+                res.redirect("../../admin/ChuyenMuc/1");
+            })
+    } else {
+        res.redirect("../../");
+    }
+});
+app.get("/admin/deleteTenTheLoai/:id", function (req, res) {
+    if (req.isAuthenticated()) {
+        var id = req.params.id;
+        db_Trang.deleteTenTheLoai(id)
+            .then(rows => {
+                res.redirect("../../admin/ChuyenMuc/1");
+            })
+    } else {
+        res.redirect("../../");
+    }
+});
+
+
+app.get("/admin/Tags/1", function (req, res) {
     res.render("Tags");
 });
 
-app.get("/admin/PV/2", function(req, res) {
+
+
+app.get("/admin/PV/2", function (req, res) {
     res.render("PV");
 });
 
-app.get("/admin/BTV/2", function(req, res) {
+app.get("/admin/BTV/2", function (req, res) {
     res.render("BTV");
 });
 
-app.get("/admin/VietBai_PV/2", function(req, res) {
-    res.render("VietBai_PV");
+app.get("/admin/VietBai_PV/2", function (req, res) {
+    if (req.isAuthenticated() && req.user.Loai==2) {
+         res.render("VietBai_PV");
+    } else {
+        res.redirect("../../");
+    }
 });
 
 app.post("/admin/postbaiviet", urlencodedParser, (req, res) => {
+    if (req.isAuthenticated()) {
     var TieuDe = req.body.TieuDe;
     var TomTat = req.body.TomTat;
     var NoiDung = "'" + String(req.body.NoiDung) + "'";
     var ChuDe = req.body.ChuDe;
-    db_Trang.addBaiViet(TieuDe, TomTat, NoiDung, ChuDe)
+    var TacGia= req.user.TenDangNhap;
+    console.log(req.user);
+    db_Trang.addBaiViet(TieuDe, TomTat, NoiDung, ChuDe, TacGia)
         .then(rows => {
             res.send('thanh cong');
         }).catch(err => {
             console.log(err);
             res.end('error occured.');
         });
+    } else {
+        res.redirect("../../");
+    }
 
 })
 
 
-app.get("/admin/account/1", function(req, res) {
+app.get("/admin/account/1", function (req, res) {
     res.render("accountadmin");
 });
-app.get("/admin/account/2", function(req, res) {
+app.get("/admin/account/2", function (req, res) {
     res.render("account");
 });
 
 
-app.get("/", function(req, res) {
+app.get("/", function (req, res) {
     Promise.all([db_Trang.BaiVietXemNhieu()])
         .then(rows => {
             res.render("Trang_Chu", {
@@ -190,7 +276,7 @@ app.get("/BaiViet/:id", (req, res) => {
     var rou = req.params.rou;
     var id = req.params.id;
     var mess = "";
-    Promise.all([db_Trang.Trang_Bao(id), db_Trang.BaiVietXemNhieu(), db_Trang.addLuotXem(id)])
+    Promise.all([db_Trang.Trang_Bao(id), db_Trang.BaiVietXemNhieu(), db_Trang.editLuotXem(id)])
         .then(rows => {
             res.render("Trang_Bao", {
                 data: rows[0][0],
@@ -205,7 +291,7 @@ app.get("/BaiViet/:id", (req, res) => {
 
 //Bình Luận còn sửa
 
-app.get("/SQ/page", function(req, res) {
+app.get("/SQ/page", function (req, res) {
     res.render('page');
 });
 
@@ -226,7 +312,6 @@ app.post("/SQ/addBinhLuan", urlencodedParser, (req, res) => {
         mess = "sadsadasdas"
         res.redirect("../../BaiViet/" + ID, { mess });
     }
-
 })
 
 
@@ -247,7 +332,7 @@ app.get('/account/is-available', (req, res) => {
 app.post("/SQ/signin/1", urlencodedParser, (req, res) => {
     var Signusername = req.body.Signusername;
     var Signpassword = req.body.Signpassword;
-    db_Trang.addQuanTri(Signusername, Signusername, Signpassword, 1)
+    db_Trang.addUser(Signusername, Signpassword)
         .then(rows => {
             res.redirect("../../");
         }).catch(err => {
@@ -268,19 +353,17 @@ app.get("/auth/fb/cb", passport.authenticate('facebook', {
 app.get("/auth/fb/1", passport.authenticate('facebook', { scope: ['email'] }));
 
 passport.use(new passportfb({
-        clientID: "380139526042888",
-        clientSecret: "62d564aed56aecbd6d8e959f227cc71e",
-        callbackURL: "http://localhost:3000/auth/fb/cb",
-        profileFields: ['email', 'gender', 'locale', 'displayName']
-    },
+    clientID: "380139526042888",
+    clientSecret: "62d564aed56aecbd6d8e959f227cc71e",
+    callbackURL: "http://localhost:3000/auth/fb/cb",
+    profileFields: ['email', 'gender', 'locale', 'displayName']
+},
     (accessToken, refreshToken, profile, done) => {
-        console.log(profile._json.name);
-        console.log(profile._json.id);
         db_Trang.listAcount(String(profile._json.name)).then(rows => {
             if (rows.length > 0) {
                 return done(null, rows[0]);
             } else {
-                db_Trang.addQuanTri(String(profile._json.id), String(profile._json.name), String(profile._json.id), 1)
+                db_Trang.addUser(String(profile._json.name), String(profile._json.id))
                     .then(rows => {
                         return done(null, rows[0]);
                     })

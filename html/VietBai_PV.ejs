@@ -20,7 +20,7 @@
     <link href="../../css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet" />
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="../../css/demo.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../../css/select2.min.css">
+
 
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
@@ -32,6 +32,8 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="../../css/AdminLTE.min.css">
     <script src="//cdn.ckeditor.com/4.11.4/full/ckeditor.js"></script>
+
+
 </head>
 
 <body>
@@ -46,7 +48,7 @@
                 </div>
 
                 <ul class="nav">
-                    <li class="active">
+                    <li>
                         <a href="/admin/PV/2">
                             <i class="pe-7s-user"></i>
                             <p>Phóng Viên</p>
@@ -58,16 +60,17 @@
                             <p>Biên Tập Viên</p>
                         </a>
                     </li>
+
+
                 </ul>
             </div>
         </div>
-
         <div class="main-panel">
             <nav class="navbar navbar-default navbar-fixed">
                 <div class="container-fluid">
                     <div class="navbar-header">
 
-                        <a class="navbar-brand" href="/admin/PV/2">Phóng Viên</a>
+                        <a class="navbar-brand" href="/admin/account/2">Viết Bài</a>
                     </div>
                     <div class="collapse navbar-collapse">
 
@@ -88,81 +91,77 @@
                     </div>
                 </div>
             </nav>
-            <form action="/admin/postbaiviet" method="post">
-                <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-8">
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="header">
+                                    <h4 class="title">Edit Bài Viết</h4>
+                                </div>
+                                <div class="content">
+                                    <form action="/admin/postbaiviet" method="POST">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Tiêu Đề</label>
+                                                    <input type="text" name="TieuDe" class="form-control" placeholder="Tiêu Đề" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Tóm Tắt</label>
+                                                    <textarea rows="5" name="TomTat" class="form-control" placeholder="Tóm Tắt"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Nội Dung</label>
+                                                    <textarea rows="5" name="NoiDung" class="form-control" placeholder="Nội Dung"></textarea>
+                                                    <script>
+                                                        // Replace the <textarea id="editor1"> with a CKEditor
+                                                        // instance, using default configuration.
+                                                        CKEDITOR.replace('NoiDung');
+                                                    </script>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                        <h1>Viết Bài</h1>
-
-                        <h3>Tiêu Đề</h3>
-                        <div class="form-group">
-                            <textarea class="form-control mb-10" rows="5" name="TieuDe" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required=""></textarea>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <h3>Chuyên Mục</h3>
+                                                    <select class="form-control select2" name="ChuDe" style="width: 100%;">
+                                                              <option selected="selected">Kinh Doanh</option>
+                                                              <option>Âm Nhạc</option>
+                                                              <option>Phim Ảnh</option>
+                                                              <option>TTVN</option>
+                                                              <option>TTTG</option>
+                                                              <option>Mobile</option>
+                                                              <option>Doanh Nhân</option>
+                                                        </select> </div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>
+                                        <div class="clearfix"></div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
 
-                        <h3>Tóm Tắt</h3>
-                        <div class="form-group">
-                            <textarea class="form-control mb-10" rows="5" name="TomTat" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required=""></textarea>
-                        </div>
-
-                        <h3>Nội Dung</h3>
-                        <textarea name="NoiDung"></textarea>
-                        <script>
-                            // Replace the <textarea id="editor1"> with a CKEditor
-                            // instance, using default configuration.
-                            CKEDITOR.replace('NoiDung');
-                        </script>
                     </div>
-
                 </div>
+            </div>
 
-                <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <h3>Chuyên Mục</h3>
-                            <select class="form-control select2" name="ChuDe" style="width: 100%;">
-                                  <option selected="selected">Kinh Doanh</option>
-                                  <option>Âm Nhạc</option>
-                                  <option>Phim Ảnh</option>
-                                  <option>TTVN</option>
-                                  <option>TTTG</option>
-                                  <option>Mobile</option>
-                                  <option>Doanh Nhân</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <h3>Gắn Tags</h3>
-                            <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Tags" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                                      <option>A</option>
-                                      <option>B</option>
-                                      <option>C</option>
-                                      <option>D</option>
-                                      <option>E</option>
-                                      <option>F</option>
-                                      <option>G</option>
-                                    </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--multiple" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="-1"><ul class="select2-selection__rendered"><li class="select2-search select2-search--inline"><input class="select2-search__field" type="search" tabindex="-1" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" role="textbox" aria-autocomplete="list" placeholder="Tags" style="width: 397.725px;"></li></ul></span></span>
-                            <span class="dropdown-wrapper" aria-hidden="true"></span>
-                            </span>
-                            <span class="dropdown-wrapper" aria-hidden="true"></span>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-8"></div>
-                <button type="submit" id="btnxn" class="btn btn-info btn-fill">Xác Nhận</button>
-
-            </form>
         </div>
-
     </div>
-
     </div>
-
-
-    <script src="../../js/jquery-2.2.4.min.js" type="text/javascript"></script>
+    <!--   Core JS Files   -->
+    <script src="../../js/jquery.3.2.1.min.js" type="text/javascript"></script>
     <script src="../../js/bootstrap.min.js" type="text/javascript"></script>
 
     <!--  Notifications Plugin    -->
@@ -174,31 +173,7 @@
 
     <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
     <script src="../../js/demo.js"></script>
-    <script src="../../js/select2.full.min.js"></script>
 
-    <script src="https://cdn.ckeditor.com/ckeditor5/12.1.0/classic/ckeditor.js"></script>
-    <script>
-        $(document).ready(function($) {
-            var dect = CKEDITOR.instances.NoiDung.getData();
-            $('#btnxn').click(function() {
-                alert($('#nd').val());
-            })
-        });
-    </script>
-
-    <script>
-        ClassicEditor
-            .create(document.querySelector('#NoiDung'))
-            .catch(error => {
-                console.error(error);
-            });
-    </script>
-    <script>
-        $(function() {
-            //Initialize Select2 Elements
-            $('.select2').select2()
-        })
-    </script>
 </body>
 
 
