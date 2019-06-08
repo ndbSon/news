@@ -29,7 +29,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 app.listen(3000);
 
 
-app.get("/admin/dashboard/1", function (req, res) {
+app.get("/admin/dashboard/1", function(req, res) {
     if (req.isAuthenticated()) {
         Promise.all([db_Trang.BaiViet(" "), db_Trang.NguoiDung()])
             .then(rows => {
@@ -46,7 +46,7 @@ app.get("/admin/dashboard/1", function (req, res) {
     }
 });
 
-app.get("/admin/BaiViet/show=:id", function (req, res) {
+app.get("/admin/BaiViet/show=:id", function(req, res) {
     if (req.isAuthenticated()) {
         var id = parseInt(req.params.id) || 1;
         var dau = (id - 1) * 5;
@@ -64,7 +64,7 @@ app.get("/admin/BaiViet/show=:id", function (req, res) {
     }
 });
 
-app.get("/admin/NguoiDung/1", function (req, res) {
+app.get("/admin/NguoiDung/1", function(req, res) {
     if (req.isAuthenticated()) {
         Promise.all([db_Trang.NguoiDung()])
             .then(rows => {
@@ -78,7 +78,7 @@ app.get("/admin/NguoiDung/1", function (req, res) {
     }
 });
 
-app.get("/admin/ChuyenMuc/1", function (req, res) {
+app.get("/admin/ChuyenMuc/1", function(req, res) {
     if (req.isAuthenticated()) {
         Promise.all([db_Trang.TheLoai(""), db_Trang.ChuDe("")])
             .then(rows => {
@@ -153,7 +153,7 @@ app.post("/admin/addTenChuDe", urlencodedParser, (req, res) => {
 
 
 
-app.get("/admin/deleteTenChuDe/:id", function (req, res) {
+app.get("/admin/deleteTenChuDe/:id", function(req, res) {
     if (req.isAuthenticated()) {
         var id = req.params.id;
         db_Trang.deleteTenChuDe(id)
@@ -164,7 +164,7 @@ app.get("/admin/deleteTenChuDe/:id", function (req, res) {
         res.redirect("../../");
     }
 });
-app.get("/admin/deleteTenTheLoai/:id", function (req, res) {
+app.get("/admin/deleteTenTheLoai/:id", function(req, res) {
     if (req.isAuthenticated()) {
         var id = req.params.id;
         db_Trang.deleteTenTheLoai(id)
@@ -177,10 +177,9 @@ app.get("/admin/deleteTenTheLoai/:id", function (req, res) {
 });
 
 
-app.get("/admin/Tags/1", function (req, res) {
+app.get("/admin/Tags/1", function(req, res) {
     res.render("Tags");
 });
-
 
 
 app.get("/admin/PV/2", function (req, res) {
@@ -195,9 +194,9 @@ app.get("/admin/PV/2", function (req, res) {
     } else {
         res.redirect("../../");
     }
-});
 
-app.get("/admin/BTV/2", function (req, res) {
+
+app.get("/admin/BTV/2", function(req, res) {
     res.render("BTV");
 });
 
@@ -244,8 +243,6 @@ app.post("/admin/postbaiviet", urlencodedParser, (req, res) => {
                     res.end('error occured.');
                 });
         }
-
-
     } else {
         res.redirect("../../");
     }
@@ -253,19 +250,21 @@ app.post("/admin/postbaiviet", urlencodedParser, (req, res) => {
 })
 
 
-app.get("/admin/account/1", function (req, res) {
+app.get("/admin/account/1", function(req, res) {
     res.render("accountadmin");
 });
-app.get("/admin/account/2", function (req, res) {
+app.get("/admin/account/2", function(req, res) {
     res.render("account");
 });
 
 
-app.get("/", function (req, res) {
-    Promise.all([db_Trang.BaiVietXemNhieu()])
+app.get("/", function(req, res) {
+    Promise.all([db_Trang.BaiVietXemNhieu(), db_Trang.BaiVietMoiNhat()])
         .then(rows => {
             res.render("Trang_Chu", {
+
                 XemNhieu: rows[0],
+                MoiNhat: rows[1],
             });
         }).catch(err => {
             console.log(err);
@@ -323,7 +322,7 @@ app.get("/BaiViet/:id", (req, res) => {
 
 //Bình Luận còn sửa
 
-app.get("/SQ/page", function (req, res) {
+app.get("/SQ/page", function(req, res) {
     res.render('page');
 });
 
@@ -385,11 +384,11 @@ app.get("/auth/fb/cb", passport.authenticate('facebook', {
 app.get("/auth/fb/1", passport.authenticate('facebook', { scope: ['email'] }));
 
 passport.use(new passportfb({
-    clientID: "380139526042888",
-    clientSecret: "62d564aed56aecbd6d8e959f227cc71e",
-    callbackURL: "http://localhost:3000/auth/fb/cb",
-    profileFields: ['email', 'gender', 'locale', 'displayName']
-},
+        clientID: "380139526042888",
+        clientSecret: "62d564aed56aecbd6d8e959f227cc71e",
+        callbackURL: "http://localhost:3000/auth/fb/cb",
+        profileFields: ['email', 'gender', 'locale', 'displayName']
+    },
     (accessToken, refreshToken, profile, done) => {
         db_Trang.listAcount(String(profile._json.name)).then(rows => {
             if (rows.length > 0) {
@@ -440,3 +439,5 @@ passport.deserializeUser((user, done) => {
         }
     })
 })
+      
+   

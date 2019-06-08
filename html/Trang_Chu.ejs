@@ -1,158 +1,4 @@
-<!DOCTYPE html>
-<html lang="zxx" class="no-js">
-
-<head>
-    <!-- Mobile Specific Meta -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Favicon-->
-    <link rel="shortcut icon" href="img/fav.png">
-    <!-- Author Meta -->
-    <meta name="author" content="colorlib">
-    <!-- Meta Description -->
-    <meta name="description" content="">
-    <!-- Meta Keyword -->
-    <meta name="keywords" content="">
-    <!-- meta character set -->
-    <meta charset="UTF-8">
-    <!-- Site Title -->
-    <title>SQ-News</title>
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
-    <!--
-		CSS
-		============================================= -->
-    <link rel="stylesheet" href="css/linearicons.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/nice-select.css">
-    <link rel="stylesheet" href="css/animate.min.css">
-    <link rel="stylesheet" href="css/owl.carousel.css">
-    <link rel="stylesheet" href="css/jquery-ui.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/breaking-news-ticker.css">
-    <link rel="stylesheet" href="css/video.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/dangnhap.css">
-    <!--JS-->
-    <script type="text/javascript" src="js/video.js"></script>
-    <script type="text/javascript" src="js/date_time.js"></script>
-
-
-</head>
-
-
-<body onload="startTime()">
-    <header>
-        <div class="header-top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-6 header-top-left no-padding">
-                        <ul>
-                            <li><a href="#"><i class="far fa-user" onclick="document.getElementById('id01').style.display='block'" style="width:auto;"></i></a></li>
-                        </ul>
-
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-6 header-top-right no-padding date-time">
-                        <ul>
-                            <p id="date"></p>
-                            <p id="txt"></p>
-                        </ul>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <div class="logo-wrap">
-            <div class="container">
-                <div class="row justify-content-between align-items-center">
-                    <div class="col-lg-4 col-md-4 col-sm-12 logo-left no-padding">
-                        <a href="/">
-                            <img class="img-fluid" src="" alt="">
-                        </a>
-                    </div>
-                    <div class="col-lg-8 col-md-8 col-sm-12 logo-right no-padding ads-banner">
-                        <img class="img-fluid" src="img/banner-ad.jpg" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <nav class=" navbar-expand-lg navbar navbar-dark bg-dark ">
-            <div class="container">
-                <a class="navbar-brand" href="/">
-                    <img src="https://www.gmkfreelogos.com/logos/S/img/SQ.gif" width="25" height="25" class="d-inline-block align-top" alt=""> SQ News
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto ">
-                        <li class="nav-item active dropdown">
-                            <a class="nav-link " href="/Thoi_Su" target="_self">
-                                THỜI SỰ
-                            </a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="/ChuDe/CHÍNH_TRỊ">CHÍNH TRỊ</a>
-                                <a class="dropdown-item" href="/ChuDe/GIAO_THÔNG">GIAO THÔNG</a>
-                            </div>
-                        </li>
-                        <li class="nav-item active dropdown">
-                            <a class="nav-link " href="/Kinh_Doanh" target="_self">
-                                KINH DOANH
-                            </a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="/ChuDe/BẤT_ĐỘNG_SẢN">BẤT ĐỘNG SẢN</a>
-                                <a class="dropdown-item" href="/ChuDe/DOANH_NHÂN">DOANH NHÂN</a>
-                            </div>
-                        </li>
-                        <li class="nav-item active dropdown">
-                            <a class="nav-link " href="/The_Thao" target="_self">
-                                THỂ THAO
-                            </a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="/ChuDe/THỂ_THAO_VIỆT_NAM">THỂ THAO VIỆT NAM</a>
-                                <a class="dropdown-item" href="/ChuDe/THỂ_THAO_THẾ_GIỚI">THỂ THAO THẾ GIỚI</a>
-
-                            </div>
-                        </li>
-                        <li class="nav-item active dropdown">
-                            <a class="nav-link " href="/Giai_Tri" target="_self">
-                                GIẢI TRÍ
-                            </a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="/ChuDe/ÂM_NHẠC">ÂM NHẠC</a>
-                                <a class="dropdown-item" href="/ChuDe/PHIM_ẢNH">PHIM ẢNH</a>
-
-                            </div>
-                        </li>
-                        <li class="nav-item active dropdown">
-                            <a class="nav-link " href="/Cong_Nghe" target="_self">
-                                CÔNG NGHỆ
-                            </a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="/ChuDe/MOBILE">MOBILE</a>
-                                <a class="dropdown-item" href="/ChuDe/KHỞI_NGHIỆP">KHỞI NGHIỆP</a>
-                            </div>
-                        </li>
-                    </ul>
-                    <div class="navbar-right ">
-                        <form class="Search">
-                            <input type="text" class="form-control Search-box" name="Search-box" id="Search-box" placeholder="Search">
-                            <label for="Search-box" class="Search-box-label">
-                                <span class="lnr lnr-magnifier"></span>
-                            </label>
-                            <span class="Search-close">
-                                <span class="lnr lnr-cross"></span>
-                            </span>
-                        </form>
-                    </div>
-
-                </div>
-        </nav>
-    </header>
+<% include header %>
 
 
     <div class="site-main-container">
@@ -692,7 +538,9 @@
                                                         </h6>
                                                     </a>
                                                     <ul class="meta">
-                                                        <li><a href="#"><span class="lnr lnr-calendar-full"></span><%=i.GioDang%></a></li>
+                                                        <li><a href="#"><span
+                                                                class="lnr lnr-calendar-full"></span><%=i.GioDang%></a>
+                                                        </li>
                                                         <li><a href="#"><span class="lnr lnr-bubble"></span>06</a></li>
                                                     </ul>
                                                 </div>
@@ -704,169 +552,32 @@
 
                             <div class="single-sidebar-widget most-popular-widget">
                                 <h6 class="title">Top 10 Bài Viết Mới Nhất</h6>
-                                <div class="single-list flex-row d-flex">
-                                    <div class="thumb">
-                                        <a href="html/AmNhac.html">
-                                            <img class="HinhNho" src="https://znews-photo.zadn.vn/w660/Uploaded/bpivpjbp/2019_05_03/m11526380122969151497767.jpg" alt=""></a>
-                                    </div>
-                                    <div class="details">
-                                        <a href="html/AmNhac.html">
-                                            <h6>Những cặp tình nhân tin đồn gây chú ý của showbiz Việt</h6>
-                                        </a>
-                                        <ul class="meta">
-                                            <li><a href="#"><span class="lnr lnr-calendar-full"></span>03 April,
-                                                    2018</a></li>
-                                            <li><a href="#"><span class="lnr lnr-bubble"></span>06</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="single-list flex-row d-flex">
-                                    <div class="thumb">
-                                        <a href="html/AmNhac.html">
-                                            <img class="HinhNho" src="https://znews-photo.zadn.vn/w660/Uploaded/bpivpjbp/2019_05_03/m11526380122969151497767.jpg" alt=""></a>
-                                    </div>
-                                    <div class="details">
-                                        <a href="html/AmNhac.html">
-                                            <h6>Những cặp tình nhân tin đồn gây chú ý của showbiz Việt</h6>
-                                        </a>
-                                        <ul class="meta">
-                                            <li><a href="#"><span class="lnr lnr-calendar-full"></span>03 April,
-                                                    2018</a></li>
-                                            <li><a href="#"><span class="lnr lnr-bubble"></span>06</a></li>
-                                        </ul>
+                                <div class="editors-pick-post">
+                                    <div class="post-lists">
+                                        <% MoiNhat.forEach(function(i){%>
+                                            <div class="single-post d-flex flex-row">
+                                                <div class="thumb">
+                                                    <a href="/BaiViet/<%=i.ID%>">
+                                                    <img class="HinhNho" src="<%=i.AnhDaiDien%>" alt=""></a>
+                                                </div>
+                                                <div class="detail">
+                                                    <a href="/BaiViet/<%=i.ID%>">
+                                                        <h6>
+                                                            <%=i.TieuDe%>
+                                                        </h6>
+                                                    </a>
+                                                    <ul class="meta">
+                                                        <li><a href="#"><span
+                                                                class="lnr lnr-calendar-full"></span><%=i.GioDang%></a>
+                                                        </li>
+                                                        <li><a href="#"><span class="lnr lnr-bubble"></span>06</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <%});%>
                                     </div>
                                 </div>
-                                <div class="single-list flex-row d-flex">
-                                    <div class="thumb">
-                                        <a href="html/AmNhac.html">
-                                            <img class="HinhNho" src="https://znews-photo.zadn.vn/w660/Uploaded/bpivpjbp/2019_05_03/m11526380122969151497767.jpg" alt=""></a>
-                                    </div>
-                                    <div class="details">
-                                        <a href="html/AmNhac.html">
-                                            <h6>Những cặp tình nhân tin đồn gây chú ý của showbiz Việt</h6>
-                                        </a>
-                                        <ul class="meta">
-                                            <li><a href="#"><span class="lnr lnr-calendar-full"></span>03 April,
-                                                    2018</a></li>
-                                            <li><a href="#"><span class="lnr lnr-bubble"></span>06</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="single-list flex-row d-flex">
-                                    <div class="thumb">
-                                        <a href="html/AmNhac.html">
-                                            <img class="HinhNho" src="https://znews-photo.zadn.vn/w660/Uploaded/bpivpjbp/2019_05_03/m11526380122969151497767.jpg" alt=""></a>
-                                    </div>
-                                    <div class="details">
-                                        <a href="html/AmNhac.html">
-                                            <h6>Những cặp tình nhân tin đồn gây chú ý của showbiz Việt</h6>
-                                        </a>
-                                        <ul class="meta">
-                                            <li><a href="#"><span class="lnr lnr-calendar-full"></span>03 April,
-                                                    2018</a></li>
-                                            <li><a href="#"><span class="lnr lnr-bubble"></span>06</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="single-list flex-row d-flex">
-                                    <div class="thumb">
-                                        <a href="html/AmNhac.html">
-                                            <img class="HinhNho" src="https://znews-photo.zadn.vn/w660/Uploaded/bpivpjbp/2019_05_03/m11526380122969151497767.jpg" alt=""></a>
-                                    </div>
-                                    <div class="details">
-                                        <a href="html/AmNhac.html">
-                                            <h6>Những cặp tình nhân tin đồn gây chú ý của showbiz Việt</h6>
-                                        </a>
-                                        <ul class="meta">
-                                            <li><a href="#"><span class="lnr lnr-calendar-full"></span>03 April,
-                                                    2018</a></li>
-                                            <li><a href="#"><span class="lnr lnr-bubble"></span>06</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="single-list flex-row d-flex">
-                                    <div class="thumb">
-                                        <a href="html/AmNhac.html">
-                                            <img class="HinhNho" src="https://znews-photo.zadn.vn/w660/Uploaded/bpivpjbp/2019_05_03/m11526380122969151497767.jpg" alt=""></a>
-                                    </div>
-                                    <div class="details">
-                                        <a href="html/AmNhac.html">
-                                            <h6>Những cặp tình nhân tin đồn gây chú ý của showbiz Việt</h6>
-                                        </a>
-                                        <ul class="meta">
-                                            <li><a href="#"><span class="lnr lnr-calendar-full"></span>03 April,
-                                                    2018</a></li>
-                                            <li><a href="#"><span class="lnr lnr-bubble"></span>06</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="single-list flex-row d-flex">
-                                    <div class="thumb">
-                                        <a href="html/AmNhac.html">
-                                            <img class="HinhNho" src="https://znews-photo.zadn.vn/w660/Uploaded/bpivpjbp/2019_05_03/m11526380122969151497767.jpg" alt=""></a>
-                                    </div>
-                                    <div class="details">
-                                        <a href="html/AmNhac.html">
-                                            <h6>Những cặp tình nhân tin đồn gây chú ý của showbiz Việt</h6>
-                                        </a>
-                                        <ul class="meta">
-                                            <li><a href="#"><span class="lnr lnr-calendar-full"></span>03 April,
-                                                    2018</a></li>
-                                            <li><a href="#"><span class="lnr lnr-bubble"></span>06</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="single-list flex-row d-flex">
-                                    <div class="thumb">
-                                        <a href="html/AmNhac.html">
-                                            <img class="HinhNho" src="https://znews-photo.zadn.vn/w660/Uploaded/bpivpjbp/2019_05_03/m11526380122969151497767.jpg" alt=""></a>
-                                    </div>
-                                    <div class="details">
-                                        <a href="html/AmNhac.html">
-                                            <h6>Những cặp tình nhân tin đồn gây chú ý của showbiz Việt</h6>
-                                        </a>
-                                        <ul class="meta">
-                                            <li><a href="#"><span class="lnr lnr-calendar-full"></span>03 April,
-                                                    2018</a></li>
-                                            <li><a href="#"><span class="lnr lnr-bubble"></span>06</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="single-list flex-row d-flex">
-                                    <div class="thumb">
-                                        <a href="html/AmNhac.html">
-                                            <img class="HinhNho" src="https://znews-photo.zadn.vn/w660/Uploaded/bpivpjbp/2019_05_03/m11526380122969151497767.jpg" alt=""></a>
-                                    </div>
-                                    <div class="details">
-                                        <a href="html/AmNhac.html">
-                                            <h6>Những cặp tình nhân tin đồn gây chú ý của showbiz Việt</h6>
-                                        </a>
-                                        <ul class="meta">
-                                            <li><a href="#"><span class="lnr lnr-calendar-full"></span>03 April,
-                                                    2018</a></li>
-                                            <li><a href="#"><span class="lnr lnr-bubble"></span>06</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="single-list flex-row d-flex">
-                                    <div class="thumb">
-                                        <a href="html/AmNhac.html">
-                                            <img class="HinhNho" src="https://znews-photo.zadn.vn/w660/Uploaded/bpivpjbp/2019_05_03/m11526380122969151497767.jpg" alt=""></a>
-                                    </div>
-                                    <div class="details">
-                                        <a href="html/AmNhac.html">
-                                            <h6>Những cặp tình nhân tin đồn gây chú ý của showbiz Việt</h6>
-                                        </a>
-                                        <ul class="meta">
-                                            <li><a href="#"><span class="lnr lnr-calendar-full"></span>03 April,
-                                                    2018</a></li>
-                                            <li><a href="#"><span class="lnr lnr-bubble"></span>06</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-
                             </div>
-
                         </div>
                     </div>
 
@@ -880,77 +591,6 @@
     </div>
 
     <!-- start footer Area -->
-    <footer class="footer-area section-gap">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 single-footer-widget">
-                    <h4>Top Products</h4>
-                    <ul>
-                        <li><a href="#">Managed Website</a></li>
-                        <li><a href="#">Manage Reputation</a></li>
-                        <li><a href="#">Power Tools</a></li>
-                        <li><a href="#">Marketing Service</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-2 col-md-6 single-footer-widget">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#">Jobs</a></li>
-                        <li><a href="#">Brand Assets</a></li>
-                        <li><a href="#">Investor Relations</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-2 col-md-6 single-footer-widget">
-                    <h4>Features</h4>
-                    <ul>
-                        <li><a href="#">Jobs</a></li>
-                        <li><a href="#">Brand Assets</a></li>
-                        <li><a href="#">Investor Relations</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-2 col-md-6 single-footer-widget">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="#">Guides</a></li>
-                        <li><a href="#">Research</a></li>
-                        <li><a href="#">Experts</a></li>
-                        <li><a href="#">Agencies</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-6 single-footer-widget">
-                    <h4>Instragram Feed</h4>
-                    <ul class="instafeed d-flex flex-wrap">
-                        <li><img src="img/i1.jpg" alt=""></li>
-                        <li><img src="img/i2.jpg" alt=""></li>
-                        <li><img src="img/i3.jpg" alt=""></li>
-                        <li><img src="img/i4.jpg" alt=""></li>
-                        <li><img src="img/i5.jpg" alt=""></li>
-                        <li><img src="img/i6.jpg" alt=""></li>
-                        <li><img src="img/i7.jpg" alt=""></li>
-                        <li><img src="img/i8.jpg" alt=""></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom row align-items-center">
-                <p class="footer-text m-0 col-lg-8 col-md-12">
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    Copyright &copy;
-                    <script>
-                        document.write(new Date().getFullYear());
-                    </script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                </p>
-                <div class="col-lg-4 col-md-12 footer-social">
-                    <a href="#"><i class="fa fa-facebook"></i></a>
-                    <a href="#"><i class="fa fa-twitter"></i></a>
-                    <a href="#"><i class="fa fa-dribbble"></i></a>
-                    <a href="#"><i class="fa fa-behance"></i></a>
-                </div>
-            </div>
-        </div>
-    </footer>
     <!-- End footer Area -->
     <!--Dang Nhap-->
 
@@ -983,7 +623,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <button id="btnlogin" type="submit" class="btn btn-primary btn-block"> Login </button>
+                                        <button id="btnlogin" type="submit" class="btn btn-primary btn-block"> Login
+                                        </button>
                                     </div>
                                     <!-- form-group// -->
                                 </div>
@@ -1047,31 +688,4 @@
 
     </div>
 
-
-    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
-    <script src="js/dangnhap.js"></script>
-
-
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js " integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl " crossorigin="anonymous "></script>
-    <script src="js/breaking-news-ticker.min.js "></script>
-    <script type="text/javascript " src="js/BM.js "></script>
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
-    <script src="js/easing.min.js"></script>
-    <script src="js/hoverIntent.js"></script>
-    <script src="js/superfish.min.js"></script>
-    <script src="js/jquery.ajaxchimp.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/mn-accordion.js"></script>
-    <script src="js/jquery-ui.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/mail-script.js"></script>
-
-</body>
-
-</html>
+    <% include footer %>
