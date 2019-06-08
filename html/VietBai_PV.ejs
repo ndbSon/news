@@ -105,15 +105,39 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Tiêu Đề</label>
-                                                    <input type="text" name="TieuDe" class="form-control" placeholder="Tiêu Đề" required>
+
+                                                    <input type="text" name="TieuDe" class="form-control"
+                                                        placeholder="Tiêu Đề" <%if(info){%>
+                                                            value="<%=info.TieuDe%>"
+                                                       <% }%>  required>
+                                                       <input type="text" name="ID" class="form-control"
+                                                        placeholder="Tiêu Đề" <%if(info){%>
+                                                            value="<%=info.ID%>"
+                                                       <% }%>>
+                                                            
                                                 </div>
+
+
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Tóm Tắt</label>
-                                                    <textarea rows="5" name="TomTat" class="form-control" placeholder="Tóm Tắt"></textarea>
+                                                    <textarea rows="5" name="TomTat" class="form-control"
+                                                        placeholder="Tóm tắt Nội Dung"><%if(info){%><%=info.TomTat%>     
+                                                       <% }%></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Ảnh Đại Diện</label>
+                                                    <input type="text" name="AnhDaiDien" class="form-control"
+                                                        placeholder="http://" <%if(info){%>
+                                                            value="<%=info.AnhDaiDien%>"
+                                                       <% }%>  required>
                                                 </div>
                                             </div>
                                         </div>
@@ -121,7 +145,10 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Nội Dung</label>
-                                                    <textarea rows="5" name="NoiDung" class="form-control" placeholder="Nội Dung"></textarea>
+                                                    <textarea rows="5" name="NoiDung" class="form-control"
+                                                        placeholder="Nội Dung"><%if(info){%>
+                                                            <%=info.NoiDung%>
+                                                       <% }%></textarea>
                                                     <script>
                                                         // Replace the <textarea id="editor1"> with a CKEditor
                                                         // instance, using default configuration.
@@ -134,19 +161,25 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <h3>Chuyên Mục</h3>
-                                                    <select class="form-control select2" name="ChuDe" style="width: 100%;">
-                                                              <option selected="selected">Kinh Doanh</option>
-                                                              <option>Âm Nhạc</option>
-                                                              <option>Phim Ảnh</option>
-                                                              <option>TTVN</option>
-                                                              <option>TTTG</option>
-                                                              <option>Mobile</option>
-                                                              <option>Doanh Nhân</option>
-                                                        </select> </div>
+                                                    <h3>Chủ Đề</h3>
+                                                    <select class="form-control select2" name="ChuDe"
+                                                        style="width: 100%;">
+                                                        <%ChuDe.forEach(function(item){%>
+                                                            <%if(info){%>
+                                                                <%if(item.TenChuDe==info.ChuDe){%>
+                                                                    <option selected><%=item.TenChuDe%></option>
+                                                                <%}%>
+                                                           <% }%>
+                                                          
+                                                        <option><%=item.TenChuDe%></option>
+                                                        <% })%>
+
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>
+                                        <button type="submit" class="btn btn-info btn-fill pull-right">Update
+                                            Profile</button>
                                         <div class="clearfix"></div>
                                     </form>
                                 </div>

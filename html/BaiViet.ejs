@@ -139,32 +139,32 @@
                                         </thead>
                                         <tbody>
                                             <%BaiViet.forEach(function(item){%>
-                                                <tr>
-                                                    <td>
-                                                        <a href="#">
-                                                            <%=item.ID%>
-                                                        </a>
-                                                    </td>
-                                                    <td>
-                                                        <%=item.TieuDe%>
-                                                    </td>
-                                                    <th>
-                                                        <%=item.TacGia%>
-                                                    </th>
-                                                    <td>
-                                                        <%=item.ChuDe%>
-                                                    </td>
-                                                    <td>#SonTung, #Vpop</td>
-                                                    <td>
-                                                        <%=item.GioDang%>
-                                                    </td>
-                                                    <%if(item.TrangThai==1){%>
-                                                        <td><span class="label label-success">Xuất Bản</span></td>
-                                                        <% }else if(item.TrangThai==2){%>
-                                                            <td><span class="label label-danger">Draft</span></td>
-                                                            <%  }%>
-                                                </tr>
-                                                <%})%>
+                                            <tr>
+                                                <td>
+                                                    <a href="#">
+                                                        <%=item.ID%>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <%=item.TieuDe%>
+                                                </td>
+                                                <th>
+                                                    <%=item.TacGia%>
+                                                </th>
+                                                <td>
+                                                    <%=item.ChuDe%>
+                                                </td>
+                                                <td>#SonTung, #Vpop</td>
+                                                <td>
+                                                    <%=item.GioDang%>
+                                                </td>
+                                                <%if(item.TrangThai==1){%>
+                                                <td><span class="label label-success">Xuất Bản</span></td>
+                                                <% }else if(item.TrangThai==2){%>
+                                                <td><span class="label label-danger">Draft</span></td>
+                                                <%  }%>
+                                            </tr>
+                                            <%})%>
 
 
                                         </tbody>
@@ -177,7 +177,8 @@
                                 <ul class="pagination justify-content-center">
 
                                     <li class="page-item ">
-                                        <a class="page-link" href="/admin/BaiViet/show=<%=show-1%>" tabindex="0">Previous</a>
+                                        <a class="page-link" href="/admin/BaiViet/show=<%=show-1%>"
+                                            tabindex="0">Previous</a>
                                     </li>
 
                                     <li class="page-item active">
@@ -186,33 +187,32 @@
                                         </a>
                                     </li>
                                     <%if(BaiViet.length < 5){%>
-                                        <li class="page-item disabled">
-                                            <%}else{%>
-                                                <li class="page-item">
-                                                    <%}%>
+                                    <li class="page-item disabled">
+                                        <%}else{%>
+                                    <li class="page-item">
+                                        <%}%>
                                                         <a class="page-link" href="/admin/BaiViet/show=<%=show+1%>">
-                                                            <%=show+1%>
-                                                        </a>
-                                                </li>
-                                                <%if(BaiViet.length < 5){%>
-                                                    <li class="page-item disabled">
-                                                        <%}else{%>
-                                                            <li class="page-item">
-                                                                <%}%>
-
-                                                                    <a class="page-link" href="/admin/BaiViet/show=<%=show+2%>">
-                                                                        <%=show+2%>
-                                                                    </a>
-                                                            </li>
-                                                            <%if(BaiViet.length < 5){%>
-                                                                <li class="page-item disabled">
-                                                                    <%}else{%>
-                                                                        <li class="page-item">
-                                                                            <%}%>
-                                                                                <a class="page-link" href="/admin/BaiViet/show=<%=show+1%>">Next</a>
-
-
-                                                                        </li>
+                                        <%=show+1%>
+                                        </a>
+                                    </li>
+                                    <%if(BaiViet.length < 5){%>
+                                    <li class="page-item disabled">
+                                        <%}else{%>
+                                    <li class="page-item">
+                                        <%}%>
+                                            <a class="page-link" href="/admin/BaiViet/show=<%=show+2%>">
+                                        <%=show+2%>
+                                        </a>
+                                    </li>
+                                    </li>
+                                    <%if(BaiViet.length < 5){%>
+                                    <li class="page-item disabled">
+                                        <%}else{%>
+                                    <li class="page-item">
+                                        <%}%>
+                                         <a class="page-link" href="/admin/BaiViet/show=<%=show+1%>">Next</a>
+                                    </li>
+                                    </li>
                                 </ul>
                             </nav>
                         </div>

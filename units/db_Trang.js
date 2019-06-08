@@ -43,6 +43,7 @@ module.exports = {
     addUser: (TenDangNhap, MatKhau) => {
         return db.load(' INSERT INTO `news`.`user` (`TenDangNhap`, `MatKhau`,`Loai`) VALUES ("' + TenDangNhap + '", "' + MatKhau + '",1); ')
     },
+
     addBaiViet: (TieuDe, TomTat, NoiDung, ChuDe, TacGia) => {
         return db.load('INSERT INTO `news`.`baiviet` (`TieuDe`, `TomTat`, `HinhAnh`, `NoiDung`, `GioDang`, `TrangThai`, `SoLuotThich`, `SoLuotXem`, `Tags`, `ChuDe`,`AnhDaiDien`,`TacGia`) VALUES ("' + TieuDe + '", "' + TomTat + '", 19, ' + NoiDung + ', CURRENT_DATE(), 1, 1, 1, 1, "' + ChuDe + '", "Ảnh Đại Diẹn","' + TacGia + '");')
     },
@@ -64,8 +65,12 @@ module.exports = {
     editTenChuDe: (TenChuDe, IDTenTheLoai, ID) => {
         return db.load('UPDATE `news`.`chude` SET `TenChuDe` = "' + TenChuDe + '",`IDTheLoai`=' + IDTenTheLoai + ' WHERE (`ID` = ' + ID + ');')
     },
-    deleteTenTheLoai: (ID) => {
-        return db.load('DELETE FROM `news`.`theloai` WHERE (`ID` = ' + ID + ')')
+    editBaiViet: (TieuDe, TomTat, NoiDung, ChuDe,AnhDaiDien,ID) => {
+        return db.load('UPDATE `news`.`baiviet` SET `TieuDe` = "'+TieuDe+'", `TomTat` = "'+TomTat+'", `NoiDung` = "'+NoiDung+'", `GioDang` = current_timestamp(), `TrangThai` = 1, `SoLuotThich` = 1, `SoLuotXem` = 1, `Tags` = 1, `ChuDe` = "'+ChuDe+'", `AnhDaiDien` = "'+AnhDaiDien+'"  WHERE (`ID` = '+ID+');')
+    },
+    deleteTenTheLoai:(ID)=>{
+        return db.load('DELETE FROM `news`.`theloai` WHERE (`ID` = '+ID+')') 
+
     },
     deleteTenChuDe: (ID) => {
         return db.load('DELETE FROM `news`.`chude` WHERE (`ID` = ' + ID + ')')

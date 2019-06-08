@@ -110,12 +110,7 @@
                     <div class="box">
                         <div class="box-header">
                             <h3 class="box-title">Danh Sách Bài Viết</h3>
-                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-simple btn-xs">
-                                    <i class="fa fa-edit"></i>
-                                </button>
-                            <button type="button" rel="tooltip" title="Remove" class="btn btn-simple btn-xs">
-                                    <i class="fa fa-times"></i>
-                                </button>
+                           
                             <div class="box-tools">
                                 <div class="input-group input-group-sm" style="width: 150px;">
                                     <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
@@ -135,21 +130,32 @@
                                     <th>Ngày Gửi</th>
                                     <th>Tình Trạng</th>
                                     <th>Chuyên Mục</th>
-                                    <th>Select</th>
+                                    <th>Sửa/Xóa</th>
                                 </tr>
-                                <tr>
-                                    <td>183</td>
-                                    <td>John Doe</td>
-                                    <td>11-7-2014</td>
-                                    <td><span class="label label-success ">Approved</span></td>
-                                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    <td>
-                                        <div class="checkbox">
-                                            <input id="checkbox1" type="checkbox">
-                                            <label for="checkbox1"></label>
-                                        </div>
-                                    </td>
-                                </tr>
+                               
+                                    <%BaiViet.forEach(function(item){%>
+                                        <tr>
+                                        <td><%=item.ID%></td>
+                                        <td><%=item.TieuDe%></td>
+                                        <td><%=item.GioDang%></td>
+                                        <td><span class="label label-success ">Approved</span></td>
+                                        <td><%=item.ChuDe%></td>
+                                       
+                                        
+                                        <td>
+                                            <a href="/admin/VietBai_PV/id=<%=item.ID%>">
+                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-simple btn-xs">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                        </a>
+                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-simple btn-xs">
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <%})%>
+                                   
+                               
                                 <tr>
                                     <td>219</td>
                                     <td>Alexander Pierce</td>
@@ -198,7 +204,7 @@
             </div>
 
             <div class="col-xs-1"></div>
-            <a href="/admin/VietBai_PV/2">
+            <a href="/admin/VietBai_PV/id=0">
                 <button type="submit" class="btn btn-info btn-fill">Viết Bài</button>
             </a>
         </div>
