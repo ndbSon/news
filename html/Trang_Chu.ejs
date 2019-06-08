@@ -519,63 +519,10 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="sidebars-area">
-                            <div class="single-sidebar-widget editors-pick-widget">
-                                <h6 class="title">Top 10 Xem Nhiều Nhất</h6>
-                                <div class="editors-pick-post">
-                                    <div class="post-lists">
-                                        <% XemNhieu.forEach(function(i){%>
-                                            <div class="single-post d-flex flex-row">
-                                                <div class="thumb">
-                                                    <a href="/BaiViet/<%=i.ID%>">
-                                                    <img class="HinhNho" src="<%=i.AnhDaiDien%>" alt=""></a>
-                                                </div>
-                                                <div class="detail">
-                                                    <a href="/BaiViet/<%=i.ID%>">
-                                                        <h6>
-                                                            <%=i.TieuDe%>
-                                                        </h6>
-                                                    </a>
-                                                    <ul class="meta">
-                                                        <li><a href="#"><span
-                                                                class="lnr lnr-user"></span><%=i.TacGia%></a>
-                                                        </li>
-                                                        <li><a href="#"><span class="lnr lnr-bubble"></span>06</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <%});%>
-                                    </div>
-                                </div>
-                            </div>
+                            <% include XemNhieu %>
 
-                            <div class="single-sidebar-widget most-popular-widget">
-                                <h6 class="title">Top 10 Bài Viết Mới Nhất</h6>
-                                <div class="editors-pick-post">
-                                    <div class="post-lists">
-                                        <% MoiNhat.forEach(function(i){%>
-                                            <div class="single-post d-flex flex-row">
-                                                <div class="thumb">
-                                                    <a href="/BaiViet/<%=i.ID%>">
-                                                    <img class="HinhNho" src="<%=i.AnhDaiDien%>" alt=""></a>
-                                                </div>
-                                                <div class="detail">
-                                                    <a href="/BaiViet/<%=i.ID%>">
-                                                        <h6>
-                                                            <%=i.TieuDe%>
-                                                        </h6>
-                                                    </a>
-                                                    <ul class="meta">
-                                                        <li><a href="#"><span
-                                                                class="lnr lnr-user"></span><%=i.TacGia%></a>
-                                                        </li>
-                                                        <li><a href="#"><span class="lnr lnr-bubble"></span><%=i.GioDang%></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <%});%>
-                                    </div>
-                                </div>
-                            </div>
+                                <% include MoiNhat %>
+
                         </div>
                     </div>
 

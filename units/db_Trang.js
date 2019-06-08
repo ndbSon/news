@@ -24,11 +24,11 @@ module.exports = {
     },
 
     BaiVietXemNhieu: () => {
-        return db.load('SELECT bv.ID,bv.AnhDaiDien,bv.TieuDe,bv.TacGia,DATE(bv.GioDang) FROM news.baiviet as bv ORDER BY bv.SoLuotXem DESC LIMIT 10')
+        return db.load('SELECT bv.ID,bv.AnhDaiDien,bv.TieuDe,bv.TacGia,bv.GioDang,bv.ChuDe FROM news.baiviet as bv ORDER BY bv.SoLuotXem DESC LIMIT 10')
     },
 
     BaiVietMoiNhat: () => {
-        return db.load('SELECT bv.ID,bv.AnhDaiDien,bv.TieuDe,bv.TacGia,DATE(bv.GioDang) FROM news.baiviet as bv ORDER BY bv.SoLuotXem DESC LIMIT 10')
+        return db.load('SELECT bv.ID,bv.AnhDaiDien,bv.TieuDe,bv.TacGia,bv.GioDang,bv.ChuDe FROM news.baiviet as bv ORDER BY bv.SoLuotXem DESC LIMIT 10')
     },
 
     singleByUserName: name => {
@@ -65,11 +65,11 @@ module.exports = {
     editTenChuDe: (TenChuDe, IDTenTheLoai, ID) => {
         return db.load('UPDATE `news`.`chude` SET `TenChuDe` = "' + TenChuDe + '",`IDTheLoai`=' + IDTenTheLoai + ' WHERE (`ID` = ' + ID + ');')
     },
-    editBaiViet: (TieuDe, TomTat, NoiDung, ChuDe,AnhDaiDien,ID) => {
-        return db.load('UPDATE `news`.`baiviet` SET `TieuDe` = "'+TieuDe+'", `TomTat` = "'+TomTat+'", `NoiDung` = "'+NoiDung+'", `GioDang` = current_timestamp(), `TrangThai` = 1, `SoLuotThich` = 1, `SoLuotXem` = 1, `Tags` = 1, `ChuDe` = "'+ChuDe+'", `AnhDaiDien` = "'+AnhDaiDien+'"  WHERE (`ID` = '+ID+');')
+    editBaiViet: (TieuDe, TomTat, NoiDung, ChuDe, AnhDaiDien, ID) => {
+        return db.load('UPDATE `news`.`baiviet` SET `TieuDe` = "' + TieuDe + '", `TomTat` = "' + TomTat + '", `NoiDung` = "' + NoiDung + '", `GioDang` = current_timestamp(), `TrangThai` = 1, `SoLuotThich` = 1, `SoLuotXem` = 1, `Tags` = 1, `ChuDe` = "' + ChuDe + '", `AnhDaiDien` = "' + AnhDaiDien + '"  WHERE (`ID` = ' + ID + ');')
     },
-    deleteTenTheLoai:(ID)=>{
-        return db.load('DELETE FROM `news`.`theloai` WHERE (`ID` = '+ID+')') 
+    deleteTenTheLoai: (ID) => {
+        return db.load('DELETE FROM `news`.`theloai` WHERE (`ID` = ' + ID + ')')
 
     },
     deleteTenChuDe: (ID) => {
