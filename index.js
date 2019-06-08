@@ -184,16 +184,34 @@ app.get("/admin/Tags/1", function (req, res) {
 
 
 app.get("/admin/PV/2", function (req, res) {
-    res.render("PV");
+    if (req.isAuthenticated() && req.user.Loai == 2) {
+        var id = req.user.ID;
+        var sql ="where TacGia= "+id;
+        db_Trang.BaiViet(sql).then(rows=>{
+            res.render("PV",{
+                BaiViet: rows,
+            });
+        })
+    } else {
+        res.redirect("../../");
+    }
 });
 
 app.get("/admin/BTV/2", function (req, res) {
     res.render("BTV");
 });
 
-app.get("/admin/VietBai_PV/2", function (req, res) {
-    if (req.isAuthenticated() && req.user.Loai==2) {
-         res.render("VietBai_PV");
+app.get("/admin/VietBai_PV/id=:id", function (req, res) {
+    if (req.isAuthenticated() && req.user.Loai == 2) {
+        var id = req.params.id;
+        var sql = "where ID = " + id;
+        Promise.all([db_Trang.ChuDe(), db_Trang.BaiViet(sql)]).then(rows => {
+            res.render("VietBai_PV", {
+                ChuDe: rows[0],
+                info: rows[1][0],
+
+            })
+        })
     } else {
         res.redirect("../../");
     }
@@ -201,19 +219,33 @@ app.get("/admin/VietBai_PV/2", function (req, res) {
 
 app.post("/admin/postbaiviet", urlencodedParser, (req, res) => {
     if (req.isAuthenticated()) {
-    var TieuDe = req.body.TieuDe;
-    var TomTat = req.body.TomTat;
-    var NoiDung = "'" + String(req.body.NoiDung) + "'";
-    var ChuDe = req.body.ChuDe;
-    var TacGia= req.user.TenDangNhap;
-    console.log(req.user);
-    db_Trang.addBaiViet(TieuDe, TomTat, NoiDung, ChuDe, TacGia)
-        .then(rows => {
-            res.send('thanh cong');
-        }).catch(err => {
-            console.log(err);
-            res.end('error occured.');
-        });
+        var ID = req.body.ID;
+        var TieuDe = req.body.TieuDe;
+        var TomTat = req.body.TomTat;
+        var NoiDung = "'" + String(req.body.NoiDung) + "'";
+        var ChuDe = req.body.ChuDe;
+        var TacGia = req.user.ID;
+        var AnhDaiDien = req.body.AnhDaiDien;
+        console.log(ID);
+        if (!ID) {
+            db_Trang.addBaiViet(TieuDe, TomTat, NoiDung, ChuDe, AnhDaiDien, TacGia)
+                .then(rows => {
+                    res.send('thanh cong');
+                }).catch(err => {
+                    console.log(err);
+                    res.end('error occured.');
+                });
+        } else {
+            db_Trang.editBaiViet(TieuDe, TomTat, NoiDung, ChuDe, AnhDaiDien, ID)
+                .then(rows => {
+                    res.send('thanh cong');
+                }).catch(err => {
+                    console.log(err);
+                    res.end('error occured.');
+                });
+        }
+
+
     } else {
         res.redirect("../../");
     }
