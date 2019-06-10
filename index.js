@@ -31,7 +31,7 @@ app.listen(3000);
 
 app.get("/admin/dashboard/1", function(req, res) {
     if (req.isAuthenticated()) {
-        Promise.all([db_Trang.BaiViet(" "), db_Trang.NguoiDung()])
+        Promise.all([db_Trang.BaiViet("", " * "), db_Trang.NguoiDung("")])
             .then(rows => {
                 res.render("dashboard", {
                     SoBaiViet: rows[0].length,
@@ -52,7 +52,7 @@ app.get("/admin/BaiViet/show=:id", function(req, res) {
         var dau = (id - 1) * 5;
         var sql = "LIMIT " + 5 + " OFFSET " + dau;
 
-        db_Trang.BaiViet(sql).then(rows => {
+        db_Trang.BaiViet(sql, " * ").then(rows => {
             res.render("BaiViet", {
                 BaiViet: rows,
                 show: id,
@@ -66,10 +66,13 @@ app.get("/admin/BaiViet/show=:id", function(req, res) {
 
 app.get("/admin/NguoiDung/1", function(req, res) {
     if (req.isAuthenticated()) {
-        Promise.all([db_Trang.NguoiDung()])
+        var DocGia = " where Loai = 1";
+        var PV_BTV = " where Loai = 2 || Loai = 3 "
+        Promise.all([db_Trang.NguoiDung("")])
             .then(rows => {
                 res.render("NguoiDung", {
-                    NguoiDung: rows[1],
+                    NguoiDung: rows[0],
+
                     user: req.user
                 });
             })
@@ -187,7 +190,7 @@ app.get("/admin/PV/2", function(req, res) {
     if (req.isAuthenticated() && req.user.Loai == 2) {
         var id = req.user.ID;
         var sql = "where TacGia= " + id;
-        db_Trang.BaiViet(sql).then(rows => {
+        db_Trang.BaiViet(sql, " * ").then(rows => {
             res.render("PV", {
                 BaiViet: rows,
             });
@@ -199,18 +202,45 @@ app.get("/admin/PV/2", function(req, res) {
 
 
 app.get("/admin/BTV/2", function(req, res) {
-    res.render("BTV");
+    if (req.isAuthenticated() && req.user.Loai == 3) {
+        var sql = "as bv, news.user as u where bv.TrangThai=3 and u.ID=bv.TacGia";
+        var se = "bv.*,u.TenDangNhap"; ////sai cau truy vấn
+        Promise.all([db_Trang.BaiViet(sql, se)]).then(rows => {
+            res.render("BTV", {
+                BaiViet: rows[0],
+            })
+        })
+    } else {
+        res.redirect("../../");
+    }
 });
+
+app.post("/admin/BTVDuyetBaiViet", urlencodedParser, (req, res) => {
+    if (req.isAuthenticated()) {
+        var TrangThai = req.body.Duyet;
+        var id = req.body.IDBaiViet;
+        console.log("Trang Thai: " + TrangThai);
+        console.log("id:" + id);
+        db_Trang.editDuyetBaiViet(TrangThai, id)
+            .then(rows => {
+                res.redirect("../../admin/BTV/2");
+            }).catch(err => {
+                console.log(err);
+                res.end('error occured.');
+            });
+    } else {
+        res.redirect("../../");
+    }
+})
 
 app.get("/admin/VietBai_PV/id=:id", function(req, res) {
     if (req.isAuthenticated() && req.user.Loai == 2) {
         var id = req.params.id;
         var sql = "where ID = " + id;
-        Promise.all([db_Trang.ChuDe(), db_Trang.BaiViet(sql)]).then(rows => {
+        Promise.all([db_Trang.ChuDe(), db_Trang.BaiViet(sql, " * ")]).then(rows => {
             res.render("VietBai_PV", {
                 ChuDe: rows[0],
                 info: rows[1][0],
-
             })
         })
     } else {
@@ -227,7 +257,7 @@ app.post("/admin/postbaiviet", urlencodedParser, (req, res) => {
         var ChuDe = req.body.ChuDe;
         var TacGia = req.user.ID;
         var AnhDaiDien = req.body.AnhDaiDien;
-        console.log(ID);
+        console.log(req.user.ID)
         if (!ID) {
             db_Trang.addBaiViet(TieuDe, TomTat, NoiDung, ChuDe, AnhDaiDien, TacGia)
                 .then(rows => {
@@ -248,7 +278,6 @@ app.post("/admin/postbaiviet", urlencodedParser, (req, res) => {
     } else {
         res.redirect("../../");
     }
-
 })
 
 
@@ -357,8 +386,6 @@ app.post("/SQ/addBinhLuan", urlencodedParser, (req, res) => {
 })
 
 
-
-
 //sign in
 
 app.get('/account/is-available', (req, res) => {
@@ -394,7 +421,7 @@ app.post("/SQ/signin/1", urlencodedParser, (req, res) => {
 
 app.get("/auth/fb/cb", passport.authenticate('facebook', {
     failureRedirect: '/',
-    successRedirect: '/admin/dashboard/1'
+    successRedirect: '/admin/ChuyenMuc/1'
 }));
 app.get("/auth/fb/1", passport.authenticate('facebook', { scope: ['email'] }));
 

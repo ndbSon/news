@@ -110,13 +110,15 @@
                     <div class="box">
                         <div class="box-header">
                             <h3 class="box-title">Danh Sách Bài Viết</h3>
-                           
+
                             <div class="box-tools">
                                 <div class="input-group input-group-sm" style="width: 150px;">
-                                    <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+                                    <input type="text" name="table_search" class="form-control pull-right"
+                                        placeholder="Search">
 
                                     <div class="input-group-btn">
-                                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                        <button type="submit" class="btn btn-default"><i
+                                                class="fa fa-search"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -130,71 +132,37 @@
                                     <th>Ngày Gửi</th>
                                     <th>Tình Trạng</th>
                                     <th>Chuyên Mục</th>
-                                    <th>Sửa/Xóa</th>
+                                    <th>Sửa</th>
                                 </tr>
-                               
-                                    <%BaiViet.forEach(function(item){%>
-                                        <tr>
-                                        <td><%=item.ID%></td>
-                                        <td><%=item.TieuDe%></td>
-                                        <td><%=item.GioDang%></td>
-                                        <td><span class="label label-success ">Approved</span></td>
-                                        <td><%=item.ChuDe%></td>
-                                       
-                                        
-                                        <td>
+
+                                <%BaiViet.forEach(function(item){%>
+                                <tr>
+                                    <td><%=item.ID%></td>
+                                    <td><%=item.TieuDe%></td>
+                                    <td><%=item.GioDang%></td>
+                                    <%if(item.TrangThai==1){%>
+                                    <td><span class="label label-success ">Đã xuất bản</span></td>
+                                    <%}else if(item.TrangThai==2){%>
+                                    <td><span class="label label-primary ">Đã được duyệt & chờ xuất bản</span></td>
+                                    <%}else if(item.TrangThai==3){%>
+                                    <td><span class="label label-warning ">Chưa được duyệt</span></td>
+                                    <%}else if(item.TrangThai==4){%>
+                                    <td><span class="label label-danger ">Bị từ chối</span></td>
+                                    <% }%>
+
+                                    <td><%=item.ChuDe%></td>
+                                    <td class="td-actions">
+                                        <%if(item.TrangThai==4||item.TrangThai==3){%>
                                             <a href="/admin/VietBai_PV/id=<%=item.ID%>">
-                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-simple btn-xs">
-                                                <i class="fa fa-edit"></i>
-                                            </button>
-                                        </a>
-                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-simple btn-xs">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <%})%>
-                                   
-                               
-                                <tr>
-                                    <td>219</td>
-                                    <td>Alexander Pierce</td>
-                                    <td>11-7-2014</td>
-                                    <td><span class="label label-warning ">Pending</span></td>
-                                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    <td>
-                                        <div class="checkbox">
-                                            <input id="checkbox2" type="checkbox">
-                                            <label for="checkbox2"></label>
-                                        </div>
+                                                <button type="button" rel="tooltip" title="Edit Task"
+                                                    class="btn btn-simple btn-xs">
+                                                    <i class="fa fa-edit"></i>
+                                                </button>
+                                            </a>
+                                        <%}%>                                 
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>657</td>
-                                    <td>Bob Doe</td>
-                                    <td>11-7-2014</td>
-                                    <td><span class="label label-primary ">Approved</span></td>
-                                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    <td>
-                                        <div class="checkbox">
-                                            <input id="checkbox3" type="checkbox">
-                                            <label for="checkbox3"></label>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>175</td>
-                                    <td>Mike Doe</td>
-                                    <td>11-7-2014</td>
-                                    <td><span class="label label-danger ">Denied</span></td>
-                                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    <td>
-                                        <div class="checkbox">
-                                            <input id="checkbox4" type="checkbox">
-                                            <label for="checkbox4"></label>
-                                        </div>
-                                    </td>
-                                </tr>
+                                <%})%>
                             </table>
                         </div>
                         <!-- /.box-body -->
@@ -227,8 +195,4 @@
     <script src="../../js/demo.js"></script>
 
 </body>
-
-
-
-
 </html>

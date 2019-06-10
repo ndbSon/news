@@ -110,14 +110,11 @@
                                                         placeholder="Tiêu Đề" <%if(info){%>
                                                             value="<%=info.TieuDe%>"
                                                        <% }%>  required>
-                                                       <input type="text" name="ID" class="form-control"
+                                                       <input type="hidden" name="ID" class="form-control"
                                                         placeholder="Tiêu Đề" <%if(info){%>
                                                             value="<%=info.ID%>"
-                                                       <% }%>>
-                                                            
+                                                       <% }%>>           
                                                 </div>
-
-
                                             </div>
                                         </div>
                                         <div class="row">
@@ -145,7 +142,7 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Nội Dung</label>
-                                                    <textarea rows="5" name="NoiDung" class="form-control"
+                                                    <textarea rows="15" name="NoiDung" class="form-control"
                                                         placeholder="Nội Dung"><%if(info){%>
                                                             <%=info.NoiDung%>
                                                        <% }%></textarea>
