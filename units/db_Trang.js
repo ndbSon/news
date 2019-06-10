@@ -24,11 +24,11 @@ module.exports = {
     },
 
     BaiVietXemNhieu: () => {
-        return db.load('SELECT bv.ID,bv.AnhDaiDien,bv.TieuDe,bv.GioDang FROM news.baiviet as bv ORDER BY bv.SoLuotXem DESC LIMIT 10')
+        return db.load('SELECT bv.ID,bv.AnhDaiDien,bv.TieuDe,bv.TacGia,bv.GioDang,bv.ChuDe FROM news.baiviet as bv ORDER BY bv.SoLuotXem DESC LIMIT 10')
     },
 
     BaiVietMoiNhat: () => {
-        return db.load('SELECT bv.ID,bv.AnhDaiDien,bv.TieuDe,bv.GioDang FROM news.baiviet as bv ORDER BY bv.GioDang DESC LIMIT 10')
+        return db.load('SELECT bv.ID,bv.AnhDaiDien,bv.TieuDe,bv.TacGia,bv.GioDang,bv.ChuDe FROM news.baiviet as bv ORDER BY bv.SoLuotXem DESC LIMIT 10')
     },
 
     singleByUserName: name => {
@@ -46,6 +46,7 @@ module.exports = {
 
     addBaiViet: (TieuDe, TomTat, NoiDung, ChuDe,AnhDaiDien, TacGia) => {
         return db.load('INSERT INTO `news`.`baiviet` (`TieuDe`, `TomTat`, `HinhAnh`, `NoiDung`, `GioDang`, `TrangThai`, `SoLuotThich`, `SoLuotXem`, `Tags`, `ChuDe`,`AnhDaiDien`,`TacGia`) VALUES ("' + TieuDe + '", "' + TomTat + '", 19, ' + NoiDung + ', current_timestamp(), 3, 1, 1, 1, "' + ChuDe + '", "'+AnhDaiDien+'","' + TacGia + '");')
+
     },
     addTenTheLoai: (TenTheLoai) => {
         return db.load('INSERT INTO `news`.`theloai` (`TenTheLoai`) VALUES ("' + TenTheLoai + '")')
@@ -71,8 +72,8 @@ module.exports = {
     editDuyetBaiViet: (TrangThai,ID)=>{
         return db.load('UPDATE `news`.`baiviet` SET `TrangThai` = '+TrangThai+' WHERE (`ID` = '+ID+');')
     },
-    deleteTenTheLoai:(ID)=>{
-        return db.load('DELETE FROM `news`.`theloai` WHERE (`ID` = '+ID+')') 
+    deleteTenTheLoai: (ID) => {
+        return db.load('DELETE FROM `news`.`theloai` WHERE (`ID` = ' + ID + ')')
 
     },
     deleteTenChuDe: (ID) => {

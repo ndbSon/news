@@ -97,31 +97,7 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="sidebars-area">
-                            <div class="single-sidebar-widget most-popular-widget">
-                                <h6 class="title">Bài Viết Xem Nhiều</h6>
-                                <% XemNhieu.forEach(function(i){%>
-                                    <div class="single-list flex-row d-flex">
-                                        <div class="thumb">
-                                            <a href="/BaiViet/<%=i.ID%>">
-                                            <img src="<%=i.AnhDaiDien%>" alt="Card image cap" width="100px" height="80px">
-                                        </a>
-                                        </div>
-                                        <div class="details">
-                                            <a href="/BaiViet/<%=i.ID%>">
-                                                <h6>
-                                                    <%=i.TieuDe%>
-                                                </h6>
-                                            </a>
-                                            <ul class="meta">
-                                                <li><a href="#"><span class="lnr lnr-calendar-full"></span><%=i.GioDang%></a></li>
-                                                <li><a href="#"><span class="lnr lnr-bubble"></span>06</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <%});%>
-
-
-                            </div>
+                            <% include XemNhieu %>
 
                         </div>
                     </div>
