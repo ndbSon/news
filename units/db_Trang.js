@@ -80,6 +80,9 @@ module.exports = {
     editDuyetBaiViet: (TrangThai,ID)=>{
         return db.load('UPDATE `news`.`baiviet` SET `TrangThai` = '+TrangThai+' WHERE (`ID` = '+ID+');')
     },
+    editPhanCongBTV:(IDTheLoai,ID)=>{
+        return db.load('UPDATE `news`.`bientapvien` SET `IDTheLoai` = '+IDTheLoai+' WHERE (`IDUser` = '+ID+');')
+    },
     deleteTenTheLoai: (ID) => {
         return db.load('DELETE FROM `news`.`theloai` WHERE (`ID` = ' + ID + ')')
 

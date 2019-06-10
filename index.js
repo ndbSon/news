@@ -68,11 +68,11 @@ app.get("/admin/NguoiDung/1", function(req, res) {
     if (req.isAuthenticated()) {
         var DocGia = " where Loai = 1";
         var PV_BTV = " where Loai = 2 || Loai = 3 "
-        Promise.all([db_Trang.NguoiDung("")])
+        Promise.all([db_Trang.NguoiDung(""),db_Trang.TheLoai("")])
             .then(rows => {
                 res.render("NguoiDung", {
                     NguoiDung: rows[0],
-
+                    TheLoai:rows[1],
                     user: req.user
                 });
             })
@@ -80,6 +80,23 @@ app.get("/admin/NguoiDung/1", function(req, res) {
         res.redirect("../../");
     }
 });
+
+app.post("/admin/PhanCong", urlencodedParser, (req, res) => {
+    if (req.isAuthenticated()) {
+        var PhanCongTheLoai = req.body.PhanCongTheLoai;
+        var ID = req.body.IDBTV;
+        db_Trang.editPhanCongBTV(PhanCongTheLoai,ID)
+            .then(rows => {
+                res.redirect("../../admin/NguoiDung/1");
+            }).catch(err => {
+                console.log(err);
+                res.end('error occured.');
+            });
+    } else {
+        res.redirect("../../");
+    }
+
+})
 
 app.get("/admin/ChuyenMuc/1", function(req, res) {
     if (req.isAuthenticated()) {
@@ -318,6 +335,7 @@ app.get("/:rou", (req, res) => {
                 TheLoai: rows[3],
                 TheLoai2: rows[0][0].TenTheLoai,
                 ChuDe2: rows[0][0].TenChuDe,
+                user: req.user
 
             });
         }).catch(err => {
@@ -336,7 +354,8 @@ app.get("/ChuDe/:rou", (req, res) => {
                 ChuDe: rows[2],
                 TheLoai: rows[3],
                 TheLoai2: rows[0][0].TenTheLoai,
-                ChuDe2: rows[0][0].TenChuDe
+                ChuDe2: rows[0][0].TenChuDe,
+                user: req.user
             });
         }).catch(err => {
             console.log(err);
@@ -353,6 +372,8 @@ app.get("/BaiViet/:id", (req, res) => {
                 data: rows[0][0],
                 XemNhieu: rows[1],
                 mess,
+
+                user: req.user,
             });
         }).catch(err => {
             console.log(err);
