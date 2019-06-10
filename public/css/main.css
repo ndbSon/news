@@ -917,7 +917,7 @@ header {
 .header-top .header-top-left li a {
     font-weight: 400;
     font-size: 12px;
-    color: #fff;
+    color: #000;
     -webkit-transition: all 0.3s ease 0s;
     -moz-transition: all 0.3s ease 0s;
     -o-transition: all 0.3s ease 0s;

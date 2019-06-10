@@ -106,6 +106,7 @@ app.post("/admin/editChuDe", urlencodedParser, (req, res) => {
         res.redirect("../../");
     }
 });
+
 app.post("/admin/editTheLoai", urlencodedParser, (req, res) => {
     if (req.isAuthenticated()) {
         var TenTheLoai = req.body.EditTenTheLoai;
@@ -182,12 +183,12 @@ app.get("/admin/Tags/1", function(req, res) {
 });
 
 
-app.get("/admin/PV/2", function (req, res) {
+app.get("/admin/PV/2", function(req, res) {
     if (req.isAuthenticated() && req.user.Loai == 2) {
         var id = req.user.ID;
-        var sql ="where TacGia= "+id;
-        db_Trang.BaiViet(sql).then(rows=>{
-            res.render("PV",{
+        var sql = "where TacGia= " + id;
+        db_Trang.BaiViet(sql).then(rows => {
+            res.render("PV", {
                 BaiViet: rows,
             });
         })
@@ -201,7 +202,7 @@ app.get("/admin/BTV/2", function(req, res) {
     res.render("BTV");
 });
 
-app.get("/admin/VietBai_PV/id=:id", function (req, res) {
+app.get("/admin/VietBai_PV/id=:id", function(req, res) {
     if (req.isAuthenticated() && req.user.Loai == 2) {
         var id = req.params.id;
         var sql = "where ID = " + id;
@@ -260,12 +261,15 @@ app.get("/admin/account/2", function(req, res) {
 
 
 app.get("/", function(req, res) {
-    Promise.all([db_Trang.BaiVietXemNhieu(), db_Trang.BaiVietMoiNhat()])
+    console.log(req.user);
+    Promise.all([db_Trang.BaiVietXemNhieu(), db_Trang.BaiVietMoiNhat(), db_Trang.ChuDe(""), db_Trang.TheLoai("")])
         .then(rows => {
             res.render("Trang_Chu", {
-
                 XemNhieu: rows[0],
                 MoiNhat: rows[1],
+                ChuDe: rows[2],
+                TheLoai: rows[3],
+                user: req.user
             });
         }).catch(err => {
             console.log(err);
@@ -276,12 +280,16 @@ app.get("/", function(req, res) {
 
 app.get("/:rou", (req, res) => {
     var rou = req.params.rou;
-    Promise.all([db_Trang.Trang_The_Loai(rou), db_Trang.BaiVietXemNhieu()])
+    Promise.all([db_Trang.Trang_The_Loai(rou), db_Trang.BaiVietXemNhieu(), db_Trang.ChuDe(""), db_Trang.TheLoai("")])
         .then(rows => {
             res.render("TrangTheLoai", {
                 data: rows[0],
                 XemNhieu: rows[1],
-                TheLoai: rows[0][0].TenTheLoai
+                ChuDe: rows[2],
+                TheLoai: rows[3],
+                TheLoai2: rows[0][0].TenTheLoai,
+                ChuDe2: rows[0][0].TenChuDe,
+
             });
         }).catch(err => {
             console.log(err);
@@ -291,13 +299,15 @@ app.get("/:rou", (req, res) => {
 
 app.get("/ChuDe/:rou", (req, res) => {
     var rou = req.params.rou;
-    Promise.all([db_Trang.Trang_Chu_De(rou), db_Trang.BaiVietXemNhieu()])
+    Promise.all([db_Trang.Trang_Chu_De(rou), db_Trang.BaiVietXemNhieu(), db_Trang.ChuDe(""), db_Trang.TheLoai("")])
         .then(rows => {
             res.render("Trang_Chu_De", {
                 data: rows[0],
                 XemNhieu: rows[1],
-                TheLoai: rows[0][0].TenTheLoai,
-                ChuDe: rows[0][0].TenChuDe
+                ChuDe: rows[2],
+                TheLoai: rows[3],
+                TheLoai2: rows[0][0].TenTheLoai,
+                ChuDe2: rows[0][0].TenChuDe
             });
         }).catch(err => {
             console.log(err);
@@ -361,6 +371,11 @@ app.get('/account/is-available', (req, res) => {
     })
 })
 
+app.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect('/');
+});
+
 app.post("/SQ/signin/1", urlencodedParser, (req, res) => {
     var Signusername = req.body.Signusername;
     var Signpassword = req.body.Signpassword;
@@ -372,7 +387,6 @@ app.post("/SQ/signin/1", urlencodedParser, (req, res) => {
             res.end('error occured.')
         });
 })
-
 
 
 //login facebook
@@ -440,7 +454,3 @@ passport.deserializeUser((user, done) => {
         }
     })
 })
-
-
-      
-   

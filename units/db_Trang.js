@@ -7,11 +7,19 @@ module.exports = {
     NguoiDung: () => {
         return db.load('SELECT * FROM news.user')
     },
+
     TheLoai: (sql) => {
         return db.load('SELECT * FROM news.theloai' + sql + '')
     },
     ChuDe: (sql) => {
         return db.load('SELECT * FROM news.chude ' + sql + '')
+    },
+
+    ChuDe1: () => {
+        return db.load('SELECT distinct tl.TenTheLoai,cd1.TenChuDe,cd2.TenChuDe as A FROM news.chude as cd1,news.chude as cd2,news.theloai as tl where cd1.IDTheLoai=tl.ID and cd2.ID!=cd1.ID and cd2.IDTheLoai=tl.ID group by tl.TenTheLoai')
+    },
+    TheLoai1: () => {
+        return db.load('SELECT tl.TenTheLoai FROM news.theloai as tl')
     },
     Trang_The_Loai: id => {
         return db.load('SELECT bv.ID,bv.AnhDaiDien,bv.TieuDe,bv.TomTat,bv.GioDang,cd.TenChuDe,tl.TenTheLoai FROM news.baiviet as bv ,news.chude as cd, news.theloai as tl where news.cd.TenChuDe = news.bv.ChuDe and news.cd.IDTheLoai=news.tl.ID  and news.tl.TenTheLoai like  "' + id + '";');
@@ -28,7 +36,7 @@ module.exports = {
     },
 
     BaiVietMoiNhat: () => {
-        return db.load('SELECT bv.ID,bv.AnhDaiDien,bv.TieuDe,bv.TacGia,bv.GioDang,bv.ChuDe FROM news.baiviet as bv ORDER BY bv.SoLuotXem DESC LIMIT 10')
+        return db.load('SELECT bv.ID,bv.AnhDaiDien,bv.TieuDe,bv.TacGia,bv.GioDang,bv.ChuDe FROM news.baiviet as bv ORDER BY bv.GioDang DESC LIMIT 10')
     },
 
     singleByUserName: name => {
