@@ -318,7 +318,7 @@ app.get("/:rou", (req, res) => {
                 TheLoai: rows[3],
                 TheLoai2: rows[0][0].TenTheLoai,
                 ChuDe2: rows[0][0].TenChuDe,
-
+                user: req.user
             });
         }).catch(err => {
             console.log(err);
@@ -336,7 +336,8 @@ app.get("/ChuDe/:rou", (req, res) => {
                 ChuDe: rows[2],
                 TheLoai: rows[3],
                 TheLoai2: rows[0][0].TenTheLoai,
-                ChuDe2: rows[0][0].TenChuDe
+                ChuDe2: rows[0][0].TenChuDe,
+                user: req.user
             });
         }).catch(err => {
             console.log(err);
@@ -347,12 +348,17 @@ app.get("/BaiViet/:id", (req, res) => {
     var rou = req.params.rou;
     var id = req.params.id;
     var mess = "";
-    Promise.all([db_Trang.Trang_Bao(id), db_Trang.BaiVietXemNhieu(), db_Trang.editLuotXem(id)])
+    Promise.all([db_Trang.Trang_Bao(id), db_Trang.BaiVietXemNhieu(), db_Trang.editLuotXem(id), db_Trang.ChuDe(""), db_Trang.TheLoai("")])
         .then(rows => {
             res.render("Trang_Bao", {
                 data: rows[0][0],
                 XemNhieu: rows[1],
                 mess,
+                ChuDe: rows[3],
+                TheLoai: rows[4],
+                TheLoai2: rows[0][0].TenTheLoai,
+                ChuDe2: rows[0][0].TenChuDe,
+                user: req.user
             });
         }).catch(err => {
             console.log(err);
