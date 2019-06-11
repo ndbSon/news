@@ -11,7 +11,7 @@
                                 <%=TheLoai2%>
                             </h1>
                             <p class="text-white link-nav"><a href="/">Home </a> <span class="lnr lnr-arrow-right"></span>
-                                <a href="/<%=TheLoai2%>">
+                                <a href="/<%=TheLoai2%>/show=1">
                                     <%=TheLoai2%>
                                 </a>
                             </p>
@@ -40,7 +40,7 @@
                                         </div>
                                         <ul class="tags">
                                             <li>
-                                                <a href="/ChuDe/<%=i.TenChuDe%>">
+                                                <a href="<%=i.TenChuDe%>/page=1">
                                                     <%= i.TenChuDe%>
                                                 </a>
                                             </li>
@@ -83,23 +83,43 @@
                                             <li class="page-item">
                                                 <a class="page-link" href="/<%=TheLoai2%>/show=<%=show-1%>" tabindex="-1">Previous</a>
                                             </li>
-                                            <li class="page-item"><a class="page-link" href="/<%=TheLoai2%>/show=<%=show%>"><%=show%></a></li>
+                                            <li class="page-item">
+                                                <a class="page-link" href="/<%=TheLoai2%>/show=<%=show%>">
+                                                    <%=show%>
+                                                </a>
+                                            </li>
                                             <%if(data.length < 3){%>
-                                                <li class="page-item disabled"><a class="page-link" href="#"><%=show+1%></a></li>
-                                                <li class="page-item disabled"><a class="page-link" href="#"><%=show+2%></a></li>
+                                                <li class="page-item disabled">
+                                                    <a class="page-link" href="#">
+                                                        <%=show+1%>
+                                                    </a>
+                                                </li>
+                                                <li class="page-item disabled">
+                                                    <a class="page-link" href="#">
+                                                        <%=show+2%>
+                                                    </a>
+                                                </li>
                                                 <li class="page-item">
-                                                        <a class="page-link" href="#">Next</a>
+                                                    <a class="page-link" href="#">Next</a>
+                                                </li>
+                                                <%}else{%>
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="/<%=TheLoai2%>/show=<%=show+1%>">
+                                                            <%=show+1%>
+                                                        </a>
                                                     </li>
-                                            <%}else{%>
-                                                <li class="page-item"><a class="page-link" href="/<%=TheLoai2%>/show=<%=show+1%>"><%=show+1%></a></li>
-                                                <li class="page-item"><a class="page-link" href="/<%=TheLoai2%>/show=<%=show+2%>"><%=show+2%></a></li>
-                                                <li class="page-item">
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="/<%=TheLoai2%>/show=<%=show+2%>">
+                                                            <%=show+2%>
+                                                        </a>
+                                                    </li>
+                                                    <li class="page-item">
                                                         <a class="page-link" href="/<%=TheLoai2%>/show=<%=show+1%>">Next</a>
                                                     </li>
-                                            <%}%>
-                                  
-                                           
-                                           
+                                                    <%}%>
+
+
+
                                         </ul>
                                     </nav>
 

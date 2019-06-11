@@ -33,7 +33,7 @@
                             <div class="content-wrap">
                                 <ul class="tags mt-10">
                                     <li>
-                                        <a href="/ChuDe/<%=data.ChuDe%>">
+                                        <a href="/<%=data.ChuDe%>/page=1">
                                             <%=data.ChuDe%>
                                         </a>
                                     </li>
@@ -59,31 +59,35 @@
                                     <div class="comment-sec-area">
                                         <div class="container">
                                             <div class="row flex-column">
-                                                    <h6>Comments</h6>
+                                                <h6>Comments</h6>
                                                 <%if(BinhLuan){%>
                                                     <%BinhLuan.forEach(function(i){%>
                                                         <div class="comment-list">
-                                                                <div class="single-comment justify-content-between d-flex">
-                                                                    <div class="user justify-content-between d-flex">
-                                                                        <div class="thumb">
-                                                                            <img src="/news/image/c1.jpg" alt="">
-                                                                        </div>
-                                                                        <div class="desc">
-                                                                            <h5><%=i.TenDangNhap%></h5>
-                                                                            <p class="date"><%=i.GioBinhLuan%></p>
-                                                                            <p class="comment">
-                                                                                <%=i.NoiDung%>
-                                                                            </p>
-                                                                        </div>
+                                                            <div class="single-comment justify-content-between d-flex">
+                                                                <div class="user justify-content-between d-flex">
+                                                                    <div class="thumb">
+                                                                        <img src="/news/image/c1.jpg" alt="">
                                                                     </div>
-                                                                   
+                                                                    <div class="desc">
+                                                                        <h5>
+                                                                            <%=i.TenDangNhap%>
+                                                                        </h5>
+                                                                        <p class="date">
+                                                                            <%=i.GioBinhLuan%>
+                                                                        </p>
+                                                                        <p class="comment">
+                                                                            <%=i.NoiDung%>
+                                                                        </p>
+                                                                    </div>
                                                                 </div>
+
                                                             </div>
-                                                    <%})%>
-                                              <%}%>
-                                              
-                                                
-                                             
+                                                        </div>
+                                                        <%})%>
+                                                            <%}%>
+
+
+
                                             </div>
                                         </div>
 
@@ -97,12 +101,12 @@
                                             </div>
                                             <%if(user){%>
                                                 <button type="submit" id="cmt" class="primary-btn text-uppercase">Post Comment</button>
-                                            <%}else{%>
-                                                <label>Đăng Nhập Để Bình Luận</label>
-                                            <%}%>
-                                           
+                                                <%}else{%>
+                                                    <label>Đăng Nhập Để Bình Luận</label>
+                                                    <%}%>
+
                                         </form>
-                                       
+
                                     </div>
                             </div>
                             <!-- End single-post Area -->

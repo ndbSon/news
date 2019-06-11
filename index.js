@@ -55,7 +55,7 @@ app.get("/admin/BaiViet/show=:id", function(req, res) {
             res.render("BaiViet", {
                 BaiViet: rows,
                 show: id,
-               
+
             });
         })
     } else {
@@ -64,12 +64,12 @@ app.get("/admin/BaiViet/show=:id", function(req, res) {
 });
 
 app.get("/admin/NguoiDung/1", function(req, res) {
-    if (req.isAuthenticated()) {     
-        Promise.all([db_Trang.NguoiDung(""),db_Trang.TheLoai("")])
+    if (req.isAuthenticated()) {
+        Promise.all([db_Trang.NguoiDung(""), db_Trang.TheLoai("")])
             .then(rows => {
                 res.render("NguoiDung", {
                     NguoiDung: rows[0],
-                    TheLoai:rows[1],
+                    TheLoai: rows[1],
                     user: req.user
                 });
             })
@@ -83,13 +83,13 @@ app.post("/admin/GiaHanDocGia", function(req, res) {
         var ThoiGian = String(req.body.Ngay);
         var ID = req.body.IDDocGia;
         console.log(ThoiGian);
-        Promise.all([db_Trang.editGiahanDocGia(String(ThoiGian),ID)])
-       
-            .then(rows => {
-       
+        Promise.all([db_Trang.editGiahanDocGia(String(ThoiGian), ID)])
 
-                res.redirect("../../admin/NguoiDung/1");
-            })
+        .then(rows => {
+
+
+            res.redirect("../../admin/NguoiDung/1");
+        })
     } else {
         res.redirect("../../");
     }
@@ -100,7 +100,7 @@ app.post("/admin/PhanCong", urlencodedParser, (req, res) => {
     if (req.isAuthenticated()) {
         var PhanCongTheLoai = req.body.PhanCongTheLoai;
         var ID = req.body.IDBTV;
-        db_Trang.editPhanCongBTV(PhanCongTheLoai,ID)
+        db_Trang.editPhanCongBTV(PhanCongTheLoai, ID)
             .then(rows => {
                 res.redirect("../../admin/NguoiDung/1");
             }).catch(err => {
@@ -346,9 +346,9 @@ app.get("/:rou/show=:s", (req, res) => {
     var rou = req.params.rou;
     var s = parseInt(req.params.s);
     var dau = (s - 1) * 5;
-    Promise.all([db_Trang.Trang_The_Loai(rou,dau), db_Trang.BaiVietXemNhieu(), db_Trang.ChuDe(""), db_Trang.TheLoai("")])
+    Promise.all([db_Trang.Trang_The_Loai(rou, dau), db_Trang.BaiVietXemNhieu(), db_Trang.ChuDe(""), db_Trang.TheLoai("")])
         .then(rows => {
-           
+
             res.render("TrangTheLoai", {
                 data: rows[0],
                 XemNhieu: rows[1],
@@ -356,7 +356,7 @@ app.get("/:rou/show=:s", (req, res) => {
                 TheLoai: rows[3],
                 TheLoai2: rows[0][0].TenTheLoai,
                 ChuDe2: rows[0][0].TenChuDe,
-                show:s,
+                show: s,
                 user: req.user
             });
         })
@@ -364,10 +364,10 @@ app.get("/:rou/show=:s", (req, res) => {
 
 app.get("/:rou/page=:s", (req, res) => {
     var rou = req.params.rou;
-    console.log(""+rou);
+    console.log("" + rou);
     var s = parseInt(req.params.s);
     var dau = (s - 1) * 5;
-    Promise.all([db_Trang.Trang_Chu_De(rou,dau), db_Trang.BaiVietXemNhieu(), db_Trang.ChuDe(""), db_Trang.TheLoai("")])
+    Promise.all([db_Trang.Trang_Chu_De(rou, dau), db_Trang.BaiVietXemNhieu(), db_Trang.ChuDe(""), db_Trang.TheLoai("")])
         .then(rows => {
             res.render("Trang_Chu_De", {
                 data: rows[0],
@@ -376,7 +376,7 @@ app.get("/:rou/page=:s", (req, res) => {
                 TheLoai: rows[3],
                 TheLoai2: rows[0][0].TenTheLoai,
                 ChuDe2: rows[0][0].TenChuDe,
-                show:s,
+                show: s,
                 user: req.user
             });
         })
@@ -385,8 +385,8 @@ app.get("/BaiViet/:id", (req, res) => {
     var rou = req.params.rou;
     var id = req.params.id;
     console.log(id);
-    var user =req.user;
-    Promise.all([db_Trang.Trang_Bao(id), db_Trang.BaiVietXemNhieu(), db_Trang.editLuotXem(id), db_Trang.ChuDe(""), db_Trang.TheLoai(""),db_Trang.BinhLuan(id)])
+    var user = req.user;
+    Promise.all([db_Trang.Trang_Bao(id), db_Trang.BaiVietXemNhieu(), db_Trang.editLuotXem(id), db_Trang.ChuDe(""), db_Trang.TheLoai(""), db_Trang.BinhLuan(id)])
         .then(rows => {
             console.log(rows[5]);
             res.render("Trang_Bao", {
@@ -396,7 +396,7 @@ app.get("/BaiViet/:id", (req, res) => {
                 TheLoai: rows[4],
                 TheLoai2: rows[0][0].TenTheLoai,
                 ChuDe2: rows[0][0].TenChuDe,
-                BinhLuan:rows[5],
+                BinhLuan: rows[5],
                 user: user
             });
         })
