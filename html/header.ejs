@@ -109,15 +109,14 @@
                             </li>
                             <% TheLoai.forEach(function(i){%>
                                 <li class="menu-has-children">
-                                    <a href="/<%=i.TenTheLoai%>">
+                                    <a href="/<%=i.TenTheLoai%>/show=1">
                                         <%=i.TenTheLoai%>
                                     </a>
                                     <ul>
                                         <%ChuDe.forEach(function(j){%>
                                             <%if(j.IDTheLoai==i.ID){%>
                                                 <li>
-
-                                                    <a href="/ChuDe/<%=j.TenChuDe%>">
+                                                    <a href="/<%=j.TenChuDe%>/page=1">
                                                         <%=j.TenChuDe%>
                                                     </a>
                                                 </li>

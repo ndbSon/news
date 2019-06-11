@@ -136,7 +136,7 @@
                                 </tr>
 
                                 <%BaiViet.forEach(function(item){%>
-                                <tr>
+                                <tr>   
                                     <td><%=item.ID%></td>
                                     <td><%=item.TieuDe%></td>
                                     <td><%=item.GioDang%></td>
@@ -145,10 +145,10 @@
                                     <%}else if(item.TrangThai==2){%>
                                     <td><span class="label label-primary ">Đã được duyệt & chờ xuất bản</span></td>
                                     <%}else if(item.TrangThai==3){%>
-                                    <td><span class="label label-warning ">Chưa được duyệt</span></td>
-                                    <%}else if(item.TrangThai==4){%>
-                                    <td><span class="label label-danger ">Bị từ chối</span></td>
-                                    <% }%>
+                                        <td><span class="label label-warning ">Chưa được duyệt</span></td>
+                                        <%}else if(item.TrangThai==4){%>
+                                        <td><span class="label label-danger ">Bị từ chối</span></td>
+                                        <% }%>
 
                                     <td><%=item.ChuDe%></td>
                                     <td class="td-actions">
@@ -165,8 +165,56 @@
                                 <%})%>
                             </table>
                         </div>
+                       
                         <!-- /.box-body -->
                     </div>
+                    <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-center">
+
+                                <li class="page-item ">
+                                    <a class="page-link" href="/admin/PV/show=<%=show-1%>"
+                                        tabindex="0">Previous</a>
+                                </li>
+
+                                <li class="page-item active">
+                                    <a class="page-link" href="/admin/PV/show=<%=show%>">
+                                        <%=show%>
+                                    </a>
+                                </li>
+                                <%if(BaiViet.length < 5){%>
+                                <li class="page-item disabled">
+                                        <a class="page-link" href="#">
+                                            <%=show+1%>
+                                        </a>
+                                </li>
+                                <li class="page-item disabled">
+                                        <a class="page-link" href="#">
+                                                <%=show+2%>
+                                            </a>
+                                         </li>
+                                         <li class="page-item disabled">
+                                                <a class="page-link" href="#">Next</a>
+                                             </li>
+                                <%}else{%>
+                                <li class="page-item">
+                                    <a class="page-link" href="/admin/PV/show=<%=show+1%>">
+                                        <%=show+1%>
+                                    </a>
+                                </li>
+                                <li class="page-item">
+
+                                        <a class="page-link" href="/admin/PV/show=<%=show+2%>">
+                                            <%=show+2%>
+                                        </a>
+    
+                                    </li>
+                                    <li class="page-item">
+
+                                            <a class="page-link" href="/admin/PV/show=<%=show+1%>">Next</a>
+                                        </li>
+                                <%}%>
+                            </ul>
+                        </nav>
                     <!-- /.box -->
                 </div>
             </div>
