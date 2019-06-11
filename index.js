@@ -513,3 +513,9 @@ passport.deserializeUser((user, done) => {
         }
     })
 })
+
+///logout
+app.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect('/');
+});
