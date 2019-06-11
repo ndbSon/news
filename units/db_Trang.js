@@ -21,11 +21,14 @@ module.exports = {
     TheLoai1: () => {
         return db.load('SELECT tl.TenTheLoai FROM news.theloai as tl')
     },
-    Trang_The_Loai: id => {
-        return db.load('SELECT bv.ID,bv.AnhDaiDien,bv.TieuDe,bv.TomTat,bv.GioDang,cd.TenChuDe,tl.TenTheLoai FROM news.baiviet as bv ,news.chude as cd, news.theloai as tl where news.cd.TenChuDe = news.bv.ChuDe and news.cd.IDTheLoai=news.tl.ID  and news.tl.TenTheLoai like  "' + id + '";');
+    BinhLuan:(IDBaiViet)=>{
+        return db.load('SELECT u.TenDangNhap,bl.GioBinhLuan,bl.NoiDung FROM news.binhluan as bl,news.user as u where bl.IDNguoiBinhLuan=u.ID  and bl.IDBaiViet= '+IDBaiViet+'')
     },
-    Trang_Chu_De: id => {
-        return db.load('SELECT bv.ID,bv.AnhDaiDien,bv.TieuDe,bv.TomTat,bv.GioDang,cd.TenChuDe,tl.TenTheLoai FROM news.baiviet as bv ,news.chude as cd, news.theloai as tl where news.cd.TenChuDe = news.bv.ChuDe and news.cd.IDTheLoai=news.tl.ID  and news.cd.TenChuDe like  "' + id + '";');
+    Trang_The_Loai: (id,show) => {
+        return db.load('SELECT bv.ID,bv.AnhDaiDien,bv.TieuDe,bv.TomTat,bv.GioDang,cd.TenChuDe,tl.TenTheLoai FROM news.baiviet as bv ,news.chude as cd, news.theloai as tl where news.cd.TenChuDe = news.bv.ChuDe and news.cd.IDTheLoai=news.tl.ID  and news.tl.TenTheLoai like  "' + id + '" LIMIT 3 OFFSET '+show+' ;');
+    },
+    Trang_Chu_De: (id,show) => {
+        return db.load('SELECT bv.ID,bv.AnhDaiDien,bv.TieuDe,bv.TomTat,bv.GioDang,cd.TenChuDe,tl.TenTheLoai FROM news.baiviet as bv ,news.chude as cd, news.theloai as tl where news.cd.TenChuDe = news.bv.ChuDe and news.cd.IDTheLoai=news.tl.ID  and news.cd.TenChuDe like  "' + id + '" LIMIT 3 OFFSET '+show+' ;');
     },
     Trang_Bao: id => {
         return db.load('SELECT bv.*,tl.TenTheLoai FROM news.baiviet as  bv,news.chude as cd, news.theloai as tl where cd.TenChuDe=bv.ChuDe and cd.IDTheLoai=tl.ID and bv.ID=' + id + '')
@@ -46,7 +49,7 @@ module.exports = {
         return db.load('SELECT * FROM news.user where TenDangNhap ="' + name + '"')
     },
     addBinhLuan: (NoiDung, IDNguoiBinhLuan, IDBaiViet) => {
-        return db.load('INSERT INTO `news`.`binhluan` (`NoiDung`, `IDNguoiBinhLuan`, `IDBaiViet`) VALUES ("' + NoiDung + '", "' + IDNguoiBinhLuan + '", "' + IDBaiViet + '");')
+        return db.load('INSERT INTO `news`.`binhluan` (`NoiDung`, `IDNguoiBinhLuan`, `IDBaiViet`,`GioBinhLuan`) VALUES ("' + NoiDung + '", "' + IDNguoiBinhLuan + '", "' + IDBaiViet + '" , current_timestamp());')
     },
     addUser: (TenDangNhap, MatKhau) => {
         return db.load(' INSERT INTO `news`.`user` (`TenDangNhap`, `MatKhau`,`Loai`) VALUES ("' + TenDangNhap + '", "' + MatKhau + '",1); ')
@@ -82,6 +85,9 @@ module.exports = {
     },
     editPhanCongBTV:(IDTheLoai,ID)=>{
         return db.load('UPDATE `news`.`bientapvien` SET `IDTheLoai` = '+IDTheLoai+' WHERE (`IDUser` = '+ID+');')
+    },
+    editGiahanDocGia:(ThoiGian,ID)=>{
+        return db.load('UPDATE `news`.`docgia` SET `ThoiGianHetHan` = "'+ThoiGian+'" WHERE (`IDUser` = '+ID+');')
     },
     deleteTenTheLoai: (ID) => {
         return db.load('DELETE FROM `news`.`theloai` WHERE (`ID` = ' + ID + ')')
