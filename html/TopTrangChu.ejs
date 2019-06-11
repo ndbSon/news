@@ -1,0 +1,88 @@
+<section class="top-post-area pt-10">
+
+    <div class="container no-padding">
+        <div class="row small-gutters">
+            <% TopTrangChu.forEach(function(i){%>
+                <div class="col-lg-8 col-xl-8 top-post-left">
+                    <div class="feature-image-thumb relative">
+                        <div class="overlay overlay-bg"></div>
+                        <a href="/BaiViet/<%=i.ID%>">
+                        <img class="img-fluid" src="<%=i.AnhDaiDien%>" alt="">
+                    </a>
+                    </div>
+                    <div class="top-post-details">
+                        <ul class="tags">
+                            <li>
+                                <a href="/ChuDe/<%=i.TieuDe%>">
+                                    <%=i.ChuDe%>
+                                </a>
+                            </li>
+                        </ul>
+                        <a href="/BaiViet/<%=i.ID%>">
+                            <h3>
+                                <%=i.TieuDe%>
+                            </h3>
+                        </a>
+                        <ul class="meta">
+                            <li><a href="#"><span class="lnr lnr-user"></span><%=i.TacGia%></a></li>
+                            <li id="te"><a href="#"><span class="lnr lnr-calendar-full"></span><%=i.GioDang%></a>
+                            </li>
+
+                            <li><a href="#"><span class="lnr lnr-eye"></span><%=i.SoLuotXem%></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <%});%>
+                    <div class="col-lg-4 col-xl-4 top-post-right">
+                        <% BaiVietPhu.forEach(function(i){%>
+                            <div class="single-top-post">
+                                <div class="feature-image-thumb relative">
+                                    <div class="overlay overlay-bg"></div>
+                                    <a href="/BaiViet/<%=i.ID%>">
+                                        <img class="img-fluid" src="<%=i.AnhDaiDien%>" alt=""></a>
+                                </div>
+                                <div class="top-post-details">
+                                    <ul class="tags">
+                                        <li>
+                                            <a href="/ChuDe/<%=i.ChuDe%>">
+                                                <%=i.ChuDe%>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <a href="/BaiViet/<%=i.ID%>">
+                                        <h4>
+                                            <%=i.TieuDe%>
+                                        </h4>
+                                    </a>
+                                    <ul class="meta">
+                                        <li><a href="#"><span class="lnr lnr-user"></span><%=i.TacGia%></a></li>
+                                        <li id="te"><a href="#"><span class="lnr lnr-calendar-full"></span><%=i.GioDang%></a>
+                                        </li>
+
+                                        <li><a href="#"><span class="lnr lnr-eye"></span><%=i.SoLuotXem%></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <%});%>
+
+                    </div>
+                    <div class="col-lg-12 col-xl-12">
+                        <div class="breaking-news-ticker" id="newsTicker1">
+                            <div class="bn-label">Tin Mới</div>
+                            <div class="bn-news">
+                                <ul>
+                                    <% MoiNhat.forEach(function(i){%>
+                                        <li>
+                                            <a href="/BaiViet/<%=i.ID%>">
+                                                <%=i.TieuDe%>
+                                            </a>
+                                        </li>
+                                        <%});%>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+        </div>
+    </div>
+</section>

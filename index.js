@@ -291,13 +291,16 @@ app.get("/admin/account/2", function(req, res) {
 
 app.get("/", function(req, res) {
     console.log(req.user);
-    Promise.all([db_Trang.BaiVietXemNhieu(), db_Trang.BaiVietMoiNhat(), db_Trang.ChuDe(""), db_Trang.TheLoai("")])
+    Promise.all([db_Trang.BaiVietXemNhieu(), db_Trang.BaiVietMoiNhat(), db_Trang.ChuDe(""), db_Trang.TheLoai(""), db_Trang.BaiVietChuyenMuc(), db_Trang.BaiVietTrangChu(), db_Trang.BaiVietPhu()])
         .then(rows => {
             res.render("Trang_Chu", {
                 XemNhieu: rows[0],
                 MoiNhat: rows[1],
                 ChuDe: rows[2],
                 TheLoai: rows[3],
+                ChuyenMuc: rows[4],
+                TopTrangChu: rows[5],
+                BaiVietPhu: rows[6],
                 user: req.user
             });
         }).catch(err => {
@@ -403,11 +406,6 @@ app.get('/account/is-available', (req, res) => {
         return res.json(true);
     })
 })
-
-app.get('/logout', function(req, res) {
-    req.logout();
-    res.redirect('/');
-});
 
 app.post("/SQ/signin/1", urlencodedParser, (req, res) => {
     var Signusername = req.body.Signusername;
