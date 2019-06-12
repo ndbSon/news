@@ -31,9 +31,11 @@ module.exports = {
         return db.load('SELECT bv.ID,bv.AnhDaiDien,bv.TieuDe,bv.TomTat,bv.TacGia,bv.SoLuotXem,bv.TomTat,DATE_FORMAT(bv.GioDang,"%d/%m/%Y") as GioDang,cd.TenChuDe,tl.TenTheLoai FROM news.baiviet as bv ,news.chude as cd, news.theloai as tl where news.cd.TenChuDe = news.bv.ChuDe and news.cd.IDTheLoai=news.tl.ID  and news.cd.TenChuDe like  "' + id + '" LIMIT 3 OFFSET ' + show + ' ;');
     },
     Trang_Bao: id => {
-        return db.load('SELECT bv.*,tl.TenTheLoai FROM news.baiviet as bv,news.chude as cd, news.theloai as tl where cd.TenChuDe=bv.ChuDe and cd.IDTheLoai=tl.ID and bv.ID=' + id + '')
+        return db.load('SELECT bv.ID,bv.AnhDaiDien,bv.TieuDe,bv.TacGia,DATE_FORMAT(bv.GioDang,"%d/%m/%Y") as GioDang,bv.NoiDung,bv.ChuDe,tl.TenTheLoai FROM news.baiviet as bv,news.chude as cd, news.theloai as tl where cd.TenChuDe=bv.ChuDe and cd.IDTheLoai=tl.ID and bv.ID=' + id + '')
     },
-
+    Trang_Tags: id => {
+        return db.load('SELECT * FROM news.tags as t,news.baiviet as bv where t.IDBaiViet=bv.ID')
+    },
     BaiVietXemNhieu: () => {
         return db.load('SELECT bv.ID,bv.AnhDaiDien,bv.TieuDe,bv.TacGia,DATE_FORMAT(bv.GioDang,"%d/%m/%Y") as GioDang,bv.ChuDe FROM news.baiviet as bv ORDER BY bv.SoLuotXem DESC LIMIT 10')
     },

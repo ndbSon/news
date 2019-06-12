@@ -1,0 +1,127 @@
+<% include headeradmin %>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="header">
+                            <h4 class="title">Danh Sách Tags</h4>
+
+                        </div>
+                        <div class="content table-responsive table-full-width">
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    <div id="example1_filter" class="dataTables_filter"><label>Search:
+                                                    <input type="search" placeholder=""
+                                                        aria-controls="example1"></label></div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <button onclick="document.getElementById('Them').style.display='block'" type="button" rel="tooltip" title="Add" class="btn btn-simple btn-xs">
+                                                Thêm<i class="fa fa-plus"></i>
+                                            </button>
+
+                                </div>
+                            </div>
+                            <table id="table" class="table table-hover table-striped">
+                                <thead>
+                                    <th>ID</th>
+                                    <th>Tên Tag</th>
+                                    <th>Thêm/Xóa/Cập Nhật</th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>01</td>
+                                        <td>Thể Thao</td>
+                                        <td>
+
+                                            <a onclick="return confirm('Bạn Có Chắc Chắn Muốn Xóa')" href="#" type="button" rel="tooltip" title="Remove" class="btn btn-simple btn-xs">
+                                                <i class="fa fa-times"></i>
+                                            </a>
+                                            <button id="btnSua" onclick="document.getElementById('Sua').style.display='block'" type="button" rel="tooltip" title="Edit Task" class="btn btn-simple btn-xs">
+                                                    <i class="fa fa-edit"></i>
+                                                </button>
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+                <div id="Them" class="modal">
+                    <div class="content">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <span onclick="document.getElementById('Them').style.display='none'" class="close" title="Close Modal">&times;</span>
+                                        <div class="header">
+                                            <h4 class="title">Thêm</h4>
+                                        </div>
+                                        <div class="content">
+                                            <form action="#" method="post" novalidate id="AddTags">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label>Tên Tags</label>
+                                                            <input type="text" class="form-control" name="addTenTags" placeholder="Thể Thao">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>ID Bài Viết Gắn tags</label>
+                                                            <input type="number" class="form-control" name="IDBaiViet" placeholder="Thể Thao">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button type="submit" class="btn btn-info btn-fill pull-right">Thêm </button>
+                                                <div class="clearfix"></div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div id="Sua" class="modal">
+                    <div class="content">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <span onclick="document.getElementById('Sua').style.display='none'" class="close" title="Close Modal">&times;</span>
+                                        <div class="header">
+                                            <h4 class="title">Sửa</h4>
+
+                                        </div>
+                                        <div class="content">
+                                            <form action="#" method="post" novalidate id="EditTags">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label>Tên Tags</label>
+                                                            <input id="EditTenTags" type="text" class="form-control" name="EditTenTags" placeholder="Thể Thao">
+                                                            <input id="IDTags" type="hidden" class="form-control" name="IDTags" placeholder="Thể Thao">
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <button type="submit" class="btn btn-info btn-fill pull-right">Sửa</button>
+                                                <div class="clearfix"></div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%include footeradmin%>

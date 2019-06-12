@@ -16,7 +16,7 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set("view engine", "ejs");
-app.set("views", "./html");
+app.set("views", "./html/mainpage");
 
 app.use(session({
     secret: "asad"
@@ -33,7 +33,7 @@ app.get("/admin/dashboard/1", function(req, res) {
     if (req.isAuthenticated()) {
         Promise.all([db_Trang.BaiViet("", " * "), db_Trang.NguoiDung("")])
             .then(rows => {
-                res.render("dashboard", {
+                res.render("../admin/dashboard", {
                     SoBaiViet: rows[0].length,
                     SoNguoiDung: rows[1].length,
                     BaiViet: rows[0],
@@ -52,7 +52,7 @@ app.get("/admin/BaiViet/show=:id", function(req, res) {
         var dau = (id - 1) * 5;
         var sql = " where TrangThai=2 || TrangThai=1 LIMIT " + 5 + " OFFSET " + dau;
         db_Trang.BaiViet(sql, " * ").then(rows => {
-            res.render("BaiViet", {
+            res.render("../admin/BaiViet", {
                 BaiViet: rows,
                 show: id,
 
@@ -67,7 +67,7 @@ app.get("/admin/NguoiDung/1", function(req, res) {
     if (req.isAuthenticated()) {
         Promise.all([db_Trang.NguoiDung(""), db_Trang.TheLoai("")])
             .then(rows => {
-                res.render("NguoiDung", {
+                res.render("../admin/NguoiDung", {
                     NguoiDung: rows[0],
                     TheLoai: rows[1],
                     user: req.user
@@ -86,8 +86,6 @@ app.post("/admin/GiaHanDocGia", function(req, res) {
         Promise.all([db_Trang.editGiahanDocGia(String(ThoiGian), ID)])
 
         .then(rows => {
-
-
             res.redirect("../../admin/NguoiDung/1");
         })
     } else {
@@ -117,7 +115,7 @@ app.get("/admin/ChuyenMuc/1", function(req, res) {
     if (req.isAuthenticated()) {
         Promise.all([db_Trang.TheLoai(""), db_Trang.ChuDe("")])
             .then(rows => {
-                res.render("ChuyenMuc", {
+                res.render("../admin/ChuyenMuc", {
                     TheLoai: rows[0],
                     ChuDe: rows[1]
                 });
@@ -187,8 +185,6 @@ app.post("/admin/addTenChuDe", urlencodedParser, (req, res) => {
     }
 })
 
-
-
 app.get("/admin/deleteTenChuDe/:id", function(req, res) {
     if (req.isAuthenticated()) {
         var id = req.params.id;
@@ -214,7 +210,7 @@ app.get("/admin/deleteTenTheLoai/:id", function(req, res) {
 
 
 app.get("/admin/Tags/1", function(req, res) {
-    res.render("Tags");
+    res.render("../admin/Tags");
 });
 
 
@@ -225,7 +221,7 @@ app.get("/admin/PV/show=:i", function(req, res) {
         var dau = (i - 1) * 5;
         var sql = " where TacGia= " + id + " LIMIT " + 5 + " OFFSET " + dau;
         db_Trang.BaiViet(sql, " * ").then(rows => {
-            res.render("PV", {
+            res.render("../admin/PV", {
                 BaiViet: rows,
                 show: i,
             });
@@ -241,7 +237,7 @@ app.get("/admin/BTV/2", function(req, res) {
         var sql = "as bv, news.user as u where bv.TrangThai=3 and u.ID=bv.TacGia";
         var se = "bv.*,u.TenDangNhap"; ////sai cau truy vấn
         Promise.all([db_Trang.BaiViet(sql, se)]).then(rows => {
-            res.render("BTV", {
+            res.render("../admin/BTV", {
                 BaiViet: rows[0],
             })
         })
@@ -273,7 +269,7 @@ app.get("/admin/VietBai_PV/id=:id", function(req, res) {
         var id = req.params.id;
         var sql = "where ID = " + id;
         Promise.all([db_Trang.ChuDe(), db_Trang.BaiViet(sql, " * ")]).then(rows => {
-            res.render("VietBai_PV", {
+            res.render("../admin/VietBai_PV", {
                 ChuDe: rows[0],
                 info: rows[1][0],
             })
@@ -317,7 +313,7 @@ app.post("/admin/postbaiviet", urlencodedParser, (req, res) => {
 
 
 app.get("/admin/account/1", function(req, res) {
-    res.render("accountadmin");
+    res.render("../admin/accountadmin");
 });
 app.get("/admin/account/2", function(req, res) {
     res.render("account");
@@ -401,6 +397,7 @@ app.get("/BaiViet/:id", (req, res) => {
             });
         })
 })
+
 
 //Bình Luận còn sửa
 
