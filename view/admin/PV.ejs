@@ -51,18 +51,25 @@
 
             <div class="sidebar-wrapper">
                 <div class="logo">
-                    <a href="/PV_BTV/PV/show=1" class="simple-text">
-                        SQ-News
+                    <a href="http://www.creative-tim.com" class="simple-text">
+                        Creative Tim
                     </a>
                 </div>
 
                 <ul class="nav">
-                    <li>
-                        <a href="/PV_BTV/PV/show=1">
+                    <li class="active">
+                        <a href="/admin/PV/2">
                             <i class="pe-7s-user"></i>
                             <p>Phóng Viên</p>
                         </a>
                     </li>
+                    <li>
+                        <a href="/admin/BTV/2">
+                            <i class="pe-7s-user"></i>
+                            <p>Biên Tập Viên</p>
+                        </a>
+                    </li>
+
 
                 </ul>
             </div>
@@ -73,7 +80,7 @@
                 <div class="container-fluid">
                     <div class="navbar-header">
 
-                        <a class="navbar-brand" href="/PV_BTV/PV/show=1">Phóng Viên</a>
+                        <a class="navbar-brand" href="/admin/PV/2">Phóng Viên</a>
                     </div>
                     <div class="collapse navbar-collapse">
 
@@ -85,7 +92,7 @@
                             </li>
 
                             <li>
-                                <a href="/logout">
+                                <a href="#">
                                     <p>Log out</p>
                                 </a>
                             </li>
@@ -106,7 +113,8 @@
 
                             <div class="box-tools">
                                 <div class="input-group input-group-sm" style="width: 150px;">
-                                    <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+                                    <input type="text" name="table_search" class="form-control pull-right"
+                                        placeholder="Search">
 
                                     <div class="input-group-btn">
                                         <button type="submit" class="btn btn-default"><i
@@ -128,96 +136,85 @@
                                 </tr>
 
                                 <%BaiViet.forEach(function(item){%>
-                                    <tr>
-                                        <td>
-                                            <%=item.ID%>
-                                        </td>
-                                        <td>
-                                            <%=item.TieuDe%>
-                                        </td>
-                                        <td>
-                                            <%=item.GioDang%>
-                                        </td>
-                                        <%if(item.TrangThai==1){%>
-                                            <td><span class="label label-success ">Đã xuất bản</span></td>
-                                            <%}else if(item.TrangThai==2){%>
-                                                <td><span class="label label-primary ">Đã được duyệt & chờ xuất bản</span></td>
-                                                <%}else if(item.TrangThai==3){%>
-                                                    <td><span class="label label-warning ">Chưa được duyệt</span></td>
-                                                    <%}else if(item.TrangThai==4){%>
-                                                        <td><span class="label label-danger ">Bị từ chối</span></td>
-                                                        <% }%>
+                                <tr>   
+                                    <td><%=item.ID%></td>
+                                    <td><%=item.TieuDe%></td>
+                                    <td><%=item.GioDang%></td>
+                                    <%if(item.TrangThai==1){%>
+                                    <td><span class="label label-success ">Đã xuất bản</span></td>
+                                    <%}else if(item.TrangThai==2){%>
+                                    <td><span class="label label-primary ">Đã được duyệt & chờ xuất bản</span></td>
+                                    <%}else if(item.TrangThai==3){%>
+                                        <td><span class="label label-warning ">Chưa được duyệt</span></td>
+                                        <%}else if(item.TrangThai==4){%>
+                                        <td><span class="label label-danger ">Bị từ chối</span></td>
+                                        <% }%>
 
-                                                            <td>
-                                                                <%=item.ChuDe%>
-                                                            </td>
-                                                            <td class="td-actions">
-                                                                <%if(item.TrangThai==4||item.TrangThai==3){%>
-                                                                    <a href="/PV_BTV/VietBai_PV/id=<%=item.ID%>">
-                                                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-simple btn-xs">
+                                    <td><%=item.ChuDe%></td>
+                                    <td class="td-actions">
+                                        <%if(item.TrangThai==4||item.TrangThai==3){%>
+                                            <a href="/PV_BTV/VietBai_PV/id=<%=item.ID%>">
+                                                <button type="button" rel="tooltip" title="Edit Task"
+                                                    class="btn btn-simple btn-xs">
                                                     <i class="fa fa-edit"></i>
                                                 </button>
-                                                                    </a>
-                                                                    <%}%>
-                                                            </td>
-                                    </tr>
-                                    <%})%>
+                                            </a>
+                                        <%}%>                                 
+                                    </td>
+                                </tr>
+                                <%})%>
                             </table>
                         </div>
-
+                       
                         <!-- /.box-body -->
                     </div>
                     <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-center">
+                            <ul class="pagination justify-content-center">
 
-                            <li class="page-item ">
-                                <a class="page-link" href="/PV_BTV/PV/show=<%=show-1%>" tabindex="0">Previous</a>
-                            </li>
+                                <li class="page-item ">
+                                    <a class="page-link" href="/PV_BTV/PV/show=<%=show-1%>"
+                                        tabindex="0">Previous</a>
+                                </li>
 
-                            <li class="page-item active">
-                                <a class="page-link" href="/PV_BTV/PV/show=<%=show%>">
-                                    <%=show%>
-                                </a>
-                            </li>
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#">
-                                    <%=show+2%>
-                                </a>
-                            </li>
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#">
-                                    <%=show+2%>
-                                </a>
-                            </li>
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#">Next</a>
-                            </li>
-                            <%}else{%>
+                                <li class="page-item active">
+                                    <a class="page-link" href="/PV_BTV/PV/show=<%=show%>">
+                                        <%=show%>
+                                    </a>
+                                </li>
+                                <%if(BaiViet.length < 5){%>
+                                <li class="page-item disabled">
+                                        <a class="page-link" href="#">
+                                            <%=show+1%>
+                                        </a>
+                                </li>
+                                <li class="page-item disabled">
+                                        <a class="page-link" href="#">
+                                                <%=show+2%>
+                                            </a>
+                                         </li>
+                                         <li class="page-item disabled">
+                                                <a class="page-link" href="#">Next</a>
+                                             </li>
+                                <%}else{%>
                                 <li class="page-item">
                                     <a class="page-link" href="/PV_BTV/PV/show=<%=show+1%>">
                                         <%=show+1%>
                                     </a>
                                 </li>
-                                <%}else{%>
-                                    <li class="page-item">
-                                        <a class="page-link" href="/admin/PV/show=<%=show+1%>">
-                                            <%=show+1%>
-                                        </a>
-                                    </li>
-                                    <li class="page-item">
+                                <li class="page-item">
 
                                         <a class="page-link" href="/PV_BTV/PV/show=<%=show+2%>">
                                             <%=show+2%>
                                         </a>
-
+    
                                     </li>
                                     <li class="page-item">
 
-                                        <a class="page-link" href="/PV_BTV/PV/show=<%=show+1%>">Next</a>
-                                    </li>
-                                    <%}%>
-                        </ul>
-                    </nav>
+                                            <a class="page-link" href="/PV_BTV/PV/show=<%=show+1%>">Next</a>
+                                        </li>
+                                <%}%>
+                            </ul>
+                        </nav>
                     <!-- /.box -->
                 </div>
             </div>
@@ -228,4 +225,22 @@
             </a>
         </div>
     </div>
-    <% include footeradmin %>
+
+    </div>
+    </div>
+
+    <script src="../../js/jquery.3.2.1.min.js" type="text/javascript"></script>
+    <script src="../../js/bootstrap.min.js" type="text/javascript"></script>
+
+    <!--  Notifications Plugin    -->
+    <script src="../../js/bootstrap-notify.js"></script>
+
+
+    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
+    <script src="../../js/light-bootstrap-dashboard.js?v=1.4.0"></script>
+
+    <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
+    <script src="../../js/demo.js"></script>
+
+</body>
+</html>
