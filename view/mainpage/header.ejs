@@ -53,18 +53,30 @@
                                 <div class="dropdown">
                                     <% if(user){ %>
                                         <a href="/">
-                                            <img src="https://www.gmkfreelogos.com/logos/S/img/SQ.gif" width="30" height="auto" alt="..." class="rounded-circle">
+                                            <img src="<%=user.HinhAnh%>" width="30" height="auto" alt="..." class="rounded-circle">
                                         </a>
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                 Minh Quân
-                                                 <span class="badge badge-warning">Premium</span>
+                                                <%=user.TenDangNhap%>
+                                                
+                                                    <span class="badge badge-primary">Normal</span>
+                                                   
                                                 </button>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="#">Account</a>
-
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="/logout">Log Out</a>
+                                                <%if(user.Loai==2){%>
+                                                    <a class="dropdown-item" href="/PV_BTV/PV/show=1">Phóng Viên</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <%}else if(user.Loai==3){%>
+                                                        <a class="dropdown-item" href="/PV_BTV/BTV">Biên Tập Viên</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <%}else if(user.Loai==4){%>
+                                                            <a class="dropdown-item" href="/admin/dashboard">Admin</a>
+                                                            <div class="dropdown-divider"></div>
+                                                            <%}else{%>
+                                                                <a class="dropdown-item" href="/PV_BTV/Account">Account</a>
+                                                                <div class="dropdown-divider"></div>
+                                                                <%}%>
+                                                                    <a class="dropdown-item" href="/logout">Log Out</a>
                                             </div>
                                         </div>
                                         <%}else{%>

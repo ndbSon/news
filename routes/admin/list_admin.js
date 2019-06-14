@@ -4,13 +4,16 @@ var router = express.Router();
 
 router.get("/dashboard", function(req, res) {
     if (req.isAuthenticated()) {
-        Promise.all([db_Trang.BaiViet("", " * "), db_Trang.NguoiDung("")])
+        Promise.all([db_Trang.BaiViet("", " * "), db_Trang.NguoiDung(""), db_Trang.ChuDe(""), db_Trang.SLX()])
             .then(rows => {
                 res.render("./admin/dashboard", {
                     SoBaiViet: rows[0].length,
                     SoNguoiDung: rows[1].length,
+                    SoChuDe: rows[2].length,
                     BaiViet: rows[0],
                     NguoiDung: rows[1],
+                    ChuDe: rows[2],
+                    SLX: rows[3],
                     user: req.user
                 });
             })
@@ -28,7 +31,7 @@ router.get("/BaiViet/show=:id", function(req, res) {
             res.render("./admin/BaiViet", {
                 BaiViet: rows,
                 show: id,
-               
+
             });
         })
     } else {
@@ -37,12 +40,12 @@ router.get("/BaiViet/show=:id", function(req, res) {
 });
 
 router.get("/NguoiDung", function(req, res) {
-    if (req.isAuthenticated()) {     
-        Promise.all([db_Trang.NguoiDung(""),db_Trang.TheLoai("")])
+    if (req.isAuthenticated()) {
+        Promise.all([db_Trang.NguoiDung(""), db_Trang.TheLoai("")])
             .then(rows => {
                 res.render("./admin/NguoiDung", {
                     NguoiDung: rows[0],
-                    TheLoai:rows[1],
+                    TheLoai: rows[1],
                     user: req.user
                 });
             })

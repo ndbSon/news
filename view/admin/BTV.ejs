@@ -45,20 +45,15 @@
         <div class="sidebar" data-color="red" data-image="assets/img/sidebar-5.jpg">
             <div class="sidebar-wrapper">
                 <div class="logo">
-                    <a href="http://www.creative-tim.com" class="simple-text">
-                        Creative Tim
+                    <a href="/PV_BTV/BTV" class="simple-text">
+                       SQ-News
                     </a>
                 </div>
 
                 <ul class="nav">
+
                     <li>
-                        <a href="/admin/PV/2">
-                            <i class="pe-7s-user"></i>
-                            <p>Phóng Viên</p>
-                        </a>
-                    </li>
-                    <li class="active">
-                        <a href="/admin/BTV/2">
+                        <a href="/PV_BTV/BTV">
                             <i class="pe-7s-user"></i>
                             <p>Biên Tập Viên</p>
                         </a>
@@ -74,7 +69,7 @@
                 <div class="container-fluid">
                     <div class="navbar-header">
 
-                        <a class="navbar-brand" href="/admin/BTV/2">Biên Tập Viên</a>
+                        <a class="navbar-brand" href="/PV_BTV/BTV">Biên Tập Viên</a>
                     </div>
                     <div class="collapse navbar-collapse">
 
@@ -86,7 +81,7 @@
                             </li>
 
                             <li>
-                                <a href="#">
+                                <a href="/logout">
                                     <p>Log out</p>
                                 </a>
                             </li>
@@ -124,157 +119,135 @@
                                 <th>Select</th>
                                 <th></th>
                             </tr>
-                            <%BaiViet.forEach(function(item){%>                     
-                                    <tr>
-                                            <td><%=item.ID%></td>
-                                            <td><%=item.TieuDe%></td>
-                                            <td><%=item.TenDangNhap%></td>
-                                            <td><%=item.GioDang%></td>
-                                            <td><%=item.ChuDe%></td>   
-                                            <td>
-                                                    <button id="Xem" onclick="document.getElementById('XemChiTiet').style.display='block'" type="button" class="btn btn-success btn-fill">Duyệt</button>
-                                            </td>
-                                            <td><input type="hidden"  value="<%=item.NoiDung%>"></td>
-                                        </tr>
-                            <%})%>
-                           
-                      
+                            <%BaiViet.forEach(function(item){%>
+                                <tr>
+                                    <td>
+                                        <%=item.ID%>
+                                    </td>
+                                    <td>
+                                        <%=item.TieuDe%>
+                                    </td>
+                                    <td>
+                                        <%=item.TenDangNhap%>
+                                    </td>
+                                    <td>
+                                        <%=item.GioDang%>
+                                    </td>
+                                    <td>
+                                        <%=item.ChuDe%>
+                                    </td>
+                                    <td>
+                                        <button id="Xem" onclick="document.getElementById('XemChiTiet').style.display='block'" type="button" class="btn btn-success btn-fill">Duyệt</button>
+                                    </td>
+                                    <td><input type="hidden" value="<%=item.NoiDung%>"></td>
+                                </tr>
+                                <%})%>
+
+
                         </table>
                     </div>
                     <div class="col-xs-10"></div>
-                  
+
                     <div id="XemChiTiet" class="modal">
-                            <div class="content">
-                                    <div class="container-fluid">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="card">
-                                                        <span onclick="document.getElementById('XemChiTiet').style.display='none'" class="close" title="Close Modal">&times;</span>
-                                                    <div class="header">
-                                                        <h4 class="title">Duyệt Bài Viết</h4>
-                                                    </div>
-                                                    <div class="content">
-                                                        <form action="/admin/BTVDuyetBaiViet" method="POST">
-                                                            <div class="row">
-                                                                <div class="col-md-5">
-                                                                    <div class="form-group">
-                                                                        <label>Tác Giả</label>
-                                                                        <input id="TacGia" type="text" class="form-control" disabled placeholder="Tác Giả">
-                                                                        <input id="IDBaiViet" name="IDBaiViet" type="text" class="form-control"  placeholder="Tác Giả">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-3">
-                                                                    <div class="form-group">
-                                                                        <label>Ngày Đăng</label>
-                                                                        <input id="NgayDang" type="text" class="form-control" placeholder="Ngày Đăng">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label >Chủ Đề</label>
-                                                                        <input id="ChuDe" type="text" class="form-control" placeholder="Thể Loại">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <div class="form-group">
-                                                                        <label>Tiêu Đề</label>
-                                                                        <input id="TieuDe" type="text" class="form-control" placeholder="Tiêu Đề">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <div class="form-group">
-                                                                        <label>Nội Dung</label>
-                                                                        <textarea id="NoiDung" rows="25" name="NoiDung" class="form-control"
-                                                                        placeholder="Nội Dung">
-                                                                      </textarea>
-                                                                    <script>
-                                                                        // Replace the <textarea id="editor1"> with a CKEditor
-                                                                        // instance, using default configuration.
-                                                                        CKEDITOR.replace('NoiDung');
-                                                                    </script>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                               <div class="row">
-                                                                <div class="col-md-3">
-                                                                    <div class="form-group">
-                                                                            <div class="form-check form-check-inline">
-                                                                                    <input class="form-check-input" type="radio" name="Duyet" id="inlineRadio1" value="4">
-                                                                                    <label class="form-check-label" for="inlineRadio1">Loại</label>
-                                                                                  </div>
-                                                                                 
-                                                                                  
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-3">
-                                                                        <div class="form-group">
-                                                                                <div class="form-check form-check-inline">
-                                                                                        <input class="form-check-input" type="radio" name="Duyet" id="inlineRadio2" value="2">
-                                                                                        <label class="form-check-label" for="inlineRadio2">Duyet</label>
-                                                                                      </div>   
-                                                                        </div>
-                                                                    </div>
-                                                            </div>
-                                                            
-                                                                            <button type="submit" class="btn btn-info btn-fill pull-right">Duyệt</button>
-                                                                
-                                                            
-                                                            <div class="clearfix"></div>
-                                                        </form>
-                                                    </div>
-                                                </div>
+                        <div class="content">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <span onclick="document.getElementById('XemChiTiet').style.display='none'" class="close" title="Close Modal">&times;</span>
+                                            <div class="header">
+                                                <h4 class="title">Duyệt Bài Viết</h4>
                                             </div>
-                                       
-                    
+                                            <div class="content">
+                                                <form action="/admin/BTVDuyetBaiViet" method="POST">
+                                                    <div class="row">
+                                                        <div class="col-md-5">
+                                                            <div class="form-group">
+                                                                <label>Tác Giả</label>
+                                                                <input id="TacGia" type="text" class="form-control" disabled placeholder="Tác Giả">
+                                                                <input id="IDBaiViet" name="IDBaiViet" type="text" class="form-control" placeholder="Tác Giả">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label>Ngày Đăng</label>
+                                                                <input id="NgayDang" type="text" class="form-control" placeholder="Ngày Đăng">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Chủ Đề</label>
+                                                                <input id="ChuDe" type="text" class="form-control" placeholder="Thể Loại">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Tiêu Đề</label>
+                                                                <input id="TieuDe" type="text" class="form-control" placeholder="Tiêu Đề">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Nội Dung</label>
+                                                                <textarea id="NoiDung" rows="25" name="NoiDung" class="form-control" placeholder="Nội Dung">
+                                                                      </textarea>
+                                                                <script>
+                                                                    // Replace the <textarea id="editor1"> with a CKEditor
+                                                                    // instance, using default configuration.
+                                                                    CKEDITOR.replace('NoiDung');
+                                                                </script>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input" type="radio" name="Duyet" id="inlineRadio1" value="4">
+                                                                    <label class="form-check-label" for="inlineRadio1">Loại</label>
+                                                                </div>
+
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input" type="radio" name="Duyet" id="inlineRadio2" value="2">
+                                                                    <label class="form-check-label" for="inlineRadio2">Duyet</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <button type="submit" class="btn btn-info btn-fill pull-right">Duyệt</button>
+
+
+                                                    <div class="clearfix"></div>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
+
+
                                 </div>
+                            </div>
+                        </div>
                     </div>
-                    
+
                 </div>
-              
+
                 <!-- /.box-body -->
             </div>
 
             <!-- /.box -->
 
 
-         
+
         </div>
     </div>
-    </div>
-    </div>
-
-    <script src="//code.jquery.com/jquery-1.11.3.min.js" type="text/javascript"></script>
-    <script>
-        $(document).ready(function($) {
-          $('#table #Xem').click(function(e) {
-            /* e.preventDefault();*/
-            $('#IDBaiViet').val($(this).closest('tr').find('td:nth-child(1)').text().trim());
-            $('#TacGia').val($(this).closest('tr').find('td:nth-child(3)').text().trim()); //Lấy value cột thứ nhất
-            $('#NgayDang').val($(this).closest('tr').find('td:nth-child(4)').text().trim()); 
-            $('#TieuDe').val($(this).closest('tr').find('td:nth-child(2)').text().trim());
-            $('#ChuDe').val($(this).closest('tr').find('td:nth-child(5)').text().trim());
-            $('#NoiDung').html(CKEDITOR.instances.NoiDung.setData($(this).closest('tr').find('td:nth-child(7)').find('input').val()));
-         
-        });
-    });
-    </script>
-    <script src="../../js/bootstrap.min.js" type="text/javascript"></script>
-
-    <!--  Notifications Plugin    -->
-    <script src="../../js/bootstrap-notify.js"></script>
-
-
-    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-    <script src="../../js/light-bootstrap-dashboard.js?v=1.4.0"></script>
-
-    <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-    <script src="../../js/demo.js"></script>
-</body>
-
-</html>
+    <% include footeradmin %>

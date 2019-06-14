@@ -33,7 +33,7 @@ router.get("/VietBai_PV/id=:id", function(req, res) {
         var id = req.params.id;
         var sql = "where ID = " + id;
         Promise.all([db_Trang.ChuDe(), db_Trang.BaiViet(sql, " * ")]).then(rows => {
-            res.render("VietBai_PV", {
+            res.render("./admin/VietBai_PV", {
                 ChuDe: rows[0],
                 info: rows[1][0],
             })
@@ -52,6 +52,8 @@ router.post("/postbaiviet", urlencodedParser, (req, res) => {
         var ChuDe = req.body.ChuDe;
         var TacGia = req.user.ID;
         var AnhDaiDien = req.body.AnhDaiDien;
+        var tagabc = req.body.tagabc;
+        console.log("sadsadssadsadsadsadsadsadsadsadsad " + tagabc);
         console.log(req.user.ID)
         if (!ID) {
             db_Trang.addBaiViet(TieuDe, TomTat, NoiDung, ChuDe, AnhDaiDien, TacGia)

@@ -1,6 +1,4 @@
 <% include headeradmin %>
-
-
     <div class="content">
         <div class="container-fluid">
             <div class="row">
@@ -25,7 +23,8 @@
                     <!-- small box -->
                     <div class="small-box bg-green">
                         <div class="inner">
-                            <h3>10<sup style="font-size: 20px"></sup></h3>
+                            <h3>
+                                <%=SoChuDe%><sup style="font-size: 20px"></sup></h3>
                             <p>Chuyên Mục</p>
                         </div>
                         <div class="icon">
@@ -39,7 +38,9 @@
                     <!-- small box -->
                     <div class="small-box bg-yellow">
                         <div class="inner">
-                            <h3>10.000+</h3>
+                            <h3>
+                                <%=SoNguoiDung%>
+                            </h3>
 
                             <p>Người Dùng</p>
                         </div>
@@ -54,9 +55,12 @@
                     <!-- small box -->
                     <div class="small-box bg-red">
                         <div class="inner">
-                            <h3>120</h3>
-
-                            <p>Nhân Viên</p>
+                            <%SLX.forEach(function(i){%>
+                                <h3>
+                                    <%=i.SoLuotXem%>
+                                </h3>
+                                <p>Số Lượt Xem</p>
+                                <% })%>
                         </div>
                         <div class="icon">
                             <i class="ion-android-people"></i>

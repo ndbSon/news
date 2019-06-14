@@ -22,7 +22,7 @@ router.get("/PV/show=:i", function(req, res) {
 router.get("/BTV", function(req, res) {
     if (req.isAuthenticated() && req.user.Loai == 3) {
         var sql = "as bv, news.user as u where bv.TrangThai=3 and u.ID=bv.TacGia";
-        var se = "bv.*,u.TenDangNhap"; 
+        var se = "bv.*,u.TenDangNhap";
         Promise.all([db_Trang.BaiViet(sql, se)]).then(rows => {
             res.render("./admin/BTV", {
                 BaiViet: rows[0],

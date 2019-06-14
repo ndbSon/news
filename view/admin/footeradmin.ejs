@@ -1,6 +1,6 @@
 </div>
 </div>
-<script src="//code.jquery.com/jquery-1.11.3.min.js" type="text/javascript"></script>
+
 <script>
     $(document).ready(function($) {
         $('#table td').click(function(e) {
@@ -10,6 +10,20 @@
             $('#ChuDe').val($(this).closest('tr').find('td:nth-child(4)').text().trim());
             $('#NgayDang').val($(this).closest('tr').find('td:nth-child(6)').text().trim());
             $('#NoiDung').html(CKEDITOR.instances.NoiDung.setData($(this).closest('tr').find('td:nth-child(8)').find('input').val()));
+
+        });
+    });
+</script>
+<script>
+    $(document).ready(function($) {
+        $('#table #Xem').click(function(e) {
+            /* e.preventDefault();*/
+            $('#IDBaiViet').val($(this).closest('tr').find('td:nth-child(1)').text().trim());
+            $('#TacGia').val($(this).closest('tr').find('td:nth-child(3)').text().trim()); //Lấy value cột thứ nhất
+            $('#NgayDang').val($(this).closest('tr').find('td:nth-child(4)').text().trim());
+            $('#TieuDe').val($(this).closest('tr').find('td:nth-child(2)').text().trim());
+            $('#ChuDe').val($(this).closest('tr').find('td:nth-child(5)').text().trim());
+            $('#NoiDung').html(CKEDITOR.instances.NoiDung.setData($(this).closest('tr').find('td:nth-child(7)').find('input').val()));
 
         });
     });
