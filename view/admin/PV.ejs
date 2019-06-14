@@ -153,7 +153,7 @@
                                     <td><%=item.ChuDe%></td>
                                     <td class="td-actions">
                                         <%if(item.TrangThai==4||item.TrangThai==3){%>
-                                            <a href="/admin/VietBai_PV/id=<%=item.ID%>">
+                                            <a href="/PV_BTV/VietBai_PV/id=<%=item.ID%>">
                                                 <button type="button" rel="tooltip" title="Edit Task"
                                                     class="btn btn-simple btn-xs">
                                                     <i class="fa fa-edit"></i>
@@ -172,12 +172,12 @@
                             <ul class="pagination justify-content-center">
 
                                 <li class="page-item ">
-                                    <a class="page-link" href="/admin/PV/show=<%=show-1%>"
+                                    <a class="page-link" href="/PV_BTV/PV/show=<%=show-1%>"
                                         tabindex="0">Previous</a>
                                 </li>
 
                                 <li class="page-item active">
-                                    <a class="page-link" href="/admin/PV/show=<%=show%>">
+                                    <a class="page-link" href="/PV_BTV/PV/show=<%=show%>">
                                         <%=show%>
                                     </a>
                                 </li>
@@ -197,20 +197,20 @@
                                              </li>
                                 <%}else{%>
                                 <li class="page-item">
-                                    <a class="page-link" href="/admin/PV/show=<%=show+1%>">
+                                    <a class="page-link" href="/PV_BTV/PV/show=<%=show+1%>">
                                         <%=show+1%>
                                     </a>
                                 </li>
                                 <li class="page-item">
 
-                                        <a class="page-link" href="/admin/PV/show=<%=show+2%>">
+                                        <a class="page-link" href="/PV_BTV/PV/show=<%=show+2%>">
                                             <%=show+2%>
                                         </a>
     
                                     </li>
                                     <li class="page-item">
 
-                                            <a class="page-link" href="/admin/PV/show=<%=show+1%>">Next</a>
+                                            <a class="page-link" href="/PV_BTV/PV/show=<%=show+1%>">Next</a>
                                         </li>
                                 <%}%>
                             </ul>
@@ -220,7 +220,7 @@
             </div>
 
             <div class="col-xs-1"></div>
-            <a href="/admin/VietBai_PV/id=0">
+            <a href="/PV_BTV/VietBai_PV/id=0">
                 <button type="submit" class="btn btn-info btn-fill">Viết Bài</button>
             </a>
         </div>

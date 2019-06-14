@@ -33,7 +33,7 @@ router.get("/VietBai_PV/id=:id", function(req, res) {
         var id = req.params.id;
         var sql = "where ID = " + id;
         Promise.all([db_Trang.ChuDe(), db_Trang.BaiViet(sql, " * ")]).then(rows => {
-            res.render("VietBai_PV", {
+            res.render("./admin/VietBai_PV", {
                 ChuDe: rows[0],
                 info: rows[1][0],
             })

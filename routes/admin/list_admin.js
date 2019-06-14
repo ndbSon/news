@@ -37,12 +37,17 @@ router.get("/BaiViet/show=:id", function(req, res) {
 });
 
 router.get("/NguoiDung", function(req, res) {
-    if (req.isAuthenticated()) {     
-        Promise.all([db_Trang.NguoiDung(""),db_Trang.TheLoai("")])
+    if (req.isAuthenticated()) { 
+        var sql =" as u, news.docgia as dg where u.ID=dg.IDUser";   
+        var sqlPV =" where Loai=2 ";  
+        var sqlBTV =" as u, news.bientapvien as btv where Loai=3 && u.ID=btv.IDUser ";   
+        Promise.all([db_Trang.NguoiDung(sql),db_Trang.TheLoai(""),db_Trang.NguoiDung(sqlPV),db_Trang.NguoiDung(sqlBTV)])
             .then(rows => {
                 res.render("./admin/NguoiDung", {
-                    NguoiDung: rows[0],
+                    DocGia: rows[0],
                     TheLoai:rows[1],
+                    PV:rows[2],
+                    BTV:rows[3],
                     user: req.user
                 });
             })

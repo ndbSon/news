@@ -14,15 +14,10 @@ require('./middlewares/passport')(app);
 
 app.listen(3000);
 
-app.get("/admin/account/1", function(req, res) {
-    res.render("accountadmin");
-});
-app.get("/admin/account/2", function(req, res) {
-    res.render("account");
-});
 
 
 app.use('/', require('./routes/list_BV.route'))
+app.use('/account', require('./routes/account.route'))
 app.use('/admin', require('./routes/admin/list_admin'))
 app.use('/admin', require('./routes/admin/func_admin'))
 app.use('/PV_BTV', require('./routes/PV_BTV/list_PV_BTV'))
@@ -73,8 +68,3 @@ app.post("/SQ/signin/1", urlencodedParser, (req, res) => {
         });
 })
 
-///logout
-app.get('/logout', function(req, res) {
-    req.logout();
-    res.redirect('/');
-});
