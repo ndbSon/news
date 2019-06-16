@@ -25,6 +25,7 @@
         Quyen: () => {
             return db.load('select * from user as u,docgia as dg where dg.IDUser=u.ID ')
         },
+
         Trang_The_Loai: (id, show) => {
             return db.load('SELECT bv.ID,bv.AnhDaiDien,bv.TieuDe,bv.TacGia,bv.SoLuotXem,bv.TomTat,DATE_FORMAT(bv.GioDang,"%d/%m/%Y") as GioDang,cd.TenChuDe,tl.TenTheLoai FROM news.baiviet as bv ,news.chude as cd, news.theloai as tl where news.cd.TenChuDe = news.bv.ChuDe and news.cd.IDTheLoai=news.tl.ID  and news.tl.TenTheLoai like  "' + id + '" LIMIT 3 OFFSET ' + show + ' ;');
         },
@@ -41,20 +42,25 @@
             return db.load('SELECT bv.ID,bv.AnhDaiDien,bv.TieuDe,bv.TacGia,DATE_FORMAT(bv.GioDang,"%d/%m/%Y") as GioDang,bv.ChuDe FROM news.baiviet as bv ORDER BY bv.SoLuotXem DESC LIMIT 10')
         },
 
+        BaiVietCungChuyenMuc: () => {
+            return db.load('SELECT bv.ID,bv.AnhDaiDien,bv.TieuDe,bv.TacGia,DATE_FORMAT(bv.GioDang,"%d/%m/%Y") as GioDang,bv.ChuDe from baiviet as bv,chude as cd where bv.ChuDe=cd.TenChuDe ')
+        },
+
         BaiVietMoiNhat: () => {
             return db.load('SELECT bv.ID,bv.AnhDaiDien,bv.TieuDe,bv.TacGia,DATE_FORMAT(bv.GioDang,"%d/%m/%Y") as GioDang,bv.ChuDe FROM news.baiviet as bv ORDER BY bv.GioDang DESC LIMIT 10')
         },
 
         BaiVietChuyenMuc: () => {
-            return db.load('SELECT TC.ID,TC.TacGia,TC.AnhDaiDien,TC.TieuDe,TC.TomTat,DATE_FORMAT(TC.GioDang,"%d/%m/%Y") as GioDang,TC.TenChuDe,TC.SoLuotXem,TC.TenTheLoai FROM (SELECT bv.ID, cd.TenChuDe, bv.SoLuotXem,bv.TieuDe,bv.TacGia,bv.GioDang,bv.TomTat,bv.AnhDaiDien,tl.TenTheLoai FROM news.theloai as tl, news.chude as cd , news.baiviet as bv where cd.TenChuDe = bv.ChuDe and tl.ID=cd.IDTheLoai order by bv.SoLuotXem desc) TC ORDER BY TC.SoLuotXem DESC LIMIT 10')
+            return db.load('SELECT TC.ID,TC.TacGia,TC.AnhDaiDien,TC.TieuDe,TC.TomTat,DATE_FORMAT(TC.GioDang,"%d/%m/%Y") as GioDang,TC.TenChuDe,TC.SoLuotXem,TC.TenTheLoai FROM (SELECT bv.ID, cd.TenChuDe, bv.SoLuotXem,bv.TieuDe,bv.TacGia,bv.GioDang,bv.TomTat,bv.AnhDaiDien,tl.TenTheLoai FROM news.theloai as tl, news.chude as cd , news.baiviet as bv where cd.TenChuDe = bv.ChuDe and tl.ID=cd.IDTheLoai order by bv.SoLuotXem desc) TC ORDER BY TC.GioDang DESC LIMIT 10')
         },
 
         BaiVietTrangChu: () => {
             return db.load('SELECT bv.ID,bv.ChuDe,bv.TacGia,bv.AnhDaiDien,bv.TieuDe,bv.TomTat,DATE_FORMAT(bv.GioDang,"%d/%m/%Y") as GioDang,bv.SoLuotXem FROM news.baiviet as bv order by SoLuotXem desc limit 1')
         },
         BaiVietPhu: () => {
-            return db.load('SELECT bv.ID,bv.ChuDe,bv.TacGia,bv.AnhDaiDien,bv.TieuDe,bv.TomTat,DATE_FORMAT(bv.GioDang,"%d/%m/%Y") as GioDang,bv.SoLuotXem FROM news.baiviet as bv order by SoLuotThich limit 2')
+            return db.load('SELECT bv.ID,bv.ChuDe,bv.TacGia,bv.AnhDaiDien,bv.TieuDe,bv.TomTat,DATE_FORMAT(bv.GioDang,"%d/%m/%Y") as GioDang,bv.SoLuotXem FROM news.baiviet as bv order by TieuDe limit 2')
         },
+
 
         singleByUserName: name => {
             return db.load('SELECT * FROM news.user where TenDangNhap ="' + name + '"')

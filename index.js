@@ -43,6 +43,19 @@ app.post("/SQ/addBinhLuan", urlencodedParser, (req, res) => {
     }
 })
 
+app.post("/SQ/search", urlencodedParser, (req, res) => {
+    var ID = req.body.ID;
+    if (req.isAuthenticated()) {
+        var nd = req.body.message;
+        var nguoibinhluan = req.user.ID;
+        db_Trang.Search(id)
+            .then(rows => {
+                res.redirect("../../Page_Search/");
+            })
+    } else {
+        res.redirect("../../Page_Search/");
+    }
+})
 
 //sign in
 
@@ -67,4 +80,3 @@ app.post("/SQ/signin/1", urlencodedParser, (req, res) => {
             res.end('error occured.')
         });
 })
-

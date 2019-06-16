@@ -12,6 +12,7 @@ router.get("/PV/show=:i", function(req, res) {
             res.render("./admin/PV", {
                 BaiViet: rows,
                 show: i,
+                user: req.user,
             });
         })
     } else {
@@ -26,6 +27,7 @@ router.get("/BTV", function(req, res) {
         Promise.all([db_Trang.BaiViet(sql, se)]).then(rows => {
             res.render("./admin/BTV", {
                 BaiViet: rows[0],
+                user: req.user,
             })
         })
     } else {

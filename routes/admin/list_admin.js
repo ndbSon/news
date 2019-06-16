@@ -31,6 +31,7 @@ router.get("/BaiViet/show=:id", function(req, res) {
             res.render("./admin/BaiViet", {
                 BaiViet: rows,
                 show: id,
+                user: req.user,
 
             });
         })
@@ -65,7 +66,8 @@ router.get("/ChuyenMuc", function(req, res) {
             .then(rows => {
                 res.render("./admin/ChuyenMuc", {
                     TheLoai: rows[0],
-                    ChuDe: rows[1]
+                    ChuDe: rows[1],
+                    user: req.user,
                 });
             })
     } else {
@@ -75,7 +77,9 @@ router.get("/ChuyenMuc", function(req, res) {
 
 
 router.get("/Tags", function(req, res) {
-    res.render("./admin/Tags");
+    res.render("./admin/Tags", {
+        user: req.user,
+    });
 });
 
 

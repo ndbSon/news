@@ -36,6 +36,7 @@ router.get("/VietBai_PV/id=:id", function(req, res) {
             res.render("./admin/VietBai_PV", {
                 ChuDe: rows[0],
                 info: rows[1][0],
+                user: req.user,
             })
         })
     } else {

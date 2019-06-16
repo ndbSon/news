@@ -56,11 +56,14 @@
                                             <img src="<%=user.HinhAnh%>" width="30" height="auto" alt="..." class="rounded-circle">
                                         </a>
                                         <div class="btn-group">
+
                                             <button type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <%=user.TenDangNhap%>
-                                                
+                                                        <%=user.TenDangNhap%>
+                                                    <%if(user.Loai==0){%>
                                                     <span class="badge badge-primary">Normal</span>
-                                                   
+                                                    <%}else{%>
+                                                        <span class="badge badge-warning">Premium</span>
+                                                        <%}%> 
                                                 </button>
                                             <div class="dropdown-menu">
                                                 <%if(user.Loai==2){%>
@@ -73,7 +76,7 @@
                                                             <a class="dropdown-item" href="/admin/dashboard">Admin</a>
                                                             <div class="dropdown-divider"></div>
                                                             <%}else{%>
-                                                                <a class="dropdown-item" href="/account/Account">Account</a>
+                                                                <a class="dropdown-item" href="/account/account">Account</a>
                                                                 <div class="dropdown-divider"></div>
                                                                 <%}%>
                                                                     <a class="dropdown-item" href="/account/logout">Log Out</a>
@@ -141,7 +144,7 @@
                     </nav>
                     <!-- #nav-menu-container -->
                     <div class="navbar-right">
-                        <form class="Search">
+                        <form class="Search" action="/Search" method="post">
                             <input type="text" class="form-control Search-box" name="Search-box" id="Search-box" placeholder="Search">
                             <label for="Search-box" class="Search-box-label">
                             <span class="lnr lnr-magnifier"></span>

@@ -4,7 +4,9 @@ var router = express.Router();
 
 
 router.get("/account", function(req, res) {
-    res.render("account");
+    res.render("account", {
+        user: req.user,
+    });
 });
 
 ///logout
