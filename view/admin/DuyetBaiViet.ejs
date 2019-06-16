@@ -1,0 +1,96 @@
+<% include headeradmin %>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="content">
+                    <section class="latest-post-area pb-120">
+                        <div class="container no-padding">
+                            <div class="row">
+                                <div class="col-lg-12 post-list">
+                                    <!-- Start single-post Area -->
+                                    <div class="single-post-wrap">
+                                        <div class="content-wrap">
+                                            <ul class="tags mt-10">
+                                            </ul>
+                                            <h3>
+                                                <%=BaiViet.TieuDe%>
+                                            </h3>
+                                            <%-BaiViet.NoiDung%>
+                                            <p text-weight="bold" ;>Tags :
+                                                <a href="/news/html/Tags_01.html"
+                                                    class="badge badge-primary">Primary</a>
+                                                <a href="/news/html/Tags_02.html"
+                                                    class="badge badge-secondary">Secondary</a>
+                                                <a href="/news/html/Tags_03.html"
+                                                    class="badge badge-success">Success</a>
+                                                <a href="/news/html/Tags_04.html" class="badge badge-danger">Danger</a>
+                                                <a href="/news/html/Tags_05.html"
+                                                    class="badge badge-warning">Warning</a>
+                                            </p>
+                                        </div>
+                                        <!-- End single-post Area -->
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            </div>
+           
+        </div>
+    </div>
+</div>
+<div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="header">
+                            <h4 class="title">Duyệt Bài Báo</h4>
+                        </div>
+                        <div class="content">
+                                <form action="/admin/AdminDuyetBaiViet" method="post" novalidate id="DuyetBai">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                                <div class="form-group">
+                                                        <input id="IDBaiViet" name="IDBaiViet" type="hidden" class="form-control" value="<%=BaiViet.ID%>">
+                                                    </div>
+                                            <div class="form-group">
+                                                    <div class="form-check form-check-inline" onclick="document.getElementById('date').setAttribute( 'type', 'hidden' );">
+                                                            <input class="form-check-input" type="radio" name="Duyet" id="inlineRadio1" value="4">
+                                                            <label class="form-check-label" for="inlineRadio1">Loại</label>
+                                                        </div>
+                                            </div>
+                                            <div class="form-group" onclick="document.getElementById('date').setAttribute( 'type', 'date' );" >
+                                                    <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="Duyet" id="inlineRadio1" value="1">
+                                                            <label class="form-check-label" for="inlineRadio1">Duyệt</label>
+                                                    </div>
+                                            </div>
+                                            <div  class="form-group">
+                                                    <label class="form-check-label" for="inlineRadio1">Giờ Đăng</label>
+                                                    <input id="date" name="GioDang" type="hidden" class="form-control" value="<%=BaiViet.GioDang%>">
+                                                   
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-info btn-fill pull-right">Duyệt Bài</button>
+                                    <div class="clearfix"></div>
+                                </form>
+                            </div>
+                    </div>
+    
+    
+                </div>
+               
+            </div>
+        </div>
+    </div>
+
+
+<%include footeradmin%>

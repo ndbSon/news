@@ -78,4 +78,25 @@ router.post("/postbaiviet", urlencodedParser, (req, res) => {
     }
 })
 
+
+router.post("/BTVDuyetBaiViet", urlencodedParser, (req, res) => {
+    if (req.isAuthenticated()) {
+        var TrangThai = req.body.Duyet;
+        var GioDang = req.body.GioDang;
+        var id = req.body.IDBaiViet;
+        console.log("Trang Thai: " + TrangThai);
+        console.log("id:" + id);
+        db_Trang.editDuyetBaiViet(TrangThai, id,GioDang)
+            .then(rows => {
+                res.redirect("../../PV_BTV/BTV");
+            }).catch(err => {
+                console.log(err);
+                res.end('error occured.');
+            });
+    } else {
+        res.redirect("../../");
+    }
+})
+
+
 module.exports = router;

@@ -20,11 +20,12 @@ router.get("/PV/show=:i", function(req, res) {
     }
 })
 
+//////////////////////sai câu select /////////////////////////
 router.get("/BTV", function(req, res) {
     if (req.isAuthenticated() && req.user.Loai == 3) {
-        var sql = "as bv, news.user as u where bv.TrangThai=3 and u.ID=bv.TacGia";
-        var se = "bv.*,u.TenDangNhap";
-        Promise.all([db_Trang.BaiViet(sql, se)]).then(rows => {
+        var sql = req.user.ID;
+        console.log(sql);
+        db_Trang.BTV(sql).then(rows => {
             res.render("./admin/BTV", {
                 BaiViet: rows[0],
                 user: req.user,
@@ -34,6 +35,21 @@ router.get("/BTV", function(req, res) {
         res.redirect("../../");
     }
 });
+
+router.get('/duyetbaiviet/id=:id', (req, res) => {
+    if (req.isAuthenticated()) {
+        var id = req.params.id;
+        var sql = " where id = " + id;
+        db_Trang.BaiViet(sql, " * ").then(rows => {
+            res.render("./admin/DuyetBaiViet", {
+                BaiViet: rows[0],
+            });
+        })
+
+    } else {
+        res.redirect("../../");
+    }
+})
 
 
 module.exports = router;

@@ -1,71 +1,9 @@
 </div>
 </div>
-
-<script>
-    $(document).ready(function($) {
-        $('#table td').click(function(e) {
-            /* e.preventDefault();*/
-            $('#IDBaiViet').val($(this).closest('tr').find('td:nth-child(1)').text().trim());
-            $('#TieuDe').val($(this).closest('tr').find('td:nth-child(2)').text().trim());
-            $('#ChuDe').val($(this).closest('tr').find('td:nth-child(4)').text().trim());
-            $('#NgayDang').val($(this).closest('tr').find('td:nth-child(6)').text().trim());
-            $('#NoiDung').html(CKEDITOR.instances.NoiDung.setData($(this).closest('tr').find('td:nth-child(8)').find('input').val()));
-
-        });
-    });
-</script>
-<script>
-    $(document).ready(function($) {
-        $('#table #Xem').click(function(e) {
-            /* e.preventDefault();*/
-            $('#IDBaiViet').val($(this).closest('tr').find('td:nth-child(1)').text().trim());
-            $('#TacGia').val($(this).closest('tr').find('td:nth-child(3)').text().trim()); //Lấy value cột thứ nhất
-            $('#NgayDang').val($(this).closest('tr').find('td:nth-child(4)').text().trim());
-            $('#TieuDe').val($(this).closest('tr').find('td:nth-child(2)').text().trim());
-            $('#ChuDe').val($(this).closest('tr').find('td:nth-child(5)').text().trim());
-            $('#NoiDung').html(CKEDITOR.instances.NoiDung.setData($(this).closest('tr').find('td:nth-child(7)').find('input').val()));
-
-        });
-    });
-</script>
-<script>
-    $('#tableChuDe #btnSua').click(function(e) {
-        /* e.preventDefault();*/
-        $('#IDTenTheLoai').val($(this).closest('tr').find('td:nth-child(3)').text().trim()); //Lấy value cột thứ nhất
-        $('#TenChuDe').val($(this).closest('tr').find('td:nth-child(2)').text().trim());
-        $('#IDChuDe').val($(this).closest('tr').find('td:nth-child(1)').text().trim());
-    });
-    $('#tableTheLoai #btnSua').click(function(e) {
-        /* e.preventDefault();*/
-        $('#IDTheLoai').val($(this).closest('tr').find('td:nth-child(1)').text().trim());
-        $('#TenTheLoai').val($(this).closest('tr').find('td:nth-child(2)').text().trim()); //Hoặc lấy giá trị cột thứ 2
-    });
-</script>
-<script>
-    $('#table #btnSua').click(function(e) {
-        /* e.preventDefault();*/
-        $('#EditTenTags').val($(this).closest('tr').find('td:nth-child(2)').text()); //Lấy value cột thứ nhất
-        $('#IDTags').val($(this).closest('tr').find('td:nth-child(1)').text().trim());
-
-    });
-</script>
-<script>
-    $('#table #btnPhanCong').click(function(e) {
-        /* e.preventDefault();*/
-        $('#TenDangNhap').val($(this).closest('tr').find('td:nth-child(2)').text().trim()); //Lấy value cột thứ nhất
-        $('#ChucVu').val($(this).closest('tr').find('td:nth-child(3)').text().trim());
-        $('#IDBTV').val($(this).closest('tr').find('td:nth-child(1)').text().trim());
-        $('#PhanCongTheLoai').val($(this).closest('tr').find('td:nth-child(4)').text().trim());
-    });
-    $('#table1 #btnGiaHan').click(function(e) {
-        /* e.preventDefault();*/
-        $('#TenDocGia').val($(this).closest('tr').find('td:nth-child(2)').text().trim()); //Lấy value cột thứ nhất
-        $('#IDDocGia').val($(this).closest('tr').find('td:nth-child(1)').text().trim());
-        $('#Ngay').val($(this).closest('tr').find('td:nth-child(3)').text().trim());
-    });
-</script>
+<script src="../../js/jquery-2.2.4.min.js" type="text/javascript"></script>
+<script src="../../js/quanli.js" type="text/javascript"></script>
 <!--   Core JS Files   -->
-<script src="../../js/jquery.3.2.1.min.js" type="text/javascript"></script>
+
 <script src="../../js/bootstrap.min.js" type="text/javascript"></script>
 
 <!--  Notifications Plugin    -->

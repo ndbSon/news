@@ -16,46 +16,13 @@ app.listen(3000);
 
 
 
-app.use('/', require('./routes/list_BV.route'))
-app.use('/account', require('./routes/account.route'))
+app.use('/', require('./routes/TongQuat/list_BV.route'))
+app.use('/account', require('./routes/TongQuat/account.route'))
 app.use('/admin', require('./routes/admin/list_admin'))
 app.use('/admin', require('./routes/admin/func_admin'))
 app.use('/PV_BTV', require('./routes/PV_BTV/list_PV_BTV'))
 app.use('/PV_BTV', require('./routes/PV_BTV/func_PV_BTV'))
 
-//Bình Luận còn sửa
-
-app.get("/SQ/page", function(req, res) {
-    res.render('page');
-});
-
-app.post("/SQ/addBinhLuan", urlencodedParser, (req, res) => {
-    var ID = req.body.ID;
-    if (req.isAuthenticated()) {
-        var nd = req.body.message;
-        var nguoibinhluan = req.user.ID;
-        db_Trang.addBinhLuan(nd, nguoibinhluan, ID)
-            .then(rows => {
-                res.redirect("../../BaiViet/" + ID);
-            })
-    } else {
-        res.redirect("../../BaiViet/" + ID);
-    }
-})
-
-app.post("/SQ/search", urlencodedParser, (req, res) => {
-    var ID = req.body.ID;
-    if (req.isAuthenticated()) {
-        var nd = req.body.message;
-        var nguoibinhluan = req.user.ID;
-        db_Trang.Search(id)
-            .then(rows => {
-                res.redirect("../../Page_Search/");
-            })
-    } else {
-        res.redirect("../../Page_Search/");
-    }
-})
 
 //sign in
 

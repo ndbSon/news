@@ -69,13 +69,14 @@ router.post("/editTheLoai", urlencodedParser, (req, res) => {
     }
 })
 
-router.post("/BTVDuyetBaiViet", urlencodedParser, (req, res) => {
+router.post("/AdminDuyetBaiViet", urlencodedParser, (req, res) => {
     if (req.isAuthenticated()) {
         var TrangThai = req.body.Duyet;
+        var GioDang = req.body.GioDang;
         var id = req.body.IDBaiViet;
         console.log("Trang Thai: " + TrangThai);
         console.log("id:" + id);
-        db_Trang.editDuyetBaiViet(TrangThai, id)
+        db_Trang.editDuyetBaiViet(TrangThai, id,GioDang)
             .then(rows => {
                 res.redirect("../../admin/BaiViet/show=1");
             }).catch(err => {

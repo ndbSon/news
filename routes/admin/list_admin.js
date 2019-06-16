@@ -4,8 +4,9 @@ var router = express.Router();
 
 router.get("/dashboard", function(req, res) {
     if (req.isAuthenticated()) {
-        Promise.all([db_Trang.BaiViet("", " * "), db_Trang.NguoiDung(""), db_Trang.ChuDe(""), db_Trang.SLX()])
+        Promise.all([db_Trang.BaiViet("", " * "), db_Trang.NguoiDung(""), db_Trang.ChuDe(""), db_Trang.SLX(),db_Trang.TKBaiVietTheoTheLoai()])
             .then(rows => {
+               
                 res.render("./admin/dashboard", {
                     SoBaiViet: rows[0].length,
                     SoNguoiDung: rows[1].length,
@@ -14,6 +15,7 @@ router.get("/dashboard", function(req, res) {
                     NguoiDung: rows[1],
                     ChuDe: rows[2],
                     SLX: rows[3],
+                    TK: rows[4],
                     user: req.user
                 });
             })
@@ -24,9 +26,9 @@ router.get("/dashboard", function(req, res) {
 
 router.get("/BaiViet/show=:id", function(req, res) {
     if (req.isAuthenticated()) {
-        var id = parseInt(req.params.id) || 1;
+        var id = parseInt(req.params.id) || 0;
         var dau = (id - 1) * 5;
-        var sql = " where TrangThai=2 || TrangThai=1 LIMIT " + 5 + " OFFSET " + dau;
+        var sql = " LIMIT " + 5 + " OFFSET " + dau;
         db_Trang.BaiViet(sql, " * ").then(rows => {
             res.render("./admin/BaiViet", {
                 BaiViet: rows,
@@ -39,6 +41,21 @@ router.get("/BaiViet/show=:id", function(req, res) {
         res.redirect("../../");
     }
 });
+
+router.get('/duyetbaiviet/id=:id',(req,res)=>{
+    if (req.isAuthenticated()) {
+        var id = req.params.id;
+        var sql = " where id = "+id;
+        db_Trang.BaiViet(sql, " * ").then(rows => {
+            res.render("./admin/DuyetBaiViet", {
+                BaiViet: rows[0],
+            });
+        })
+
+} else {
+    res.redirect("../../");
+}
+})
 
 router.get("/NguoiDung", function(req, res) {
     if (req.isAuthenticated()) {
