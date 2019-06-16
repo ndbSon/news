@@ -1,5 +1,5 @@
 var express = require('express');
-var db_Trang = require("../units/db_Trang");
+var db_Trang = require("../../units/db_Trang");
 var router = express.Router();
 
 

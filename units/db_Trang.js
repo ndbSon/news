@@ -13,6 +13,12 @@
         ChuDe: (sql) => {
             return db.load('SELECT * FROM news.chude ' + sql + '')
         },
+        Search: (sql) => {
+            return db.load('SELECT * FROM baiviet as bv WHERE MATCH(bv.TieuDe,bv.NoiDung,bv.TomTat) AGAINST("' + sql + '" IN NATURAL LANGUAGE MODE )')
+        },
+        BTV: (sql) => {
+            return db.load('SELECT bv.ID,bv.TieuDe,cd.TenChuDe,tl.TenTheLoai,u.TenDangNhap,bv.GioDang,bv.TrangThai FROM news.baiviet as bv ,news.chude as cd, news.theloai as tl, news.user as u, news.bientapvien as btv where news.cd.TenChuDe = news.bv.ChuDe and news.cd.IDTheLoai=news.tl.ID and u.ID=bv.TacGia and news.tl.ID=btv.IDTheLoai and btv.IDUser= ' + sql + '')
+        },
         Tag: () => {
             return db.load('SELECT bv.TieuDe, t.TenTags FROM tags as t, items as i, baiviet as bv where t.ID = i.Tag_ID  and bv.ID=i.BV_ID')
         },
@@ -21,6 +27,10 @@
         },
         SLX: () => {
             return db.load('select sum(bv.SoLuotXem) as SoLuotXem from baiviet as bv')
+        },
+       
+        TKBaiVietTheoTheLoai: () => {
+            return db.load('select tl.TenTheLoai as tenchude,count(*) as slbv from baiviet as bv,chude as cd,theloai as tl where bv.ChuDe=cd.TenChuDe and cd.IDTheLoai=tl.ID group by tl.TenTheLoai')
         },
         Quyen: () => {
             return db.load('select * from user as u,docgia as dg where dg.IDUser=u.ID ')
@@ -91,10 +101,10 @@
             return db.load('UPDATE `news`.`chude` SET `TenChuDe` = "' + TenChuDe + '",`IDTheLoai`=' + IDTenTheLoai + ' WHERE (`ID` = ' + ID + ');')
         },
         editBaiViet: (TieuDe, TomTat, NoiDung, ChuDe, AnhDaiDien, ID) => {
-            return db.load('UPDATE `news`.`baiviet` SET `TieuDe` = "' + TieuDe + '", `TomTat` = "' + TomTat + '", `NoiDung` = "' + NoiDung + '", `GioDang` = current_timestamp(), `TrangThai` = 3, `SoLuotThich` = 1, `SoLuotXem` = 1, `Tags` = 1, `ChuDe` = "' + ChuDe + '", `AnhDaiDien` = "' + AnhDaiDien + '"  WHERE (`ID` = ' + ID + ');')
+            return db.load('UPDATE `news`.`baiviet` SET `TieuDe` = "' + TieuDe + '", `TomTat` = "' + TomTat + '", `NoiDung` = ' + NoiDung + ', `GioDang` = current_timestamp(), `TrangThai` = 3, `SoLuotThich` = 1, `SoLuotXem` = 1, `Tags` = 1, `ChuDe` = "' + ChuDe + '", `AnhDaiDien` = "' + AnhDaiDien + '"  WHERE (`ID` = ' + ID + ');')
         },
-        editDuyetBaiViet: (TrangThai, ID) => {
-            return db.load('UPDATE `news`.`baiviet` SET `TrangThai` = ' + TrangThai + ' WHERE (`ID` = ' + ID + ');')
+        editDuyetBaiViet: (TrangThai, ID,GioDang) => {
+            return db.load('UPDATE `news`.`baiviet` SET `TrangThai` = ' + TrangThai + ', `GioDang` = "' + GioDang + '" WHERE (`ID` = ' + ID + ');')
         },
         editPhanCongBTV: (IDTheLoai, ID) => {
             return db.load('UPDATE `news`.`bientapvien` SET `IDTheLoai` = ' + IDTheLoai + ' WHERE (`IDUser` = ' + ID + ');')
@@ -109,6 +119,4 @@
         deleteTenChuDe: (ID) => {
             return db.load('DELETE FROM `news`.`chude` WHERE (`ID` = ' + ID + ')')
         },
-
-
     }
