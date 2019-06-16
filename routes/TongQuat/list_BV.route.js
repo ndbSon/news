@@ -69,7 +69,7 @@ router.get("/Search", (req, res) => {
     var rou = req.params.rou;
     var s = parseInt(req.params.s);
     var dau = (s - 1) * 5;
-    Promise.all([db_Trang.Trang_Search(rou), db_Trang.BaiVietXemNhieu(), db_Trang.ChuDe(""), db_Trang.TheLoai(""), db_Trang.Search()])
+    Promise.all([list_BVmodel.Trang_Search(rou), list_BVmodel.BaiVietXemNhieu(), list_BVmodel.ChuDe(""), list_BVmodel.TheLoai(""), list_BVmodel.Search()])
         .then(rows => {
             res.render("./mainpage/Page_Search", {
                 data: rows[0],

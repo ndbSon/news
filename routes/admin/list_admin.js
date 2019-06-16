@@ -1,10 +1,10 @@
 var express = require('express');
-var db_Trang = require("../../units/db_Trang");
+var adminmodel = require("../../model/admin.model");
 var router = express.Router();
 
 router.get("/dashboard", function(req, res) {
     if (req.isAuthenticated()) {
-        Promise.all([db_Trang.BaiViet("", " * "), db_Trang.NguoiDung(""), db_Trang.ChuDe(""), db_Trang.SLX(),db_Trang.TKBaiVietTheoTheLoai()])
+        Promise.all([adminmodel.BaiViet("", " * "), adminmodel.NguoiDung(""), adminmodel.ChuDe(""), adminmodel.SLX(),adminmodel.TKBaiVietTheoTheLoai()])
             .then(rows => {
                
                 res.render("./admin/dashboard", {
@@ -29,7 +29,7 @@ router.get("/BaiViet/show=:id", function(req, res) {
         var id = parseInt(req.params.id) || 0;
         var dau = (id - 1) * 5;
         var sql = " LIMIT " + 5 + " OFFSET " + dau;
-        db_Trang.BaiViet(sql, " * ").then(rows => {
+        adminmodel.BaiViet(sql, " * ").then(rows => {
             res.render("./admin/BaiViet", {
                 BaiViet: rows,
                 show: id,
@@ -47,7 +47,7 @@ router.get('/duyetbaiviet/id=:id',(req,res)=>{
         var id = req.params.id;
         var user = req.user.Loai;
         var sql = " where id = "+id;
-        db_Trang.BaiViet(sql, " * ").then(rows => {
+        adminmodel.BaiViet(sql, " * ").then(rows => {
             res.render("./admin/DuyetBaiViet", {
                 BaiViet: rows[0],
                 user: user,
@@ -64,7 +64,7 @@ router.get("/NguoiDung", function(req, res) {
         var sql = " as u, news.docgia as dg where u.ID=dg.IDUser";
         var sqlPV = " where Loai=2 ";
         var sqlBTV = " as u, news.bientapvien as btv where Loai=3 && u.ID=btv.IDUser ";
-        Promise.all([db_Trang.NguoiDung(sql), db_Trang.TheLoai(""), db_Trang.NguoiDung(sqlPV), db_Trang.NguoiDung(sqlBTV)])
+        Promise.all([adminmodel.NguoiDung(sql), adminmodel.TheLoai(""), adminmodel.NguoiDung(sqlPV), adminmodel.NguoiDung(sqlBTV)])
             .then(rows => {
                 res.render("./admin/NguoiDung", {
                     DocGia: rows[0],
@@ -81,7 +81,7 @@ router.get("/NguoiDung", function(req, res) {
 
 router.get("/ChuyenMuc", function(req, res) {
     if (req.isAuthenticated()) {
-        Promise.all([db_Trang.TheLoai(""), db_Trang.ChuDe("")])
+        Promise.all([adminmodel.TheLoai(""), adminmodel.ChuDe("")])
             .then(rows => {
                 res.render("./admin/ChuyenMuc", {
                     TheLoai: rows[0],
