@@ -21,14 +21,13 @@ router.get("/PV/show=:i", function(req, res) {
 })
 
 
-//////////////////////sai câu select /////////////////////////
 router.get("/BTV", function(req, res) {
     if (req.isAuthenticated() && req.user.Loai == 3) {
-        var sql = req.user.ID;
-        console.log(sql);
-        list_PV_BTVmodel.BTV(sql).then(rows => {
+        var ID = req.user.ID;
+        console.log(ID);
+        list_PV_BTVmodel.BTV(ID).then(rows => {
             res.render("./admin/BTV", {
-                BaiViet: rows[0],
+                BaiViet: rows,
                 user: req.user,
             })
         })
@@ -53,6 +52,20 @@ router.get('/duyetbaiviet/id=:id', (req, res) => {
         res.redirect("../../");
     }
 })
+
+router.get("/LSD_BTV", function(req, res) {
+    if (req.isAuthenticated() && req.user.Loai == 3) {
+        var ID = req.user.ID;
+        list_PV_BTVmodel.listLSD_BTV(ID).then(rows => {
+            res.render("./admin/LSD_BTV", {
+                BaiViet: rows,
+                user: req.user,
+            })
+        })
+    } else {
+        res.redirect("../../");
+    }
+});
 
 
 module.exports = router;

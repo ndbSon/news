@@ -19,4 +19,10 @@ module.exports = {
     editDuyetBaiViet: (TrangThai, ID,GioDang) => {
         return db.load('UPDATE `news`.`baiviet` SET `TrangThai` = ' + TrangThai + ', `GioDang` = "' + GioDang + '" WHERE (`ID` = ' + ID + ');')
     },
+    addLSD_BTV:(IDBTV,IDBaiViet,LoaiDuyet)=>{
+        return db.load('INSERT INTO `news`.`lsduyet_btv` (`IDBTV`, `IDBaiViet`, `ThoiGian`, `LoaiDuyet`) VALUES ('+IDBTV+', '+IDBaiViet+', current_timestamp(), '+LoaiDuyet+');')
+    },
+    listLSD_BTV: (sql) => {
+        return db.load('SELECT ls.*,bv.TieuDe FROM news.lsduyet_btv as ls, news.baiviet as bv where bv.ID=ls.IDBaiViet and ls.IDBTV= ' + sql + '')
+    },
 };

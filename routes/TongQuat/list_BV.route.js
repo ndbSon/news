@@ -23,8 +23,6 @@ router.get("/", function(req, res) {
             });
         })
 });
-
-
 router.get("/:rou/show=:s", (req, res) => {
     var rou = req.params.rou;
     var s = parseInt(req.params.s);

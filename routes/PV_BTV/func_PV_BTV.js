@@ -66,9 +66,10 @@ router.post("/BTVDuyetBaiViet", urlencodedParser, (req, res) => {
         var TrangThai = req.body.Duyet;
         var GioDang = req.body.GioDang;
         var id = req.body.IDBaiViet;
+        var IDBTV = req.user.ID;
         console.log("Trang Thai: " + TrangThai);
         console.log("id:" + id);
-        list_PV_BTVmodel.editDuyetBaiViet(TrangThai, id,GioDang)
+        Promise.all([list_PV_BTVmodel.editDuyetBaiViet(TrangThai, id,GioDang),list_PV_BTVmodel.addLSD_BTV(IDBTV,id,TrangThai)])
             .then(rows => {
                 res.redirect("../../PV_BTV/BTV");
             }).catch(err => {
