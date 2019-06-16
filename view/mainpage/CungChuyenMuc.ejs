@@ -1,0 +1,35 @@
+<div class="single-sidebar-widget editors-pick-widget">
+    <h6 class="title">Top 5 Bài Viết Cùng Chuyên Mục</h6>
+    <div class="editors-pick-post">
+        <div class="post-lists">
+            <%var k=0;%>
+                <% CungChuyenMuc.forEach(function(i){%>
+                    <%if(k<5){%>
+                        <%if(i.ChuDe==data.ChuDe){%>
+                            <div class="single-post d-flex flex-row">
+                                <div class="thumb">
+                                    <a href="/BaiViet/<%=i.ID%>">
+                        <img class="HinhNho" src="<%=i.AnhDaiDien%>" alt=""></a>
+                                </div>
+                                <div class="detail">
+                                    <a href="/BaiViet/<%=i.ID%>">
+                                        <h6>
+                                            <%=i.TieuDe%>
+
+                                        </h6>
+                                    </a>
+                                    <ul class="meta">
+                                        <li><a href="#"><span class="lnr lnr-user"></span><%=i.TacGia%></a>
+                                        </li>
+                                        </br>
+                                        <li><a href="#"><span class="lnr lnr-calendar-full"></span><%=i.GioDang%></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <%k=k+1%>
+                                <%}%>
+                                    <%}%>
+                                        <%});%>
+        </div>
+    </div>
+</div>

@@ -12,6 +12,7 @@ router.get("/PV/show=:i", function(req, res) {
             res.render("./admin/PV", {
                 BaiViet: rows,
                 show: i,
+                user: req.user,
             });
         })
     } else {
@@ -27,7 +28,8 @@ router.get("/BTV", function(req, res) {
         console.log(sql);
         list_PV_BTVmodel.BTV(sql).then(rows => {
             res.render("./admin/BTV", {
-                BaiViet: rows,
+                BaiViet: rows[0],
+                user: req.user,
             })
         })
     } else {
@@ -35,7 +37,7 @@ router.get("/BTV", function(req, res) {
     }
 });
 
-router.get('/duyetbaiviet/id=:id',(req,res)=>{
+router.get('/duyetbaiviet/id=:id', (req, res) => {
     if (req.isAuthenticated()) {
         var id = req.params.id;
         var sql = " where id = "+id;
@@ -47,9 +49,9 @@ router.get('/duyetbaiviet/id=:id',(req,res)=>{
             });
         })
 
-} else {
-    res.redirect("../../");
-}
+    } else {
+        res.redirect("../../");
+    }
 })
 
 

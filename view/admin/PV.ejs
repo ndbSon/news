@@ -1,252 +1,128 @@
-<!doctype html>
-<html lang="en">
+<%include headeradmin%>
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Danh Sách Bài Viết</h3>
 
-<head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/png" href="assets/img/favicon.ico">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+                    <div class="box-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
 
-    <title>Phóng Viên</title>
-
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-    <meta name="viewport" content="width=device-width" />
-
-
-    <!-- Bootstrap core CSS     -->
-    <link href="../../css/bootstrap.min.css" rel="stylesheet" />
-    <!-- Animation library for notifications   -->
-    <link href="../../css/animate.min.css" rel="stylesheet" />
-    <!--  Light Bootstrap Table core CSS    -->
-    <link href="../../css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet" />
-    <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="../../css/demo.css" rel="stylesheet" />
-
-
-    <!--     Fonts and icons     -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-    <link href="../../css/pe-icon-7-stroke.css" rel="stylesheet" />
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="../../bower_components/font-awesome/css/font-awesome.min.css">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="../../css/ionicons.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="../../css/AdminLTE.min.css">
-
-
-</head>
-
-<body>
-
-    <div class="wrapper">
-        <div class="sidebar" data-color="red" data-image="assets/img/sidebar-5.jpg">
-
-            <!--
-
-        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-        Tip 2: you can also add an image using data-image tag
-
-    -->
-
-            <div class="sidebar-wrapper">
-                <div class="logo">
-                    <a href="http://www.creative-tim.com" class="simple-text">
-                        Creative Tim
-                    </a>
-                </div>
-
-                <ul class="nav">
-                    <li class="active">
-                        <a href="/admin/PV/2">
-                            <i class="pe-7s-user"></i>
-                            <p>Phóng Viên</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/admin/BTV/2">
-                            <i class="pe-7s-user"></i>
-                            <p>Biên Tập Viên</p>
-                        </a>
-                    </li>
-
-
-                </ul>
-            </div>
-        </div>
-
-        <div class="main-panel">
-            <nav class="navbar navbar-default navbar-fixed">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-
-                        <a class="navbar-brand" href="/admin/PV/2">Phóng Viên</a>
-                    </div>
-                    <div class="collapse navbar-collapse">
-
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <a href="/admin/account/2">
-                                    <p>Account</p>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="/account/logout">
-                                    <p>Log out</p>
-                                </a>
-                            </li>
-                            <li class="separator hidden-lg"></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-
-
-
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-10">
-                    <div class="box">
-                        <div class="box-header">
-                            <h3 class="box-title">Danh Sách Bài Viết</h3>
-
-                            <div class="box-tools">
-                                <div class="input-group input-group-sm" style="width: 150px;">
-                                    <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-
-                                    <div class="input-group-btn">
-                                        <button type="submit" class="btn btn-default"><i
+                            <div class="input-group-btn">
+                                <button type="submit" class="btn btn-default"><i
                                                 class="fa fa-search"></i></button>
-                                    </div>
-                                </div>
                             </div>
                         </div>
-                        <!-- /.box-header -->
-                        <div class="box-body table-responsive no-padding ">
-                            <table class="table table-hover ">
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Tiêu Đề</th>
-                                    <th>Ngày Gửi</th>
-                                    <th>Tình Trạng</th>
-                                    <th>Chuyên Mục</th>
-                                    <th>Sửa</th>
-                                </tr>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding ">
+                    <table class="table table-hover ">
+                        <tr>
+                            <th>ID</th>
+                            <th>Tiêu Đề</th>
+                            <th>Ngày Gửi</th>
+                            <th>Tình Trạng</th>
+                            <th>Chuyên Mục</th>
+                            <th>Sửa</th>
+                        </tr>
 
-                                <%BaiViet.forEach(function(item){%>
-                                    <tr>
-                                        <td>
-                                            <%=item.ID%>
-                                        </td>
-                                        <td>
-                                            <%=item.TieuDe%>
-                                        </td>
-                                        <td>
-                                            <%=item.GioDang%>
-                                        </td>
-                                        <%if(item.TrangThai==1){%>
-                                            <td><span class="label label-success ">Đã xuất bản</span></td>
-                                            <%}else if(item.TrangThai==2){%>
-                                                <td><span class="label label-primary ">Đã được duyệt & chờ xuất bản</span></td>
-                                                <%}else if(item.TrangThai==3){%>
-                                                    <td><span class="label label-warning ">Chưa được duyệt</span></td>
-                                                    <%}else if(item.TrangThai==4){%>
-                                                        <td><span class="label label-danger ">Bị từ chối</span></td>
-                                                        <% }%>
+                        <%BaiViet.forEach(function(item){%>
+                            <tr>
+                                <td>
+                                    <%=item.ID%>
+                                </td>
+                                <td>
+                                    <%=item.TieuDe%>
+                                </td>
+                                <td>
+                                    <%=item.GioDang%>
+                                </td>
+                                <%if(item.TrangThai==1){%>
+                                    <td><span class="label label-success ">Đã xuất bản</span></td>
+                                    <%}else if(item.TrangThai==2){%>
+                                        <td><span class="label label-primary ">Đã được duyệt & chờ xuất bản</span></td>
+                                        <%}else if(item.TrangThai==3){%>
+                                            <td><span class="label label-warning ">Chưa được duyệt</span></td>
+                                            <%}else if(item.TrangThai==4){%>
+                                                <td><span class="label label-danger ">Bị từ chối</span></td>
+                                                <% }%>
 
-                                                            <td>
-                                                                <%=item.ChuDe%>
-                                                            </td>
-                                                            <td class="td-actions">
-                                                                <%if(item.TrangThai==4||item.TrangThai==3){%>
-                                                                    <a href="/PV_BTV/VietBai_PV/id=<%=item.ID%>">
-                                                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-simple btn-xs">
+                                                    <td>
+                                                        <%=item.ChuDe%>
+                                                    </td>
+                                                    <td class="td-actions">
+                                                        <%if(item.TrangThai==4||item.TrangThai==3){%>
+                                                            <a href="/PV_BTV/VietBai_PV/id=<%=item.ID%>">
+                                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-simple btn-xs">
                                                     <i class="fa fa-edit"></i>
                                                 </button>
-                                                                    </a>
-                                                                    <%}%>
-                                                            </td>
-                                    </tr>
-                                    <%})%>
-                            </table>
-                        </div>
+                                                            </a>
+                                                            <%}%>
+                                                    </td>
+                            </tr>
+                            <%})%>
+                    </table>
+                </div>
 
-                        <!-- /.box-body -->
-                    </div>
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-center">
+                <!-- /.box-body -->
+            </div>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
 
-                            <li class="page-item ">
-                                <a class="page-link" href="/PV_BTV/PV/show=<%=show-1%>" tabindex="0">Previous</a>
-                            </li>
+                    <li class="page-item ">
+                        <a class="page-link" href="/PV_BTV/PV/show=<%=show-1%>" tabindex="0">Previous</a>
+                    </li>
 
-                            <li class="page-item active">
-                                <a class="page-link" href="/PV_BTV/PV/show=<%=show%>">
-                                    <%=show%>
+                    <li class="page-item active">
+                        <a class="page-link" href="/PV_BTV/PV/show=<%=show%>">
+                            <%=show%>
+                        </a>
+                    </li>
+                    <%if(BaiViet.length < 5){%>
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#">
+                                <%=show+1%>
+                            </a>
+                        </li>
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#">
+                                <%=show+2%>
+                            </a>
+                        </li>
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                        <%}else{%>
+                            <li class="page-item">
+                                <a class="page-link" href="/PV_BTV/PV/show=<%=show+1%>">
+                                    <%=show+1%>
                                 </a>
                             </li>
-                            <%if(BaiViet.length < 5){%>
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#">
-                                        <%=show+1%>
-                                    </a>
-                                </li>
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#">
-                                        <%=show+2%>
-                                    </a>
-                                </li>
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#">Next</a>
-                                </li>
-                                <%}else{%>
-                                    <li class="page-item">
-                                        <a class="page-link" href="/PV_BTV/PV/show=<%=show+1%>">
-                                            <%=show+1%>
-                                        </a>
-                                    </li>
-                                    <li class="page-item">
+                            <li class="page-item">
 
-                                        <a class="page-link" href="/PV_BTV/PV/show=<%=show+2%>">
-                                            <%=show+2%>
-                                        </a>
+                                <a class="page-link" href="/PV_BTV/PV/show=<%=show+2%>">
+                                    <%=show+2%>
+                                </a>
 
-                                    </li>
-                                    <li class="page-item">
+                            </li>
+                            <li class="page-item">
 
-                                        <a class="page-link" href="/PV_BTV/PV/show=<%=show+1%>">Next</a>
-                                    </li>
-                                    <%}%>
-                        </ul>
-                    </nav>
-                    <!-- /.box -->
-                </div>
-            </div>
-
-            <div class="col-xs-1"></div>
-            <a href="/PV_BTV/VietBai_PV/id=0">
-                <button type="submit" class="btn btn-info btn-fill">Viết Bài</button>
-            </a>
+                                <a class="page-link" href="/PV_BTV/PV/show=<%=show+1%>">Next</a>
+                            </li>
+                            <%}%>
+                </ul>
+            </nav>
+            <!-- /.box -->
         </div>
     </div>
 
+    <div class="col-xs-1"></div>
+    <a href="/PV_BTV/VietBai_PV/id=0">
+        <button type="submit" class="btn btn-info btn-fill">Viết Bài</button>
+    </a>
     </div>
     </div>
-
-    <script src="../../js/jquery.3.2.1.min.js" type="text/javascript"></script>
-    <script src="../../js/bootstrap.min.js" type="text/javascript"></script>
-
-    <!--  Notifications Plugin    -->
-    <script src="../../js/bootstrap-notify.js"></script>
-
-
-    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-    <script src="../../js/light-bootstrap-dashboard.js?v=1.4.0"></script>
-
-    <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-    <script src="../../js/demo.js"></script>
-
-</body>
-
-</html>
+    <% include footeradmin%>
