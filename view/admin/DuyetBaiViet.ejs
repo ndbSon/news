@@ -54,7 +54,12 @@
                             <h4 class="title">Duyệt Bài Báo</h4>
                         </div>
                         <div class="content">
+                            <%if(user==3){%>
+                                <form action="/PV_BTV/BTVDuyetBaiViet" method="post" novalidate id="DuyetBai">
+                            <%}else if(user==4){%>
                                 <form action="/admin/AdminDuyetBaiViet" method="post" novalidate id="DuyetBai">
+                            <%}%>
+                              
                                     <div class="row">
                                         <div class="col-md-12">
                                                 <div class="form-group">

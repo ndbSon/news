@@ -1,5 +1,5 @@
 var express = require('express');
-var db_Trang = require("../../units/db_Trang");
+var list_PV_BTVmodel = require("../../model/list_PV_BTV.model");
 
 
 var bodyParser = require('body-parser');
@@ -10,29 +10,11 @@ var router = express.Router();
 
 
 
-router.post("/BTVDuyetBaiViet", urlencodedParser, (req, res) => {
-    if (req.isAuthenticated()) {
-        var TrangThai = req.body.Duyet;
-        var id = req.body.IDBaiViet;
-        console.log("Trang Thai: " + TrangThai);
-        console.log("id:" + id);
-        db_Trang.editDuyetBaiViet(TrangThai, id)
-            .then(rows => {
-                res.redirect("../../admin/BTV/2");
-            }).catch(err => {
-                console.log(err);
-                res.end('error occured.');
-            });
-    } else {
-        res.redirect("../../");
-    }
-})
-
 router.get("/VietBai_PV/id=:id", function(req, res) {
     if (req.isAuthenticated() && req.user.Loai == 2) {
         var id = req.params.id;
         var sql = "where ID = " + id;
-        Promise.all([db_Trang.ChuDe(), db_Trang.BaiViet(sql, " * ")]).then(rows => {
+        Promise.all([list_PV_BTVmodel.ChuDe(""), list_PV_BTVmodel.BaiViet(sql, " * ")]).then(rows => {
             res.render("./admin/VietBai_PV", {
                 ChuDe: rows[0],
                 info: rows[1][0],
@@ -56,17 +38,17 @@ router.post("/postbaiviet", urlencodedParser, (req, res) => {
         console.log("sadsadssadsadsadsadsadsadsadsadsad " + tagabc);
         console.log(req.user.ID)
         if (!ID) {
-            db_Trang.addBaiViet(TieuDe, TomTat, NoiDung, ChuDe, AnhDaiDien, TacGia)
+            list_PV_BTVmodel.addBaiViet(TieuDe, TomTat, NoiDung, ChuDe, AnhDaiDien, TacGia)
                 .then(rows => {
-                    res.send('thanh cong');
+                    res.redirect("../../PV_BTV/PV/show=1");
                 }).catch(err => {
                     console.log(err);
                     res.end('error occured.');
                 });
         } else {
-            db_Trang.editBaiViet(TieuDe, TomTat, NoiDung, ChuDe, AnhDaiDien, ID)
+            list_PV_BTVmodel.editBaiViet(TieuDe, TomTat, NoiDung, ChuDe, AnhDaiDien, ID)
                 .then(rows => {
-                    res.send('thanh cong');
+                    res.redirect("../../PV_BTV/PV/show=1");
                 }).catch(err => {
                     console.log(err);
                     res.end('error occured.');
@@ -85,7 +67,7 @@ router.post("/BTVDuyetBaiViet", urlencodedParser, (req, res) => {
         var id = req.body.IDBaiViet;
         console.log("Trang Thai: " + TrangThai);
         console.log("id:" + id);
-        db_Trang.editDuyetBaiViet(TrangThai, id,GioDang)
+        list_PV_BTVmodel.editDuyetBaiViet(TrangThai, id,GioDang)
             .then(rows => {
                 res.redirect("../../PV_BTV/BTV");
             }).catch(err => {

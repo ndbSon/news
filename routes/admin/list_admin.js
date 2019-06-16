@@ -44,10 +44,12 @@ router.get("/BaiViet/show=:id", function(req, res) {
 router.get('/duyetbaiviet/id=:id',(req,res)=>{
     if (req.isAuthenticated()) {
         var id = req.params.id;
+        var user = req.user.Loai;
         var sql = " where id = "+id;
         db_Trang.BaiViet(sql, " * ").then(rows => {
             res.render("./admin/DuyetBaiViet", {
                 BaiViet: rows[0],
+                user: user,
             });
         })
 
