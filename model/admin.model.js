@@ -16,7 +16,6 @@ module.exports = {
     SLX: () => {
         return db.load('select sum(bv.SoLuotXem) as SoLuotXem from baiviet as bv')
     },
-   
     TKBaiVietTheoTheLoai: () => {
         return db.load('select tl.TenTheLoai as tenchude,count(*) as slbv from baiviet as bv,chude as cd,theloai as tl where bv.ChuDe=cd.TenChuDe and cd.IDTheLoai=tl.ID group by tl.TenTheLoai')
     },
@@ -35,14 +34,17 @@ module.exports = {
     editDuyetBaiViet: (TrangThai, ID,GioDang) => {
         return db.load('UPDATE `news`.`baiviet` SET `TrangThai` = ' + TrangThai + ', `GioDang` = "' + GioDang + '" WHERE (`ID` = ' + ID + ');')
     },
+    editTags: (TenTags, ID) => {
+        return db.load('UPDATE `news`.`tags` SET `TenTags` = "'+TenTags+'" WHERE (`ID` = "'+ID+'");')
+    },
     addTenTheLoai: (TenTheLoai) => {
         return db.load('INSERT INTO `news`.`theloai` (`TenTheLoai`) VALUES ("' + TenTheLoai + '")')
     },
-    addTenTags: (TenTheLoai) => {
-        return db.load('INSERT INTO `news`.`tags` (`TenTheLoai`) VALUES ("' + TenTheLoai + '")')
-    },
     addTenChuDe: (TenChuDe, IDTheLoai) => {
         return db.load('INSERT INTO `news`.`chude` (`TenChuDe`,`IDTheLoai`) VALUES ("' + TenChuDe + '","' + IDTheLoai + '")')
+    },
+    addTags: (Tags,IDBaiViet) => {
+        return db.load('INSERT INTO `news`.`tags` (`TenTags`, `IDBaiViet`) VALUES ("'+Tags+'", "'+IDBaiViet+'");')
     },
     editPhanCongBTV: (IDTheLoai, ID) => {
         return db.load('UPDATE `news`.`bientapvien` SET `IDTheLoai` = ' + IDTheLoai + ' WHERE (`IDUser` = ' + ID + ');')
@@ -52,9 +54,15 @@ module.exports = {
     },
     deleteTenTheLoai: (ID) => {
         return db.load('DELETE FROM `news`.`theloai` WHERE (`ID` = ' + ID + ')')
-
     },
     deleteTenChuDe: (ID) => {
         return db.load('DELETE FROM `news`.`chude` WHERE (`ID` = ' + ID + ')')
     },
+    deleteTags: (ID) => {
+        return db.load('DELETE FROM `news`.`tags` WHERE (`ID` = ' + ID + ')')
+    },
+    Tags: (sql) => {
+        return db.load('SELECT '+sql+' FROM news.tags')
+    },
+  
 };

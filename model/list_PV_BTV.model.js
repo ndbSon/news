@@ -25,4 +25,11 @@ module.exports = {
     listLSD_BTV: (sql) => {
         return db.load('SELECT ls.*,bv.TieuDe FROM news.lsduyet_btv as ls, news.baiviet as bv where bv.ID=ls.IDBaiViet and ls.IDBTV= ' + sql + '')
     },
+    addTags: (Tags,IDBaiViet) => {
+        return db.load('INSERT INTO `news`.`tags` (`TenTags`, `IDBaiViet`) VALUES ("'+Tags+'", "'+IDBaiViet+'");')
+    },
+    Tags:(IDBaiViet)=>{
+        return db.load('SELECT TenTags FROM news.tags where IDBaiViet= '+IDBaiViet+'');
+    },
+
 };

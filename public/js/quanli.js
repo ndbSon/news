@@ -9,9 +9,6 @@ $(document).ready(function ($) {
         $('#NoiDung').html(CKEDITOR.instances.NoiDung.setData($(this).closest('tr').find('td:nth-child(8)').find('input').val()));
 
     });
-
-
-
     $('#tableChuDe #btnSua').click(function (e) {
         /* e.preventDefault();*/
         $('#IDTenTheLoai').val($(this).closest('tr').find('td:nth-child(3)').text().trim()); //Lấy value cột thứ nhất
@@ -44,5 +41,10 @@ $(document).ready(function ($) {
         $('#IDDocGia').val($(this).closest('tr').find('td:nth-child(1)').text().trim());
         $('#Ngay').val($(this).closest('tr').find('td:nth-child(3)').text().trim());
     });
-
+    $('#tableTags #btnSua').click(function (e) {
+        /* e.preventDefault();*/
+        $('#EditTenTags').val($(this).closest('tr').find('td:nth-child(2)').text().trim()); //Lấy value cột thứ nhất
+        $('#ID').val($(this).closest('tr').find('td:nth-child(1)').text().trim());
+      
+    });
 });

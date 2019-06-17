@@ -121,6 +121,48 @@ router.post("/addTenChuDe", urlencodedParser, (req, res) => {
     }
 })
 
+router.post("/addTenTags", urlencodedParser, (req, res) => {
+    if (req.isAuthenticated()) {
+        var TenTags = req.body.addTenTags;
+        var id = req.body.IDBaiViet;
+        adminmodel.addTags(TenTags, id)
+            .then(rows => {
+                res.redirect("../../admin/Tags");
+            }).catch(err => {
+                console.log(err);
+                res.end('error occured.');
+            });
+    } else {
+        res.redirect("../../");
+    }
+})
+router.post("/EditTenTags", urlencodedParser, (req, res) => {
+    if (req.isAuthenticated()) {
+        var TenTags = req.body.EditTenTags;
+        var id = req.body.ID;
+        adminmodel.editTags(TenTags, id)
+            .then(rows => {
+                res.redirect("../../admin/Tags");
+            }).catch(err => {
+                console.log(err);
+                res.end('error occured.');
+            });
+    } else {
+        res.redirect("../../");
+    }
+})
+router.get("/deleteTags/:id", function(req, res) {
+    if (req.isAuthenticated()) {
+        var id = req.params.id;
+        adminmodel.deleteTags(id)
+            .then(rows => {
+                res.redirect("../../admin/Tags");
+            })
+    } else {
+        res.redirect("../../");
+    }
+});
+
 router.get("/deleteTenChuDe/:id", function(req, res) {
     if (req.isAuthenticated()) {
         var id = req.params.id;

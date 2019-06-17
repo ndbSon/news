@@ -96,10 +96,39 @@ router.get("/ChuyenMuc", function(req, res) {
 
 
 router.get("/Tags", function(req, res) {
-    res.render("./admin/Tags", {
-        user: req.user,
-    });
+    if (req.isAuthenticated()) {
+
+        Promise.all([adminmodel.Tags("DISTINCT TenTags"), adminmodel.BaiViet("", "ID,TieuDe"),adminmodel.Tags("*")])
+            .then(rows => {
+                res.render("./admin/Tags", {
+                    Tags: rows[0],
+                    BaiViet: rows[1],
+                    ArrTags: rows[2],
+                    user: req.user,
+                });
+            })
+    } else {
+        res.redirect("../../");
+    }
 });
+
+router.get("/Tags/:tag", function(req, res) {
+    if (req.isAuthenticated()) {
+        var tag=req.params.tag;
+        var sql =" as bv,news.tags as t where t.IDBaiViet=bv.ID and t.TenTags='"+ tag+"'";
+        Promise.all([adminmodel.Tags("*"), adminmodel.BaiViet(sql, "t.*,bv.TieuDe,bv.ID as IDBV")])
+            .then(rows => {
+                res.render("./admin/Tags_BV", {
+                    Tags: rows[0],
+                    BaiViet: rows[1],
+                    user: req.user,
+                });
+            })
+    } else {
+        res.redirect("../../");
+    }
+});
+
 
 
 
