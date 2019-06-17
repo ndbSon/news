@@ -28,7 +28,7 @@
         SLX: () => {
             return db.load('select sum(bv.SoLuotXem) as SoLuotXem from baiviet as bv')
         },
-       
+
         TKBaiVietTheoTheLoai: () => {
             return db.load('select tl.TenTheLoai as tenchude,count(*) as slbv from baiviet as bv,chude as cd,theloai as tl where bv.ChuDe=cd.TenChuDe and cd.IDTheLoai=tl.ID group by tl.TenTheLoai')
         },
@@ -109,7 +109,7 @@
         editBaiViet: (TieuDe, TomTat, NoiDung, ChuDe, AnhDaiDien, ID) => {
             return db.load('UPDATE `news`.`baiviet` SET `TieuDe` = "' + TieuDe + '", `TomTat` = "' + TomTat + '", `NoiDung` = ' + NoiDung + ', `GioDang` = current_timestamp(), `TrangThai` = 3, `SoLuotThich` = 1, `SoLuotXem` = 1, `Tags` = 1, `ChuDe` = "' + ChuDe + '", `AnhDaiDien` = "' + AnhDaiDien + '"  WHERE (`ID` = ' + ID + ');')
         },
-        editDuyetBaiViet: (TrangThai, ID,GioDang) => {
+        editDuyetBaiViet: (TrangThai, ID, GioDang) => {
             return db.load('UPDATE `news`.`baiviet` SET `TrangThai` = ' + TrangThai + ', `GioDang` = "' + GioDang + '" WHERE (`ID` = ' + ID + ');')
         },
         editPhanCongBTV: (IDTheLoai, ID) => {
