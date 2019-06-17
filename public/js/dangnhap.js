@@ -15,7 +15,7 @@ $(document).ready(function($) {
             Signusername: {
                 required: true,
                 remote: {
-                    url: '/account/is-available'
+                    url: './account/account/is-available'
                 }
             },
             Signpassword: {
