@@ -29,8 +29,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Tóm Tắt</label>
-                                            <textarea rows="5" name="TomTat" class="form-control" placeholder="Tóm tắt Nội Dung"><%if(info){%><%=info.TomTat%>     
-                                                       <% }%></textarea>
+                                            <textarea rows="5" name="TomTat" class="form-control" placeholder="Tóm tắt Nội Dung"><%if(info){%><%=info.TomTat%><% }%></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -40,7 +39,7 @@
                                             <label>Ảnh Đại Diện</label>
                                             <input type="text" name="AnhDaiDien" class="form-control" placeholder="http://" <%if(info){%> value="
                                             <%=info.AnhDaiDien%>"
-                                                <% }%> required>
+                                                <%}%> required>
 
                                         </div>
                                     </div>
@@ -49,9 +48,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Nội Dung</label>
-                                            <textarea rows="15" name="NoiDung" class="form-control" placeholder="Nội Dung"><%if(info){%>
-                                                            <%=info.NoiDung%>
-                                                       <% }%></textarea>
+                                            <textarea rows="30" name="NoiDung" class="form-control" placeholder="Nội Dung"><%if(info){%><%=info.NoiDung%><% }%></textarea>
                                             <script>
                                                 // Replace the <textarea id="editor1"> with a CKEditor
                                                 // instance, using default configuration.
@@ -66,17 +63,17 @@
                                         <div class="form-group">
                                             <h3>Chủ Đề</h3>
                                             <select class="form-control select2" name="ChuDe" style="width: 100%;">
-                                                        <%ChuDe.forEach(function(item){%>
-                                                            <%if(info){%>
-                                                                <%if(item.TenChuDe==info.ChuDe){%>
-                                                                    <option selected><%=item.TenChuDe%></option>
-                                                                <%}%>
+                                            <%ChuDe.forEach(function(item){%>
+                                            <%if(info){%>
+                                            <%if(item.TenChuDe==info.ChuDe){%>
+                                            <option selected><%=item.TenChuDe%></option>
+                                            <%}%>
                                                            <% }%>
-                                                          
-                                                        <option><%=item.TenChuDe%></option>
-                                                        <% })%>
 
-                                                    </select>
+                                            <option><%=item.TenChuDe%></option>
+                                            <% })%>
+
+                                        </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -86,7 +83,11 @@
                                         </h3>
                                         <ul id="myULTags">
                                             <!-- Existing list items will be pre-added to the tags. -->
-                                            <li>Tag1</li>
+                                            <%Tags.forEach(function(item){%>
+                                                <li>
+                                                    <%=item.TenTags%>
+                                                </li>
+                                                <% })%>
 
                                         </ul>
 
@@ -96,7 +97,7 @@
 
 
                                 <button type="submit" class="btn btn-info btn-fill pull-right">Update
-                                            Profile</button>
+                                Profile</button>
                                 <div class="clearfix"></div>
                             </form>
                         </div>
@@ -108,5 +109,4 @@
     </div>
 
     </div>
-
     <%include footeradmin%>

@@ -15,7 +15,7 @@ $(document).ready(function($) {
             Signusername: {
                 required: true,
                 remote: {
-                    url: '/account/is-available'
+                    url: './account/account/is-available'
                 }
             },
             Signpassword: {
@@ -33,6 +33,38 @@ $(document).ready(function($) {
                 remote: 'Tên Đăng Nhập Đã Tồn Tại'
             },
             Signpassword: {
+                required: 'Nhập Password',
+                minlength: 'Password Phải Trên 6 Kí Tự'
+            },
+            confirm: {
+                required: 'Không Trùng Với Mật Khẩu Đã Nhập',
+                equalTo: 'Không Trùng Với Mật Khẩu Đã Nhập'
+            },
+
+        },
+        errorElement: 'small',
+        errorClass: 'help-block text-danger',
+        highlight: function(e) {
+            $(e).removeClass('is-valid').addClass('is-invalid');
+        },
+        unhighlight: function(e) {
+            $(e).removeClass('is-invalid').addClass('is-valid');
+        }
+    });
+
+    $('#formDoiMatKhau').validate({
+        rules: {
+            MatKhauMoi: {
+                required: true,
+                minlength: 6
+            },
+            confirm: {
+                required: true,
+                equalTo: $('#MatKhauMoi')
+            },
+        },
+        messages: {
+            MatKhauMoi: {
                 required: 'Nhập Password',
                 minlength: 'Password Phải Trên 6 Kí Tự'
             },

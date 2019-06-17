@@ -1,46 +1,22 @@
-<%include headeradmin%>
-    <div class="content">
+<% include headeradmin %>
+<div class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-8">
                     <div class="card">
                         <div class="header">
                             <h4 class="title">Edit Profile</h4>
+                            <%if(mess){ %>
+                                <h4 class="title"><%=mess%></h4>
+                            <%}%>
                         </div>
-                        <div class="content">
+                        <div id="info" class="content">
                             <form>
                                 <div class="row">
-                                    <div class="col-md-5">
+                                    <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Company (disabled)</label>
-                                            <input type="text" class="form-control" disabled placeholder="Company" value="Creative Code Inc.">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>Username</label>
-                                            <input type="text" class="form-control" placeholder="Username" value="michael23">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Email address</label>
-                                            <input type="email" class="form-control" placeholder="Email">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>First Name</label>
-                                            <input type="text" class="form-control" placeholder="Company" value="Mike">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Last Name</label>
-                                            <input type="text" class="form-control" placeholder="Last Name" value="Andrew">
+                                            <input type="text" class="form-control" disabled placeholder="Company" value="SQ-News">
                                         </div>
                                     </div>
                                 </div>
@@ -48,65 +24,72 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Address</label>
-                                            <input type="text" class="form-control" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
+                                            <label>Tên Đăng Nhập</label>
+                                            <input type="text" class="form-control" placeholder="Company" value="<%=NguoiDung.TenDangNhap%>">
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>City</label>
-                                            <input type="text" class="form-control" placeholder="City" value="Mike">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Country</label>
-                                            <input type="text" class="form-control" placeholder="Country" value="Andrew">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Postal Code</label>
-                                            <input type="number" class="form-control" placeholder="ZIP Code">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>About Me</label>
-                                            <textarea rows="5" class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <button type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>
-                                <div class="clearfix"></div>
-                            </form>
+                                <a id="btnDoiMatKhau"
+                                onclick="document.getElementById('MatKhau').style.display='block',document.getElementById('info').style.display='none'"
+                              
+                                class="btn btn-warning btn-fill">Đổi Mật Khẩu
+                            </a>
+                            </form>      
                         </div>
+                        <div id="MatKhau" class="content" style="display:none">
+                                <span onclick="document.getElementById('MatKhau').style.display='none',document.getElementById('info').style.display='block'" class="close"
+                                title="Close Modal">&times;</span>
+                                <form action="./account" method="post" novalidate id="formDoiMatKhau">
+                                    <form action="" method="post" novalidate id="formDoiMatKhau">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Nhập Mật Khẩu Hiện Tại</label>
+                                                <input  name="MK" type="text" class="form-control">
+                                                <input name="ID" type="text" class="form-control" value="<%=NguoiDung.ID%>">
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Nhập Mật Khẩu</label>
+                                                <input id="MatKhauMoi" name="MatKhauMoi" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Nhập Lại Mật Khẩu</label>
+                                                    <input name="confirm" type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <button id="btnDoiMatKhau"
+                                    onclick="document.getElementById('#').style.display='block'"
+                                    class="btn btn-warning btn-fill">Đổi Mật Khẩu
+                                   </button>
+                                </form>
+                                
+                            </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card card-user">
                         <div class="image">
-                            <img src="#" alt="..." />
+                            <img src="https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="..." />
                         </div>
                         <div class="content">
                             <div class="author">
                                 <a href="#">
-                                    <img class="avatar border-gray" src="#" alt="..." />
+                                    <img class="avatar border-gray" src="<%=NguoiDung.AnhDaiDien%>" alt="..." />
 
-                                    <h4 class="title">Mike Andrew<br />
-                                        <small>michael24</small>
+                                    <h4 class="title"><%=NguoiDung.TenDangNhap%><br />
                                     </h4>
                                 </a>
                             </div>
-                            <p class="description text-center"> "Lamborghini Mercy <br> Your chick she so thirsty <br> I'm in that two seat Lambo"
-                            </p>
                         </div>
                         <hr>
                         <div class="text-center">
@@ -122,27 +105,4 @@
         </div>
     </div>
 
-    </div>
-    </div>
-    </div>
-
-    <!--   Core JS Files   -->
-    <script src="../../js/jquery.3.2.1.min.js" type="text/javascript"></script>
-    <script src="../../js/bootstrap.min.js" type="text/javascript"></script>
-
-    <!--  Notifications Plugin    -->
-    <script src="../../js/bootstrap-notify.js"></script>
-
-
-    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-    <script src="../../js/light-bootstrap-dashboard.js?v=1.4.0"></script>
-
-    <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-    <script src="../../js/demo.js"></script>
-
-    </body>
-
-
-
-
-    </html>
+    <%include footeradmin%>

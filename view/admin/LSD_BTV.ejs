@@ -1,0 +1,57 @@
+<%include headeradmin%>
+<div class="col-xs-12">
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">Danh Sách Bài Báo Nháp</h3>
+
+            <div class="box-tools">
+
+                <div class="input-group input-group-sm" style="width: 250px;">
+                    <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                    <div class="input-group-btn">
+                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- /.box-header -->
+        <div class="box-body table-responsive no-padding ">
+            <table id="table" class="table table-hover ">
+                <tr>
+                    <th>Tiêu Đề</th>
+                    <th>Ngày Duyệt</th>
+                    <th>Trạng Thái</th>
+                </tr>
+                <%BaiViet.forEach(function(item){%>
+                <tr>
+                    <td>
+                        <%=item.TieuDe%>
+                    </td>
+                    <td>
+                        <%=item.ThoiGian%>
+                    </td>
+                    <%if(item.LoaiDuyet==1){%>
+                    <td><span class="label label-success ">Đã xuất bản</span></td>
+                    <%}else if(item.LoaiDuyet==2){%>
+                    <td><span class="label label-primary ">Đã được duyệt & chờ xuất bản</span></td>
+                    <%}else if(item.LoaiDuyet==3){%>
+                    <td><span class="label label-warning ">Chưa được duyệt</span></td>
+                    <%}else if(item.LoaiDuyet==4){%>
+                    <td><span class="label label-danger ">Bị từ chối</span></td>
+                    <% }%>
+                </tr>
+                <%})%>
+            </table>
+        </div>
+        <div class="col-xs-10"></div>
+    </div>
+</div>
+</div>
+<!-- /.box-body -->
+</div>
+<!-- /.box -->
+</div>
+</div>
+<% include footeradmin %>

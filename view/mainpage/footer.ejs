@@ -60,7 +60,7 @@
                     <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
                     <hr>
                     <h4 class="card-title mb-4 mt-1">Sign in</h4>
-                    <form action="/SQ/signin/1" method="post" novalidate id="registerForm">
+                    <form action="/account/SQ/signin" method="post" novalidate id="registerForm">
                         <div class="form-group">
                             <label for="txtUsername">Username</label>
                             <input type="text" class="form-control" id="txtUsername" name="Signusername" autofocus>
@@ -99,7 +99,9 @@
 
 
 <!-- End footer Area -->
-<script src="../js/jquery-2.2.4.min.js"></script>
+<script src="../js/jquery-2.2.4.min.js" type="text/javascript"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+<script type="text/javascript" src="../js/dangnhap.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
