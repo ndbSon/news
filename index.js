@@ -1,7 +1,7 @@
 var express = require("express");
 var app = express();
 var db = require("./units/db");
-var db_Trang = require("./units/db_Trang");
+
 app.use(express.static("public"));
 
 var bodyParser = require('body-parser');
@@ -23,10 +23,3 @@ app.use('/admin', require('./routes/admin/func_admin'))
 app.use('/PV_BTV', require('./routes/PV_BTV/list_PV_BTV'))
 app.use('/PV_BTV', require('./routes/PV_BTV/func_PV_BTV'))
 
-
-//sign in
-
-app.get('/LG', (req, res) => {
-    res.render("./mainpage/login")
-    
- })

@@ -52,6 +52,38 @@ $(document).ready(function($) {
         }
     });
 
+    $('#formDoiMatKhau').validate({
+        rules: {
+            MatKhauMoi: {
+                required: true,
+                minlength: 6
+            },
+            confirm: {
+                required: true,
+                equalTo: $('#MatKhauMoi')
+            },
+        },
+        messages: {
+            MatKhauMoi: {
+                required: 'Nhập Password',
+                minlength: 'Password Phải Trên 6 Kí Tự'
+            },
+            confirm: {
+                required: 'Không Trùng Với Mật Khẩu Đã Nhập',
+                equalTo: 'Không Trùng Với Mật Khẩu Đã Nhập'
+            },
+
+        },
+        errorElement: 'small',
+        errorClass: 'help-block text-danger',
+        highlight: function(e) {
+            $(e).removeClass('is-valid').addClass('is-invalid');
+        },
+        unhighlight: function(e) {
+            $(e).removeClass('is-invalid').addClass('is-valid');
+        }
+    });
+
 
 
 })

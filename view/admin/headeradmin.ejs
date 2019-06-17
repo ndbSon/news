@@ -35,14 +35,16 @@
     <link href="../../css/jquery.tagit.css" rel="stylesheet" type="text/css">
     <link href="../../css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"
+        charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript"
+        charset="utf-8"></script>
 
     <script src="../../js/tag-it.js" type="text/javascript" charset="utf-8"></script>
-  
+
 
     <script>
-        $(function() {
+        $(function () {
             var sampleTags = ['c++', 'java', 'php', 'coldfusion', 'javascript', 'asp', 'ruby', 'python', 'c', 'scala', 'groovy', 'haskell', 'perl', 'erlang', 'apl', 'cobol', 'go', 'lua'];
             //-------------------------------
             $('#myULTags').tagit({
@@ -73,67 +75,67 @@
             <div class="sidebar-wrapper">
                 <div class="logo">
                     <a href="/PV_BTV/PV/show=1" class="simple-text">
-                            SQ-News
-                        </a>
+                        SQ-News
+                    </a>
                 </div>
 
                 <ul class="nav">
                     <%if(user.Loai==4){%>
-                        <li>
-                            <a href="/admin/dashboard">
-                                <i class="pe-7s-graph"></i>
-                                <p>Trang Chủ</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/admin/NguoiDung">
-                                <i class="pe-7s-user"></i>
-                                <p>Danh Sách Người Dùng</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/admin/BaiViet/show=1">
-                                <i class="pe-7s-note2"></i>
-                                <p>Quản Lý Bài Viết</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/admin/ChuyenMuc">
-                                <i class="pe-7s-news-paper"></i>
-                                <p>Quản Lý Chuyên Mục</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/admin/Tags">
-                                <i class="pe-7s-science"></i>
-                                <p>Quản Lý Tags</p>
-                            </a>
-                        </li>
+                    <li>
+                        <a href="/admin/dashboard">
+                            <i class="pe-7s-graph"></i>
+                            <p>Trang Chủ</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/NguoiDung">
+                            <i class="pe-7s-user"></i>
+                            <p>Danh Sách Người Dùng</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/BaiViet/show=1">
+                            <i class="pe-7s-note2"></i>
+                            <p>Quản Lý Bài Viết</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/ChuyenMuc">
+                            <i class="pe-7s-news-paper"></i>
+                            <p>Quản Lý Chuyên Mục</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/Tags">
+                            <i class="pe-7s-science"></i>
+                            <p>Quản Lý Tags</p>
+                        </a>
+                    </li>
 
-                        <%}%>
+                    <%}%>
                             <%if(user.Loai==2){%>
-                                <li class="active">
-                                    <a href="/PV_BTV/PV/show=1">
-                                        <i class="pe-7s-user"></i>
-                                        <p>Phóng Viên</p>
-                                    </a>
-                                </li>
+                    <li class="active">
+                        <a href="/PV_BTV/PV/show=1">
+                            <i class="pe-7s-user"></i>
+                            <p>Phóng Viên</p>
+                        </a>
+                    </li>
 
-                                <%}%>
+                    <%}%>
                                     <%if(user.Loai==3){%>
-                                        <li>
-                                            <a href="/PV_BTV/BTV">
-                                                <i class="pe-7s-user"></i>
-                                                <p>Biên Tập Viên</p>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="/PV_BTV/LSD_BTV">
-                                                <i class="pe-7s-user"></i>
-                                                <p>Lịch Sử Duyệt</p>
-                                            </a>
-                                        </li>
-                                        <%}%>
+                    <li>
+                        <a href="/PV_BTV/BTV">
+                            <i class="pe-7s-user"></i>
+                            <p>Biên Tập Viên</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/PV_BTV/LSD_BTV">
+                            <i class="pe-7s-user"></i>
+                            <p>Lịch Sử Duyệt</p>
+                        </a>
+                    </li>
+                    <%}%>
                 </ul>
             </div>
         </div>
@@ -149,13 +151,12 @@
 
                         <ul class="nav navbar-nav navbar-right">
                             <li>
-                                <a href="/account/account">
+                                <a href="../../account/account">
                                     <p>Account</p>
                                 </a>
                             </li>
-
                             <li>
-                                <a href="/account/logout">
+                                <a href="../../account/logout">
                                     <p>Log out</p>
                                 </a>
                             </li>

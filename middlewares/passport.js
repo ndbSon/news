@@ -1,7 +1,7 @@
 var passport = require('passport');
 var passportfb = require('passport-facebook').Strategy;
 var LocalStrategy = require('passport-local').Strategy;
-var db_Trang = require("../units/db_Trang");
+var db_Trang = require("../model/db_Trang");
 
 module.exports = function(app) {
     app.use(passport.initialize())
