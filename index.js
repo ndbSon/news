@@ -22,4 +22,3 @@ app.use('/admin', require('./routes/admin/list_admin'))
 app.use('/admin', require('./routes/admin/func_admin'))
 app.use('/PV_BTV', require('./routes/PV_BTV/list_PV_BTV'))
 app.use('/PV_BTV', require('./routes/PV_BTV/func_PV_BTV'))
-
