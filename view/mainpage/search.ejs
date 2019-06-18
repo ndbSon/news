@@ -9,7 +9,7 @@
                             <h1 class="text-white">
                                 <%=Searchbox%>
                             </h1>
-                         
+
                         </div>
                     </div>
                 </div>
@@ -24,6 +24,7 @@
                         <!-- Start latest-post Area -->
                         <div class="latest-post-wrap">
                             <h4 class="cat-title">
+                                Search:
                                 <%=Searchbox%>
                             </h4>
                             <% data.forEach(function(i){%>
@@ -37,8 +38,8 @@
                                         </div>
                                         <ul class="tags">
                                             <li>
-                                                <a href="/<%=i.TenChuDe%>/page=1">
-                                                    <%= i.TenChuDe%>
+                                                <a href="/<%=i.ChuDe%>/page=1">
+                                                    <%=i.ChuDe%>
                                                 </a>
                                             </li>
                                         </ul>
@@ -73,7 +74,7 @@
                                 <%});%>
 
                                     </br>
-                                  
+
 
                         </div>
                         <!-- End latest-post Area -->
