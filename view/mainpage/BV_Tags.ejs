@@ -1,0 +1,89 @@
+<% include header %>
+    <div class="site-main-container">
+        <!-- Start top-post Area -->
+        <section class="top-post-area pt-10">
+            <div class="container no-padding">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="hero-nav-area">
+                            <h1 class="text-white">
+                                <%=tags%>
+                            </h1>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End top-post Area -->
+        <!-- Start latest-post Area -->
+        <section class="latest-post-area pb-120">
+            <div class="container no-padding">
+                <div class="row">
+                    <div class="col-lg-8 post-list">
+                        <!-- Start latest-post Area -->
+                        <div class="latest-post-wrap">
+                            <h4 class="cat-title">
+                                Search:
+                                <%=tags%>
+                            </h4>
+                            <% data.forEach(function(i){%>
+                                <div class="single-latest-post row align-items-center">
+                                    <div class="col-lg-5 post-left">
+                                        <div class="feature-img relative">
+                                            <div class="overlay overlay-bg"></div>
+                                            <a href="/BaiViet/<%=i.ID%>">
+                                            <img class="img-fluid" src="<%=i.AnhDaiDien%>" alt="Card image cap">
+                                        </a>
+                                        </div>
+                                        <ul class="tags">
+                                            <li>
+                                                <a href="/<%=i.ChuDe%>/page=1">
+                                                    <%=i.ChuDe%>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-lg-7 post-right">
+                                        <a href="/BaiViet/<%=i.ID%>">
+                                            <h4>
+                                                <%= i.TieuDe%>
+                                            </h4>
+                                        </a>
+                                        <ul class="meta">
+                                            <li><a href="#"><span class="lnr lnr-user"></span><%=i.TacGia%></a></li>
+                                            <li id="tr"><a href="#"><span class="lnr lnr-calendar-full"></span><%=i.GioDang%></a>
+                                            </li>
+
+                                            <li><a href="#"><span class="lnr lnr-eye"></span><%=i.SoLuotXem%></a></li>
+                                        </ul>
+                                        <p class="excert">
+                                            <%= i.TomTat%>
+                                        </p>
+                                        <p>
+                                            <a href="html/Tags_01.html" class="badge badge-primary">Primary</a>
+                                            <a href="html/Tags_02.html" class="badge badge-secondary">Secondary</a>
+                                            <a href="html/Tags_03.html" class="badge badge-success">Success</a>
+                                            <a href="html/Tags_04.html" class="badge badge-danger">Danger</a>
+                                            <a href="html/Tags_05.html" class="badge badge-warning">Warning</a>
+
+
+                                        </p>
+                                    </div>
+                                </div>
+                                <%});%>
+
+                                    </br>
+
+
+                        </div>
+                        <!-- End latest-post Area -->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End latest-post Area -->
+    </div>
+
+    <!-- start footer Area -->
+    <% include footer %>

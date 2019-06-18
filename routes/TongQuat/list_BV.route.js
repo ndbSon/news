@@ -70,6 +70,7 @@ router.get("/BaiViet/:id", (req, res) => {
     var rou = req.params.rou;
     var id = req.params.id;
     var user = req.user;
+    
     Promise.all([list_BVmodel.Trang_Bao(id), list_BVmodel.BaiVietXemNhieu(), list_BVmodel.editLuotXem(id), list_BVmodel.ChuDe(""), list_BVmodel.TheLoai(""), list_BVmodel.BinhLuan(id), list_BVmodel.Quyen()])
         .then(rows => {
             res.render("./mainpage/Trang_Bao", {
@@ -102,6 +103,23 @@ router.post("/search", urlencodedParser, (req, res) => {
             })
         })
 })
+
+
+router.get("/Tags=:tags", urlencodedParser, (req, res) => {
+    var tags = req.params.tags.trim();
+    var user = req.user;
+    Promise.all([list_BVmodel.Trang_Tags(tags), list_BVmodel.ChuDe(""), list_BVmodel.TheLoai("")])
+        .then(rows => {
+            res.render("./mainpage/BV_Tags", {
+                data: rows[0],
+                ChuDe: rows[1],
+                TheLoai: rows[2],
+                tags: tags,
+                user: user
+            })
+        })
+})
+
 
 
 ////////////////////////////////////////////////////////////////////

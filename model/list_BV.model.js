@@ -28,8 +28,8 @@ module.exports = {
     Quyen: () => {
         return db.load('select * from user as u,docgia as dg where dg.IDUser=u.ID ')
     },
-    Trang_The_Loai: (id, show) => {
-        return db.load('SELECT bv.ID,bv.AnhDaiDien,bv.TieuDe,bv.TacGia,bv.SoLuotXem,bv.TomTat,DATE_FORMAT(bv.GioDang,"%d/%m/%Y") as GioDang,cd.TenChuDe,tl.TenTheLoai FROM news.baiviet as bv ,news.chude as cd, news.theloai as tl where bv.TrangThai=1 and news.cd.TenChuDe = news.bv.ChuDe and news.cd.IDTheLoai=news.tl.ID  and news.tl.TenTheLoai like  "' + id + '" LIMIT 3 OFFSET ' + show + ' ;');
+    Trang_Tags: id => {
+        return db.load('SELECT * FROM news.tags as t,news.baiviet as bv where bv.TrangThai=1 and t.IDBaiViet=bv.ID and t.tenTags= "'+id+'"')
     },
     Trang_Chu_De: (id, show) => {
         return db.load('SELECT bv.ID,bv.AnhDaiDien,bv.TieuDe,bv.TomTat,bv.TacGia,bv.SoLuotXem,bv.TomTat,DATE_FORMAT(bv.GioDang,"%d/%m/%Y") as GioDang,cd.TenChuDe,tl.TenTheLoai FROM news.baiviet as bv ,news.chude as cd, news.theloai as tl where bv.TrangThai=1 and news.cd.TenChuDe = news.bv.ChuDe and news.cd.IDTheLoai=news.tl.ID  and news.cd.TenChuDe like  "' + id + '" LIMIT 3 OFFSET ' + show + ' ;');
@@ -37,9 +37,7 @@ module.exports = {
     Trang_Bao: id => {
         return db.load('SELECT bv.ID,bv.AnhDaiDien,bv.TieuDe,bv.SoLuotXem,bv.TacGia,DATE_FORMAT(bv.GioDang,"%d/%m/%Y") as GioDang,bv.NoiDung,bv.ChuDe,tl.TenTheLoai FROM news.baiviet as bv,news.chude as cd, news.theloai as tl where bv.TrangThai=1 and cd.TenChuDe=bv.ChuDe and cd.IDTheLoai=tl.ID and bv.ID=' + id + '')
     },
-    Trang_Tags: id => {
-        return db.load('SELECT * FROM news.tags as t,news.baiviet as bv where bv.TrangThai=1 and t.IDBaiViet=bv.ID')
-    },
+  
     editLuotXem: ID => {
         return db.load('UPDATE `news`.`baiviet` SET `SoLuotXem` = `SoLuotXem`+1 WHERE (`ID` = "' + ID + '");')
     },
@@ -55,4 +53,8 @@ module.exports = {
     editTrangThai: () => {
         return db.load('UPDATE baiviet set TrangThai=1 where TrangThai=2 and GioDang <= current_timestamp();')
     },
+    Trang_The_Loai: (id, show) => {
+        return db.load('SELECT bv.ID,bv.AnhDaiDien,bv.TieuDe,bv.TacGia,bv.SoLuotXem,bv.TomTat,DATE_FORMAT(bv.GioDang,"%d/%m/%Y") as GioDang,cd.TenChuDe,tl.TenTheLoai FROM news.baiviet as bv ,news.chude as cd, news.theloai as tl where bv.TrangThai=1 and news.cd.TenChuDe = news.bv.ChuDe and news.cd.IDTheLoai=news.tl.ID  and news.tl.TenTheLoai like  "' + id + '" LIMIT 3 OFFSET ' + show + ' ;');
+    },
+ 
 };
