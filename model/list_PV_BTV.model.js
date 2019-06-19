@@ -10,8 +10,8 @@ module.exports = {
     ChuDe: (sql) => {
         return db.load('SELECT * FROM news.chude ' + sql + '')
     },
-    addBaiViet: (TieuDe, TomTat, NoiDung, ChuDe, AnhDaiDien, TacGia) => {
-        return db.load('INSERT INTO `news`.`baiviet` (`TieuDe`, `TomTat`, `HinhAnh`, `NoiDung`, `GioDang`, `TrangThai`, `SoLuotThich`, `SoLuotXem`, `Tags`, `ChuDe`,`AnhDaiDien`,`TacGia`) VALUES ("' + TieuDe + '", "' + TomTat + '", 19, ' + NoiDung + ', current_timestamp(), 3, 1, 1, 1, "' + ChuDe + '", "' + AnhDaiDien + '","' + TacGia + '");')
+    addBaiViet: (TieuDe, TomTat, NoiDung, ChuDe,CheDo, AnhDaiDien, TacGia) => {
+        return db.load('INSERT INTO `news`.`baiviet` (`TieuDe`, `TomTat`, `HinhAnh`, `NoiDung`, `GioDang`, `TrangThai`, `SoLuotThich`, `SoLuotXem`, `CheDo`, `ChuDe`,`AnhDaiDien`,`TacGia`) VALUES ("' + TieuDe + '", "' + TomTat + '", 19, ' + NoiDung + ', current_timestamp(), 3, 1, 1, '+CheDo+', "' + ChuDe + '", "' + AnhDaiDien + '","' + TacGia + '");')
     },
     editBaiViet: (TieuDe, TomTat, NoiDung, ChuDe, AnhDaiDien, ID) => {
         return db.load('UPDATE `news`.`baiviet` SET `TieuDe` = "' + TieuDe + '", `TomTat` = "' + TomTat + '", `NoiDung` = ' + NoiDung + ', `GioDang` = current_timestamp(), `TrangThai` = 3, `SoLuotThich` = 1, `SoLuotXem` = 1, `Tags` = 1, `ChuDe` = "' + ChuDe + '", `AnhDaiDien` = "' + AnhDaiDien + '"  WHERE (`ID` = ' + ID + ');')

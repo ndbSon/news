@@ -8,8 +8,8 @@
                 <article class="card-body">
                     <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
                     <hr>
-                    <a href="#" class="float-right btn btn-outline-primary" onclick="document.getElementById('id01').style.display='none'">
-                        <i onclick="document.getElementById('id02').style.display='block' " style="width:auto; height: 500px;">Sign up</i>
+                    <a href="#" class="float-right btn btn-outline-primary">
+                        <i onclick="document.getElementById('id02').style.display='block',document.getElementById('id01').style.display='none' " style="width:auto; height: 500px;">Sign up</i>
                     </a>
                     <h4 class="card-title mb-4 mt-1">Sign in</h4>
                     <p>
@@ -57,7 +57,7 @@
             <div class="col-3"></div>
             <div class="card col-6">
                 <article class="card-body">
-                    <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal"></span>
+                    <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
                     <hr>
                     <h4 class="card-title mb-4 mt-1">Sign in</h4>
                     <form action="/account/SQ/signin" method="post" novalidate id="registerForm">

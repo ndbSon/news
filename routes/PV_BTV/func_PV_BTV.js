@@ -36,11 +36,12 @@ router.post("/postbaiviet", urlencodedParser, (req, res) => {
         var ChuDe = req.body.ChuDe;
         var TacGia = req.user.ID;
         var AnhDaiDien = req.body.AnhDaiDien;
+        var CheDo = req.body.CheDo;
         var tagabc = req.body.tags;
         console.log("sadsadssadsadsadsadsadsadsadsadsad " + tagabc);
         console.log(req.user.ID)
         if (!ID) {
-            list_PV_BTVmodel.addBaiViet(TieuDe, TomTat, NoiDung, ChuDe, AnhDaiDien, TacGia)
+            list_PV_BTVmodel.addBaiViet(TieuDe, TomTat, NoiDung, ChuDe,CheDo ,AnhDaiDien, TacGia)
                 .then(rows => {
                     list_PV_BTVmodel.BaiViet("","max(ID) as ID").then(
                         rows => {
