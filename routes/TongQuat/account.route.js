@@ -82,16 +82,33 @@ router.post('/account', urlencodedParser, (req, res) => {
 
 
 router.post("/SQ/signin", urlencodedParser, (req, res) => {
-    var Signusername = req.body.Signusername;
-    var Signpassword = req.body.Signpassword;
-    db_Trang.addUser(Signusername, Signpassword)
-        .then(rows => {
-            res.redirect("../../");
-        }).catch(err => {
-            console.log(err);
-            res.end('error occured.')
-        });
-})
+    // Secret Key
+    const secretKey = '6Ldnf6kUAAAAAEqC1ok9szrnsBmDnGYYI12YHVNz';
 
+    if (
+        req.body['g-recaptcha-response'] === undefined ||
+        req.body['g-recaptcha-response'] === '' ||
+        req.body['g-recaptcha-response'] === null
+    ) {
+        return res.status(420).send('Hello world!');
+    }
+
+    // Verify URL
+    const verifyUrl = `https://google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${req.body.captcha}&remoteip=${req.connection.remoteAddress}`;
+    if (verifyUrl.success == false) {
+        return res.status(420).send('Hello world!');
+    } else {
+        var Signusername = req.body.Signusername;
+        var Signpassword = req.body.Signpassword;
+        db_Trang.addUser(Signusername, Signpassword)
+            .then(rows => {
+                res.redirect("../../");
+            }).catch(err => {
+                console.log(err);
+                res.end('error occured.')
+            });
+
+    } 
+})
 
 module.exports = router;
