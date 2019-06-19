@@ -18,11 +18,12 @@
     <!-- Site Title -->
     <title>SQ-News</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
     <!--
 		CSS
 		============================================= -->
     <link rel="stylesheet" href="../css/linearicons.css">
-    
+    <link rel='stylesheet' href='https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.css'>
     <link rel="stylesheet" href="../css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/magnific-popup.css">
@@ -34,13 +35,14 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/video.css">
     <link rel="stylesheet" href="../css/breaking-news-ticker.css">
-    
+    <link rel="stylesheet" href="../css/stylesheets/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/dangnhap.css">
 
     <!--JS-->
     <script type="text/javascript" src="../js/video.js"></script>
     <script type="text/javascript" src="../js/date_time.js"></script>
+
 </head>
 
 <body onload="startTime()">
@@ -50,7 +52,6 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-6 col-6 header-top-left no-padding">
                         <ul>
-
                             <li>
                                 <div class="dropdown">
                                     <% if(user){ %>

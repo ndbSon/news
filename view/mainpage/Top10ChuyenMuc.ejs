@@ -1,48 +1,266 @@
 <div class="latest-post-wrap">
     <h4 class="cat-title">Top 10 Chuyên Mục</h4>
-    <% ChuyenMuc.forEach(function(i){%>
-        <div class="single-latest-post row align-items-center">
-            <div class="col-lg-5 post-left">
-                <div class="feature-img relative">
-                    <div class="overlay overlay-bg"></div>
-                    <a href="/BaiViet/<%=i.ID%>">
-                        <img class="img-fluid" src="<%=i.AnhDaiDien%>" alt=""></a>
-                </div>
-                <ul class="tags">
-                    <li>
-                        <a href="/<%=i.TenChuDe%>/page=1">
-                            <%=i.TenChuDe%>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-lg-7 post-right">
-                <a href="/BaiViet/<%=i.ID%>">
-                    <h4>
-                        <%=i.TieuDe%>
-                    </h4>
-                </a>
-                <ul class="meta">
-                    <li><a href="#"><span class="lnr lnr-user"></span><%=i.TacGia%></a></li>
-                    <li id="tr"><a href="#"><span class="lnr lnr-calendar-full"></span><%=i.GioDang%></a>
-                    </li>
+    <%if(user){%>
+        <% ChuyenMuc.forEach(function(i){%>
+            <%if(user.Loai==0){%>
+                <%if(i.CheDo==1){%>
+                    <div class="single-latest-post row align-items-center" onclick="document.getElementById('id03').style.display='block'" style="width:auto">
 
-                    <li><a href="#"><span class="lnr lnr-eye"></span><%=i.SoLuotXem%></a></li>
-                </ul>
-                <p class="excert">
-                    <%=i.TomTat%>
-                </p>
-                <p>
-                    <% Tags.forEach(function(j){%>
-                        <%if(j.IDBaiViet==i.ID){%>
-                            <a href="/Tags= <%=j.TenTags%>" class="badge badge-primary">
-                                <%=j.TenTags%>
+                        <div class=" col-lg-5 post-left ">
+                            <div class="feature-img relative ">
+                                <div class="overlay overlay-bg "></div>
+                                <a>
+                                <img class="img-fluid " src="<%=i.AnhDaiDien%>" alt=""></a>
+                            </div>
+                            <ul class="tags">
+                                <li>
+                                    <a>
+                                        <%=i.TenChuDe%>
+                                    </a>
+
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-7 post-right">
+                            <a>
+                                <h4>
+                                    <%if(i.CheDo==1){%>
+                                        <span class="badge badge-warning">Premium</span>
+                                        <%}%>
+                                            <%=i.TieuDe%>
+                                </h4>
                             </a>
+
+                            <ul class="meta">
+                                <li><a href="#"><span class="lnr lnr-user"></span><%=i.TacGia%></a></li>
+                                <li id="tr"><a href="#"><span class="lnr lnr-calendar-full"></span><%=i.GioDang%></a>
+                                </li>
+
+                                <li><a href="#"><span class="lnr lnr-eye"></span><%=i.SoLuotXem%></a></li>
+                            </ul>
+
+                            <p class="excert">
+                                <%=i.TomTat%>
+                            </p>
+                            <p>
+                                <% Tags.forEach(function(j){%>
+                                    <%if(j.IDBaiViet==i.ID){%>
+                                        <a href="/Tags= <%=j.TenTags%>" class="badge badge-primary">
+                                            <%=j.TenTags%>
+                                        </a>
+                                        <%}%>
+                                            <%});%>
+                            </p>
+                        </div>
+                    </div>
+
+                    <%}else{%>
+                        <div class="single-latest-post row align-items-center">
+                            <div class=" col-lg-5 post-left ">
+                                <div class="feature-img relative ">
+                                    <div class="overlay overlay-bg "></div>
+                                    <a href="/BaiViet/<%=i.ID%>">
+                            <img class="img-fluid" src="<%=i.AnhDaiDien%>" alt=""></a>
+                                </div>
+                                <ul class="tags">
+                                    <li>
+                                        <a href="/<%=i.TenChuDe%>/page=1">
+                                            <%=i.TenChuDe%>
+                                        </a>
+
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-7 post-right">
+
+                                <a href="/BaiViet/<%=i.ID%>">
+                                    <h4>
+                                        <%if(i.CheDo==1){%>
+                                            <span class="badge badge-warning">Premium</span>
+                                            <%}%>
+                                                <%=i.TieuDe%>
+                                    </h4>
+                                </a>
+
+                                <ul class="meta">
+                                    <li><a href="#"><span class="lnr lnr-user"></span><%=i.TacGia%></a></li>
+                                    <li id="tr"><a href="#"><span class="lnr lnr-calendar-full"></span><%=i.GioDang%></a>
+                                    </li>
+
+                                    <li><a href="#"><span class="lnr lnr-eye"></span><%=i.SoLuotXem%></a></li>
+                                </ul>
+
+                                <p class="excert">
+                                    <%=i.TomTat%>
+                                </p>
+                                <p>
+                                    <% Tags.forEach(function(j){%>
+                                        <%if(j.IDBaiViet==i.ID){%>
+                                            <a href="/Tags= <%=j.TenTags%>" class="badge badge-primary">
+                                                <%=j.TenTags%>
+                                            </a>
+                                            <%}%>
+                                                <%});%>
+                                </p>
+                            </div>
+                        </div>
+
+                        <%}}else{%>
+                            <div class="single-latest-post row align-items-center">
+                                <div class=" col-lg-5 post-left ">
+                                    <div class="feature-img relative ">
+                                        <div class="overlay overlay-bg "></div>
+                                        <a href="/BaiViet/<%=i.ID%>">
+                                    <img class="img-fluid" src="<%=i.AnhDaiDien%>" alt=""></a>
+                                    </div>
+                                    <ul class="tags">
+                                        <li>
+                                            <a href="/<%=i.TenChuDe%>/page=1">
+                                                <%=i.TenChuDe%>
+                                            </a>
+
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-lg-7 post-right">
+
+                                    <a href="/BaiViet/<%=i.ID%>">
+                                        <h4>
+                                            <%if(i.CheDo==1){%>
+                                                <span class="badge badge-warning">Premium</span>
+                                                <%}%>
+                                                    <%=i.TieuDe%>
+                                        </h4>
+                                    </a>
+
+                                    <ul class="meta">
+                                        <li><a href="#"><span class="lnr lnr-user"></span><%=i.TacGia%></a></li>
+                                        <li id="tr"><a href="#"><span class="lnr lnr-calendar-full"></span><%=i.GioDang%></a>
+                                        </li>
+
+                                        <li><a href="#"><span class="lnr lnr-eye"></span><%=i.SoLuotXem%></a></li>
+                                    </ul>
+
+                                    <p class="excert">
+                                        <%=i.TomTat%>
+                                    </p>
+                                    <p>
+                                        <% Tags.forEach(function(j){%>
+                                            <%if(j.IDBaiViet==i.ID){%>
+                                                <a href="/Tags= <%=j.TenTags%>" class="badge badge-primary">
+                                                    <%=j.TenTags%>
+                                                </a>
+                                                <%}%>
+                                                    <%});%>
+                                    </p>
+                                </div>
+                            </div>
                             <%}%>
                                 <%});%>
-                </p>
-            </div>
-        </div>
+                                    <%}else{%>
+                                        <% ChuyenMuc.forEach(function(i){%>
+                                            <%if(i.CheDo==1){%>
+                                                <div class="single-latest-post row align-items-center" onclick="document.getElementById('id03').style.display='block'" style="width:auto">
+                                                    <div class=" col-lg-5 post-left ">
+                                                        <div class="feature-img relative ">
+                                                            <div class="overlay overlay-bg "></div>
+                                                            <a>
+                                            <img class="img-fluid" src="<%=i.AnhDaiDien%>" alt=""></a>
+                                                        </div>
+                                                        <ul class="tags">
+                                                            <li>
+                                                                <a>
+                                                                    <%=i.TenChuDe%>
+                                                                </a>
 
-        <%});%>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-lg-7 post-right">
+
+                                                        <a>
+                                                            <h4>
+                                                                <%if(i.CheDo==1){%>
+                                                                    <span class="badge badge-warning">Premium</span>
+                                                                    <%}%>
+                                                                        <%=i.TieuDe%>
+                                                            </h4>
+                                                        </a>
+
+                                                        <ul class="meta">
+                                                            <li><a href="#"><span class="lnr lnr-user"></span><%=i.TacGia%></a></li>
+                                                            <li id="tr"><a href="#"><span class="lnr lnr-calendar-full"></span><%=i.GioDang%></a>
+                                                            </li>
+
+                                                            <li><a href="#"><span class="lnr lnr-eye"></span><%=i.SoLuotXem%></a></li>
+                                                        </ul>
+
+                                                        <p class="excert">
+                                                            <%=i.TomTat%>
+                                                        </p>
+                                                        <p>
+                                                            <% Tags.forEach(function(j){%>
+                                                                <%if(j.IDBaiViet==i.ID){%>
+                                                                    <a href="/Tags= <%=j.TenTags%>" class="badge badge-primary">
+                                                                        <%=j.TenTags%>
+                                                                    </a>
+                                                                    <%}%>
+                                                                        <%});%>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <%}else{%>
+                                                    <div class="single-latest-post row align-items-center">
+                                                        <div class=" col-lg-5 post-left ">
+                                                            <div class="feature-img relative ">
+                                                                <div class="overlay overlay-bg "></div>
+                                                                <a href="/BaiViet/<%=i.ID%>">
+                                                        <img class="img-fluid" src="<%=i.AnhDaiDien%>" alt=""></a>
+                                                            </div>
+                                                            <ul class="tags">
+                                                                <li>
+                                                                    <a href="/<%=i.TenChuDe%>/page=1">
+                                                                        <%=i.TenChuDe%>
+                                                                    </a>
+
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-lg-7 post-right">
+
+                                                            <a href="/BaiViet/<%=i.ID%>">
+                                                                <h4>
+                                                                    <%if(i.CheDo==1){%>
+                                                                        <span class="badge badge-warning">Premium</span>
+                                                                        <%}%>
+                                                                            <%=i.TieuDe%>
+                                                                </h4>
+                                                            </a>
+
+                                                            <ul class="meta">
+                                                                <li><a href="#"><span class="lnr lnr-user"></span><%=i.TacGia%></a></li>
+                                                                <li id="tr"><a href="#"><span class="lnr lnr-calendar-full"></span><%=i.GioDang%></a>
+                                                                </li>
+
+                                                                <li><a href="#"><span class="lnr lnr-eye"></span><%=i.SoLuotXem%></a></li>
+                                                            </ul>
+
+                                                            <p class="excert">
+                                                                <%=i.TomTat%>
+                                                            </p>
+                                                            <p>
+                                                                <% Tags.forEach(function(j){%>
+                                                                    <%if(j.IDBaiViet==i.ID){%>
+                                                                        <a href="/Tags= <%=j.TenTags%>" class="badge badge-primary">
+                                                                            <%=j.TenTags%>
+                                                                        </a>
+                                                                        <%}%>
+                                                                            <%});%>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <%}%>
+
+                                                        <%});%>
+                                                            <%}%>
 </div>

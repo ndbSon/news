@@ -1,29 +1,138 @@
 <div class="single-sidebar-widget most-popular-widget">
     <h6 class="title">Top 10 Bài Viết Mới Nhất</h6>
-    <div class="editors-pick-post">
-        <div class="post-lists">
-            <% MoiNhat.forEach(function(i){%>
-
-                <div class="single-post d-flex flex-row">
-                    <div class="thumb">
-                        <a href="/BaiViet/<%=i.ID%>">
+    <%if(user){%>
+        <div class="editors-pick-post">
+            <div class="post-lists">
+                <% MoiNhat.forEach(function(i){%>
+                    <%if(user.Loai==0){%>
+                        <%if(i.CheDo==1){%>
+                            <div class="single-post d-flex flex-row" onclick="document.getElementById('id03').style.display='block'" style="width:auto">
+                                <div class="thumb">
+                                    <a>
                         <img class="HinhNho" src="<%=i.AnhDaiDien%>" alt=""></a>
-                    </div>
-                    <div class="detail">
-                        <a href="/BaiViet/<%=i.ID%>">
-                            <h6>
-                                <%=i.TieuDe%>
-                            </h6>
-                        </a>
-                        <ul class="meta">
-                            <li><a href="#"><span class="lnr lnr-user"></span><%=i.TacGia%></a>
-                            </li>
-                            </br>
-                            <li><a href="#"><span class="lnr lnr-calendar-full"></span><%=i.GioDang%></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <%});%>
+                                </div>
+                                <div class="detail">
+                                    <a>
+                                        <h6>
+                                            <%if(i.CheDo==1){%>
+                                                <span class="badge badge-warning">Premium</span>
+                                                <%}%>
+                                                    <%=i.TieuDe%>
+                                        </h6>
+                                    </a>
+                                    <ul class="meta">
+                                        <li><a href="#"><span class="lnr lnr-user"></span><%=i.TacGia%></a>
+                                        </li>
+                                        </br>
+                                        <li><a href="#"><span class="lnr lnr-calendar-full"></span><%=i.GioDang%></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <%}else{%>
+                                <div class="single-post d-flex flex-row">
+                                    <div class="thumb">
+                                        <a href="/BaiViet/<%=i.ID%>">
+                                <img class="HinhNho" src="<%=i.AnhDaiDien%>" alt=""></a>
+                                    </div>
+                                    <div class="detail">
+                                        <a href="/BaiViet/<%=i.ID%>">
+                                            <h6>
+                                                <%if(i.CheDo==1){%>
+                                                    <span class="badge badge-warning">Premium</span>
+                                                    <%}%>
+                                                        <%=i.TieuDe%>
+                                            </h6>
+                                        </a>
+                                        <ul class="meta">
+                                            <li><a href="#"><span class="lnr lnr-user"></span><%=i.TacGia%></a>
+                                            </li>
+                                            </br>
+                                            <li><a href="#"><span class="lnr lnr-calendar-full"></span><%=i.GioDang%></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <%}}else{%>
+                                    <div class="single-post d-flex flex-row">
+                                        <div class="thumb">
+                                            <a href="/BaiViet/<%=i.ID%>">
+                                        <img class="HinhNho" src="<%=i.AnhDaiDien%>" alt=""></a>
+                                        </div>
+                                        <div class="detail">
+                                            <a href="/BaiViet/<%=i.ID%>">
+                                                <h6>
+                                                    <%if(i.CheDo==1){%>
+                                                        <span class="badge badge-warning">Premium</span>
+                                                        <%}%>
+                                                            <%=i.TieuDe%>
+                                                </h6>
+                                            </a>
+                                            <ul class="meta">
+                                                <li><a href="#"><span class="lnr lnr-user"></span><%=i.TacGia%></a>
+                                                </li>
+                                                </br>
+                                                <li><a href="#"><span class="lnr lnr-calendar-full"></span><%=i.GioDang%></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <%}%>
+                                        <%});%>
+            </div>
         </div>
-    </div>
+        <%}else{%>
+            <div class="editors-pick-post">
+                <div class="post-lists">
+                    <% MoiNhat.forEach(function(i){%>
+                        <%if(i.CheDo==1){%>
+                            <div class="single-post d-flex flex-row" onclick="document.getElementById('id03').style.display='block'" style="width:auto">
+                                <div class="thumb">
+                                    <a>
+                                <img class="HinhNho" src="<%=i.AnhDaiDien%>" alt=""></a>
+                                </div>
+                                <div class="detail">
+                                    <a>
+                                        <h6>
+                                            <%if(i.CheDo==1){%>
+                                                <span class="badge badge-warning">Premium</span>
+                                                <%}%>
+                                                    <%=i.TieuDe%>
+                                        </h6>
+                                    </a>
+                                    <ul class="meta">
+                                        <li><a href="#"><span class="lnr lnr-user"></span><%=i.TacGia%></a>
+                                        </li>
+                                        </br>
+                                        <li><a href="#"><span class="lnr lnr-calendar-full"></span><%=i.GioDang%></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <%}else{%>
+                                <div class="single-post d-flex flex-row">
+                                    <div class="thumb">
+                                        <a href="/BaiViet/<%=i.ID%>">
+                                        <img class="HinhNho" src="<%=i.AnhDaiDien%>" alt=""></a>
+                                    </div>
+                                    <div class="detail">
+                                        <a href="/BaiViet/<%=i.ID%>">
+                                            <h6>
+                                                <%if(i.CheDo==1){%>
+                                                    <span class="badge badge-warning">Premium</span>
+                                                    <%}%>
+                                                        <%=i.TieuDe%>
+                                            </h6>
+                                        </a>
+                                        <ul class="meta">
+                                            <li><a href="#"><span class="lnr lnr-user"></span><%=i.TacGia%></a>
+                                            </li>
+                                            </br>
+                                            <li><a href="#"><span class="lnr lnr-calendar-full"></span><%=i.GioDang%></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <%}%>
+
+                                    <%});%>
+
+                </div>
+            </div>
+            <%}%>
 </div>

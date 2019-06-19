@@ -1,5 +1,5 @@
 <% include headeradmin %>
-<div class="content">
+    <div class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-8">
@@ -7,8 +7,10 @@
                         <div class="header">
                             <h4 class="title">Edit Profile</h4>
                             <%if(mess){ %>
-                                <h4 class="title"><%=mess%></h4>
-                            <%}%>
+                                <h4 class="title">
+                                    <%=mess%>
+                                </h4>
+                                <%}%>
                         </div>
                         <div id="info" class="content">
                             <form>
@@ -25,32 +27,28 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Tên Đăng Nhập</label>
-                                            <input type="text" class="form-control" placeholder="Company" value="<%=NguoiDung.TenDangNhap%>">
+                                            <input type="text" class="form-control" placeholder="Username" value="<%=NguoiDung.TenDangNhap%>">
                                         </div>
                                     </div>
                                 </div>
-                                <a id="btnDoiMatKhau"
-                                onclick="document.getElementById('MatKhau').style.display='block',document.getElementById('info').style.display='none'"
-                              
-                                class="btn btn-warning btn-fill">Đổi Mật Khẩu
+                                <a id="btnDoiMatKhau" onclick="document.getElementById('MatKhau').style.display='block',document.getElementById('info').style.display='none'" class="btn btn-warning btn-fill">Đổi Mật Khẩu
                             </a>
-                            </form>      
+                            </form>
                         </div>
                         <div id="MatKhau" class="content" style="display:none">
-                                <span onclick="document.getElementById('MatKhau').style.display='none',document.getElementById('info').style.display='block'" class="close"
-                                title="Close Modal">&times;</span>
-                                <form action="./account" method="post" novalidate id="formDoiMatKhau">
-                                    <form action="" method="post" novalidate id="formDoiMatKhau">
+                            <span onclick="document.getElementById('MatKhau').style.display='none',document.getElementById('info').style.display='block'" class="close" title="Close Modal">&times;</span>
+                            <form action="./account" method="post" novalidate id="formDoiMatKhau">
+                                <form action="" method="post" novalidate id="formDoiMatKhau">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Nhập Mật Khẩu Hiện Tại</label>
-                                                <input  name="MK" type="text" class="form-control">
+                                                <input name="MK" type="text" class="form-control">
                                                 <input name="ID" type="text" class="form-control" value="<%=NguoiDung.ID%>">
                                             </div>
                                         </div>
                                     </div>
-    
+
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
@@ -60,20 +58,18 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>Nhập Lại Mật Khẩu</label>
-                                                    <input name="confirm" type="text" class="form-control">
-                                                </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Nhập Lại Mật Khẩu</label>
+                                                <input name="confirm" type="text" class="form-control">
                                             </div>
                                         </div>
-                                    <button id="btnDoiMatKhau"
-                                    onclick="document.getElementById('#').style.display='block'"
-                                    class="btn btn-warning btn-fill">Đổi Mật Khẩu
+                                    </div>
+                                    <button id="btnDoiMatKhau" onclick="document.getElementById('#').style.display='block'" class="btn btn-warning btn-fill">Đổi Mật Khẩu
                                    </button>
                                 </form>
-                                
-                            </div>
+
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4">
