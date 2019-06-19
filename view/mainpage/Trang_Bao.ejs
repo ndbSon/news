@@ -39,7 +39,10 @@
                                     </li>
                                 </ul>
                                 <h3>
-                                    <%=data.TieuDe%>
+                                    <%if(data.CheDo==1){%>
+                                        <span class="badge badge-warning">Premium</span>
+                                        <%}%>
+                                            <%=data.TieuDe%>
                                 </h3>
                                 <ul class="meta pb-20">
                                     <li><a href="#"><span class="lnr lnr-user"></span><%=data.TacGia%></a></li>
@@ -48,12 +51,13 @@
                                 </ul>
                                 <%-data.NoiDung%>
                                     <p text-weight="bold" ;>Tags :
-                                        <a href="/news/html/Tags_01.html" class="badge badge-primary">Primary</a>
-                                        <a href="/news/html/Tags_02.html" class="badge badge-secondary">Secondary</a>
-                                        <a href="/news/html/Tags_03.html" class="badge badge-success">Success</a>
-                                        <a href="/news/html/Tags_04.html" class="badge badge-danger">Danger</a>
-                                        <a href="/news/html/Tags_05.html" class="badge badge-warning">Warning</a>
-
+                                        <% Tags.forEach(function(j){%>
+                                            <%if(j.IDBaiViet==data.ID){%>
+                                                <a href="/Tags= <%=j.TenTags%>" class="badge badge-primary">
+                                                    <%=j.TenTags%>
+                                                </a>
+                                                <%}%>
+                                                    <%});%>
 
                                     </p>
                                     <div class="comment-sec-area">

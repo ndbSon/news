@@ -14,13 +14,17 @@
                         <ul class="tags">
                             <li>
                                 <a href="/<%=i.ChuDe%>/page=1">
+
                                     <%=i.ChuDe%>
                                 </a>
                             </li>
                         </ul>
                         <a href="/BaiViet/<%=i.ID%>">
                             <h3>
-                                <%=i.TieuDe%>
+                                <%if(i.CheDo==1){%>
+                                    <span class="badge badge-warning">Premium</span>
+                                    <%}%>
+                                        <%=i.TieuDe%>
                             </h3>
                         </a>
                         <ul class="meta">
@@ -51,7 +55,10 @@
                                     </ul>
                                     <a href="/BaiViet/<%=i.ID%>">
                                         <h4>
-                                            <%=i.TieuDe%>
+                                            <%if(i.CheDo==1){%>
+                                                <span class="badge badge-warning">Premium</span>
+                                                <%}%>
+                                                    <%=i.TieuDe%>
                                         </h4>
                                     </a>
                                     <ul class="meta">

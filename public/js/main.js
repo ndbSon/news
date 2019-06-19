@@ -38,10 +38,10 @@ $(document).ready(function() {
 
     //------- Datepicker  js --------//  
 
-      $( function() {
-        $( "#datepicker" ).datepicker();
-        $( "#datepicker2" ).datepicker();
-      } );
+    $(function() {
+        $("#datepicker").datepicker();
+        $("#datepicker2").datepicker();
+    });
 
 
     //------- Superfist nav menu  js --------//  
@@ -70,12 +70,13 @@ $(document).ready(function() {
     //------- Owl Carusel  js --------//  
 
     $('.active-gallery-carusel').owlCarousel({
-        items:1,
-        loop:true,
-        nav:true,
+        items: 1,
+        loop: true,
+        nav: true,
         navText: ["<span class='lnr lnr-arrow-left'></span>",
-        "<span class='lnr lnr-arrow-right'></span>"],  
-        smartSpeed:650,           
+            "<span class='lnr lnr-arrow-right'></span>"
+        ],
+        smartSpeed: 650,
     });
 
     $('.active-testimonial').owlCarousel({
@@ -105,8 +106,8 @@ $(document).ready(function() {
         loop: true,
         margin: 30,
         autoplayHoverPause: true,
-        smartSpeed:650,         
-        autoplay:true, 
+        smartSpeed: 650,
+        autoplay: true,
         responsive: {
             0: {
                 items: 2
@@ -122,26 +123,31 @@ $(document).ready(function() {
 
     //------- Search Form  js --------//  
 
-    $(document).ready(function(){
-      $('#search').on("click",(function(e){
-      $(".form-group").addClass("sb-search-open");
-        e.stopPropagation()
-      }));
-       $(document).on("click", function(e) {
-        if ($(e.target).is("#search") === false && $(".form-control").val().length == 0) {
-          $(".form-group").removeClass("sb-search-open");
-        }
-      });
-        $(".form-control-submit").click(function(e){
-          $(".form-control").each(function(){
-            if($(".form-control").val().length == 0){
-              e.preventDefault();
-              $(this).css('border', '2px solid red');
+    $(document).ready(function() {
+        $('#search').on("click", (function(e) {
+            $(".form-group").addClass("sb-search-open");
+            e.stopPropagation()
+        }));
+        $(document).on("click", function(e) {
+            if ($(e.target).is("#search") === false && $(".form-control").val().length == 0) {
+                $(".form-group").removeClass("sb-search-open");
             }
+        });
+        $(".form-control-submit").click(function(e) {
+            $(".form-control").each(function() {
+                if ($(".form-control").val().length == 0) {
+                    e.preventDefault();
+                    $(this).css('border', '2px solid red');
+                }
+            })
         })
-      })
     })
 
+    $(document).ready(function() {
+        $('#btn-one').click(function() {
+            swal('ABC');
+        });
+    });
     //------- Mobile Nav  js --------//  
 
     if ($('#nav-menu-container').length) {
@@ -169,7 +175,7 @@ $(document).ready(function() {
             $('#mobile-body-overly').toggle();
         });
 
-            $(document).on('click', function(e) {
+        $(document).on('click', function(e) {
             var container = $("#mobile-nav, #mobile-nav-toggle");
             if (!container.is(e.target) && container.has(e.target).length === 0) {
                 if ($('body').hasClass('mobile-nav-active')) {
@@ -187,16 +193,17 @@ $(document).ready(function() {
     //------- Sticky Main Menu js --------//  
 
 
-    window.onscroll = function() {stickFunction()};
+    window.onscroll = function() { stickFunction() };
 
     var navbar = document.getElementById("main-menu");
     var sticky = navbar.offsetTop;
+
     function stickFunction() {
-      if (window.pageYOffset >= sticky) {
-        navbar.classList.add("sticky")
-      } else {
-        navbar.classList.remove("sticky");
-      }
+        if (window.pageYOffset >= sticky) {
+            navbar.classList.add("sticky")
+        } else {
+            navbar.classList.remove("sticky");
+        }
     }
 
 
@@ -262,7 +269,7 @@ $(document).ready(function() {
     });
 
 
-  
+
     //------- Mailchimp js --------//  
 
     $(document).ready(function() {
@@ -270,4 +277,3 @@ $(document).ready(function() {
     });
 
 });
-
