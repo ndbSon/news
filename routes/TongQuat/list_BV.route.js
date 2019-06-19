@@ -70,7 +70,6 @@ router.get("/BaiViet/:id", (req, res) => {
     var rou = req.params.rou;
     var id = req.params.id;
     var user = req.user;
-    
     Promise.all([list_BVmodel.Trang_Bao(id), list_BVmodel.BaiVietXemNhieu(), list_BVmodel.editLuotXem(id), list_BVmodel.ChuDe(""), list_BVmodel.TheLoai(""), list_BVmodel.BinhLuan(id), list_BVmodel.Quyen()])
         .then(rows => {
             res.render("./mainpage/Trang_Bao", {
@@ -84,6 +83,7 @@ router.get("/BaiViet/:id", (req, res) => {
                 Quyen: rows[6],
                 user: user
             });
+            
         })
 })
 

@@ -47,7 +47,7 @@ router.post('/account', urlencodedParser, (req, res) => {
     var MatKhauMoi =req.body.MatKhauMoi;
     var sql = " where ID = " + ID + " and MatKhau = '" + MK + "'";
     db_Trang.singleByUserName(sql).then(rows => {
-      
+      console.log(rows)
         if (rows.length <= 0) {
             var mess = "sai mat khau";
             Usermodel.NguoiDung(" where ID=" + ID).then(rows => {
@@ -82,7 +82,7 @@ router.post('/account', urlencodedParser, (req, res) => {
 
 
 router.post("/SQ/signin", urlencodedParser, (req, res) => {
-    // Secret Key
+    //Secret Key
     const secretKey = '6Ldnf6kUAAAAAEqC1ok9szrnsBmDnGYYI12YHVNz';
 
     if (
@@ -100,9 +100,14 @@ router.post("/SQ/signin", urlencodedParser, (req, res) => {
     } else {
         var Signusername = req.body.Signusername;
         var Signpassword = req.body.Signpassword;
-        db_Trang.addUser(Signusername, Signpassword)
+        db_Trang.addUser(Signusername, Signpassword,1)
             .then(rows => {
-                res.redirect("../../");
+                db_Trang.Max("max(ID) as ID","").then(rows=>{
+                    var ID=rows[0].ID;
+                    db_Trang.addDocgia(ID).then(rows=>{
+                        res.redirect("../../");
+                    })
+                })
             }).catch(err => {
                 console.log(err);
                 res.end('error occured.')

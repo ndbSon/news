@@ -64,5 +64,7 @@ module.exports = {
     Tags: (sql) => {
         return db.load('SELECT '+sql+' FROM news.tags')
     },
-  
+    addBTV:(ID,PhanCong)=>{
+        return db.load('INSERT INTO `news`.`bientapvien` (`IDUser`, `IDTheLoai`) VALUES ('+ID+', '+PhanCong+');')
+    },
 };

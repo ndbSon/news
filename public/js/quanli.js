@@ -33,7 +33,7 @@ $(document).ready(function ($) {
         $('#TenDangNhap').val($(this).closest('tr').find('td:nth-child(2)').text().trim()); //Lấy value cột thứ nhất
         $('#ChucVu').val($(this).closest('tr').find('td:nth-child(3)').text().trim());
         $('#IDBTV').val($(this).closest('tr').find('td:nth-child(1)').text().trim());
-        $('#PhanCongTheLoai').val($(this).closest('tr').find('td:nth-child(4)').text().trim());
+        $('#PhanCongTheLoai').val($(this).closest('tr').find('td:nth-child(7)').text().trim());
     });
     $('#tableND #btnGiaHan').click(function (e) {
         /* e.preventDefault();*/

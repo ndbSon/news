@@ -1,6 +1,6 @@
 var express = require('express');
 var adminmodel = require("../../model/admin.model");
-
+var db_Trang = require("../../model/db_Trang");
 
 var bodyParser = require('body-parser');
 
@@ -23,6 +23,37 @@ router.post("/GiaHanDocGia", function(req, res) {
     }
 });
 
+
+
+router.post("/addBTV", urlencodedParser, (req, res) => {
+        var Signusername = req.body.Signusername;
+        var Signpassword = req.body.Signpassword;
+        var phancong = req.body.PhanCongTheLoai;
+        db_Trang.addUser(Signusername, Signpassword,3)
+            .then(rows => {
+                db_Trang.Max("max(ID) as ID","").then(rows=>{
+                    var ID=rows[0].ID;
+                    adminmodel.addBTV(ID,phancong).then(rows=>{
+                        res.redirect("../../admin/NguoiDung");
+                    })
+                })
+            }).catch(err => {
+                console.log(err);
+                res.end('error occured.')
+            });
+})
+
+router.post("/addPV", urlencodedParser, (req, res) => {
+    var Signusername = req.body.Signusername;
+    var Signpassword = req.body.Signpassword;
+    db_Trang.addUser(Signusername, Signpassword,2)
+        .then(rows => {
+             res.redirect("../../admin/NguoiDung");
+        }).catch(err => {
+            console.log(err);
+            res.end('error occured.')
+        });
+})
 
 router.post("/PhanCong", urlencodedParser, (req, res) => {
     if (req.isAuthenticated()) {

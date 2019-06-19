@@ -61,11 +61,12 @@ router.get('/duyetbaiviet/id=:id',(req,res)=>{
 
 router.get("/NguoiDung", function(req, res) {
     if (req.isAuthenticated()) {
-        var sql = " as u, news.docgia as dg where u.ID=dg.IDUser";
+        var sql = " as u, news.docgia as dg where u.ID=dg.IDUser and u.Loai=1";
         var sqlPV = " where Loai=2 ";
-        var sqlBTV = " as u, news.bientapvien as btv where Loai=3 && u.ID=btv.IDUser ";
+        var sqlBTV = " as u, news.bientapvien as btv,news.theloai as tl where Loai=3 && u.ID=btv.IDUser and tl.ID=btv.IDTheLoai";
         Promise.all([adminmodel.NguoiDung(sql), adminmodel.TheLoai(""), adminmodel.NguoiDung(sqlPV), adminmodel.NguoiDung(sqlBTV)])
             .then(rows => {
+                console.log(rows[0]);
                 res.render("./admin/NguoiDung", {
                     DocGia: rows[0],
                     TheLoai: rows[1],
