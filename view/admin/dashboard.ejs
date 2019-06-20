@@ -95,13 +95,12 @@
                         data: {
                             labels: lab,
                             datasets: [{
-                                label: 'My First dataset',
+                                label: 'Số lượng Bài Viết',
                                 backgroundColor: 'rgb(255, 99, 132)',
                                 borderColor: 'rgb(255, 99, 132)',
                                 data: dat
                             }]
                         },
-
                         // Configuration options go here
                         options: {
                             title: {
@@ -126,6 +125,13 @@
                             },
                             tooltips: {
                                 enabled: true
+                            },
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
                             }
                         }
                     });
