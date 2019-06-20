@@ -78,7 +78,7 @@ router.get("/BaiViet/:id", (req, res) => {
     var id = req.params.id;
     var user = req.user;
 
-    Promise.all([list_BVmodel.Trang_Bao(id), list_BVmodel.BaiVietXemNhieu(), list_BVmodel.editLuotXem(id), list_BVmodel.ChuDe(""), list_BVmodel.TheLoai(""), list_BVmodel.BinhLuan(id), list_BVmodel.Quyen(), list_BVmodel.Tag()])
+    Promise.all([list_BVmodel.Trang_Bao(id), list_BVmodel.CungChuyenMuc(), list_BVmodel.editLuotXem(id), list_BVmodel.ChuDe(""), list_BVmodel.TheLoai(""), list_BVmodel.BinhLuan(id), list_BVmodel.Quyen(), list_BVmodel.Tag()])
         .then(rows => {
             res.render("./mainpage/Trang_Bao", {
                 data: rows[0][0],
@@ -92,7 +92,7 @@ router.get("/BaiViet/:id", (req, res) => {
                 Tags: rows[7],
                 user: user
             });
-            
+
         })
 })
 
