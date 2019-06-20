@@ -19,5 +19,4 @@
         editUser: (sql,id) => {
             return db.load(' UPDATE `news`.`user` SET '+sql+' WHERE (`ID` = '+id+');')
         },
-
     }

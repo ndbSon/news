@@ -19,15 +19,9 @@
                                             </h3>
                                             <%-BaiViet.NoiDung%>
                                             <p text-weight="bold" ;>Tags :
-                                                <a href="/news/html/Tags_01.html"
-                                                    class="badge badge-primary">Primary</a>
-                                                <a href="/news/html/Tags_02.html"
-                                                    class="badge badge-secondary">Secondary</a>
-                                                <a href="/news/html/Tags_03.html"
-                                                    class="badge badge-success">Success</a>
-                                                <a href="/news/html/Tags_04.html" class="badge badge-danger">Danger</a>
-                                                <a href="/news/html/Tags_05.html"
-                                                    class="badge badge-warning">Warning</a>
+                                                <%Tags.forEach(function(i){%>
+                                                    <a class="badge badge-primary"><%=i.TenTags%></a>
+                                                <%})%>                 
                                             </p>
                                         </div>
                                         <!-- End single-post Area -->
@@ -54,9 +48,9 @@
                             <h4 class="title">Duyệt Bài Báo</h4>
                         </div>
                         <div class="content">
-                            <%if(user==3){%>
+                            <%if(user.Loai==3){%>
                                 <form action="/PV_BTV/BTVDuyetBaiViet" method="post" novalidate id="DuyetBai">
-                            <%}else if(user==4){%>
+                            <%}else if(user.Loai==4){%>
                                 <form action="/admin/AdminDuyetBaiViet" method="post" novalidate id="DuyetBai">
                             <%}%>
                               
@@ -66,12 +60,17 @@
                                                         <input id="IDBaiViet" name="IDBaiViet" type="hidden" class="form-control" value="<%=BaiViet.ID%>">
                                                     </div>
                                             <div class="form-group">
-                                                    <div class="form-check form-check-inline" onclick="document.getElementById('date').setAttribute( 'type', 'hidden' );">
+                                                    <div class="form-check form-check-inline" onclick="document.getElementById('date').setAttribute( 'type', 'hidden' ),document.getElementById('TuChoi').setAttribute( 'type', 'text' )">
                                                             <input class="form-check-input" type="radio" name="Duyet" id="inlineRadio1" value="4">
                                                             <label class="form-check-label" for="inlineRadio1">Loại</label>
                                                         </div>
                                             </div>
-                                            <div class="form-group" onclick="document.getElementById('date').setAttribute( 'type', 'date' );" >
+                                            <div  class="form-group">
+                                                <label class="form-check-label" for="inlineRadio1">Lí Do Từ Chối</label>
+                                                <input id="TuChoi" name="TuChoi" type="hidden" class="form-control" value=" ">
+                                               
+                                            </div>
+                                            <div class="form-group" onclick="document.getElementById('date').setAttribute( 'type', 'date' ),document.getElementById('TuChoi').setAttribute( 'type', 'hidden' )" >
                                                     <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="radio" name="Duyet" id="inlineRadio1" value="2">
                                                             <label class="form-check-label" for="inlineRadio1">Duyệt</label>

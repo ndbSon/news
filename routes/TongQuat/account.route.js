@@ -49,7 +49,7 @@ router.post('/account', urlencodedParser, (req, res) => {
     db_Trang.singleByUserName(sql).then(rows => {
       console.log(rows)
         if (rows.length <= 0) {
-            var mess = "sai mat khau";
+            var mess = "Sai Mật Khẩu Hiện Tại";
             Usermodel.NguoiDung(" where ID=" + ID).then(rows => {
                 res.render("./admin/accountadmin", {
                     mess: mess,
@@ -79,7 +79,21 @@ router.post('/account', urlencodedParser, (req, res) => {
     })
 })
 
-
+router.post('/DoiAnhDaiDien', urlencodedParser, (req, res) => {
+    var AnhDaiDien = req.body.AnhDaiDien;
+    var ID = req.body.ID;
+    var edit="`AnhDaiDien` = '"+AnhDaiDien+"'";
+    db_Trang.editUser(edit,ID).then(rows=>{
+        Usermodel.NguoiDung(" where ID=" + ID).then(rows => {
+            var mess = "";
+            res.render("./admin/accountadmin", {
+                mess: mess,
+                NguoiDung: rows[0],
+                user: req.user,
+            })
+        })
+    })
+})
 
 router.post("/SQ/signin", urlencodedParser, (req, res) => {
     //Secret Key

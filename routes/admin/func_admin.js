@@ -105,9 +105,10 @@ router.post("/AdminDuyetBaiViet", urlencodedParser, (req, res) => {
         var TrangThai = req.body.Duyet;
         var GioDang = req.body.GioDang;
         var id = req.body.IDBaiViet;
+        var TuChoi = req.body.TuChoi;
         console.log("Trang Thai: " + TrangThai);
         console.log("id:" + id);
-        adminmodel.editDuyetBaiViet(TrangThai, id,GioDang)
+        adminmodel.editDuyetBaiViet(TrangThai, id,GioDang,TuChoi)
             .then(rows => {
                 res.redirect("../../admin/BaiViet/show=1");
             }).catch(err => {

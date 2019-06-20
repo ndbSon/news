@@ -10,14 +10,14 @@ module.exports = {
     ChuDe: (sql) => {
         return db.load('SELECT * FROM news.chude ' + sql + '')
     },
-    addBaiViet: (TieuDe, TomTat, NoiDung, ChuDe,CheDo, AnhDaiDien, TacGia) => {
-        return db.load('INSERT INTO `news`.`baiviet` (`TieuDe`, `TomTat`, `HinhAnh`, `NoiDung`, `GioDang`, `TrangThai`, `SoLuotThich`, `SoLuotXem`, `CheDo`, `ChuDe`,`AnhDaiDien`,`TacGia`) VALUES ("' + TieuDe + '", "' + TomTat + '", 19, ' + NoiDung + ', current_timestamp(), 3, 1, 1, '+CheDo+', "' + ChuDe + '", "' + AnhDaiDien + '","' + TacGia + '");')
+    addBaiViet: (TieuDe, TomTat, NoiDung, ChuDe,CheDo, AnhDaiDien, TacGia,TuChoi) => {
+        return db.load('INSERT INTO `news`.`baiviet` (`TieuDe`, `TomTat`, `NoiDung`, `GioDang`, `TrangThai`, `SoLuotThich`, `SoLuotXem`, `CheDo`, `ChuDe`,`AnhDaiDien`,`TacGia`,`TuChoi`) VALUES ("' + TieuDe + '", "' + TomTat + '",' + NoiDung + ', current_timestamp(), 3, 1, 1, '+CheDo+', "' + ChuDe + '", "' + AnhDaiDien + '","' + TacGia + '","'+TuChoi+'");')
     },
-    editBaiViet: (TieuDe, TomTat, NoiDung, ChuDe, AnhDaiDien, ID) => {
-        return db.load('UPDATE `news`.`baiviet` SET `TieuDe` = "' + TieuDe + '", `TomTat` = "' + TomTat + '", `NoiDung` = ' + NoiDung + ', `GioDang` = current_timestamp(), `TrangThai` = 3, `SoLuotThich` = 1, `SoLuotXem` = 1, `Tags` = 1, `ChuDe` = "' + ChuDe + '", `AnhDaiDien` = "' + AnhDaiDien + '"  WHERE (`ID` = ' + ID + ');')
+    editBaiViet: (TieuDe, TomTat, NoiDung,CheDo, ChuDe, AnhDaiDien,TuChoi, ID) => {
+        return db.load('UPDATE `news`.`baiviet` SET `TieuDe` = "' + TieuDe + '", `TomTat` = "' + TomTat + '", `NoiDung` = ' + NoiDung + ', `GioDang` = current_timestamp(), `TrangThai` = 3, `SoLuotThich` = 1, `SoLuotXem` = 1, `CheDo` = '+CheDo+', `ChuDe` = "' + ChuDe + '", `AnhDaiDien` = "' + AnhDaiDien + '",`TuChoi` = "' + TuChoi + '"  WHERE (`ID` = ' + ID + ');')
     },
-    editDuyetBaiViet: (TrangThai, ID,GioDang) => {
-        return db.load('UPDATE `news`.`baiviet` SET `TrangThai` = ' + TrangThai + ', `GioDang` = "' + GioDang + '" WHERE (`ID` = ' + ID + ');')
+    editDuyetBaiViet: (TrangThai, ID,GioDang,TuChoi) => {
+        return db.load('UPDATE `news`.`baiviet` SET `TrangThai` = ' + TrangThai + ', `GioDang` = "' + GioDang + '",`TuChoi` = "' + TuChoi + '" WHERE (`ID` = ' + ID + ');')
     },
     addLSD_BTV:(IDBTV,IDBaiViet,LoaiDuyet)=>{
         return db.load('INSERT INTO `news`.`lsduyet_btv` (`IDBTV`, `IDBaiViet`, `ThoiGian`, `LoaiDuyet`) VALUES ('+IDBTV+', '+IDBaiViet+', current_timestamp(), '+LoaiDuyet+');')

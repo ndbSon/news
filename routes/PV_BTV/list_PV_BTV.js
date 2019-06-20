@@ -24,7 +24,6 @@ router.get("/PV/show=:i", function(req, res) {
 router.get("/BTV", function(req, res) {
     if (req.isAuthenticated() && req.user.Loai == 3) {
         var ID = req.user.ID;
-        console.log(ID);
         list_PV_BTVmodel.BTV(ID).then(rows => {
             res.render("./admin/BTV", {
                 BaiViet: rows,
@@ -40,10 +39,11 @@ router.get('/duyetbaiviet/id=:id', (req, res) => {
     if (req.isAuthenticated()) {
         var id = req.params.id;
         var sql = " where id = "+id;
-        var user = req.user.Loai;
-        list_PV_BTVmodel.BaiViet(sql, " * ").then(rows => {
+        var user = req.user;
+        Promise.all([list_PV_BTVmodel.BaiViet(sql, " * "),list_PV_BTVmodel.Tags(id)]).then(rows => {
             res.render("./admin/DuyetBaiViet", {
-                BaiViet: rows[0],
+                BaiViet: rows[0][0],
+                Tags: rows[1],
                 user:user,
             });
         })

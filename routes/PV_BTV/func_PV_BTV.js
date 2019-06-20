@@ -38,17 +38,18 @@ router.post("/postbaiviet", urlencodedParser, (req, res) => {
         var AnhDaiDien = req.body.AnhDaiDien;
         var CheDo = req.body.CheDo;
         var tagabc = req.body.tags;
-        console.log("sadsadssadsadsadsadsadsadsadsadsad " + tagabc);
-        console.log(req.user.ID)
         if (!ID) {
-            list_PV_BTVmodel.addBaiViet(TieuDe, TomTat, NoiDung, ChuDe,CheDo ,AnhDaiDien, TacGia)
+            list_PV_BTVmodel.addBaiViet(TieuDe, TomTat, NoiDung, ChuDe,CheDo ,AnhDaiDien, TacGia," ")
                 .then(rows => {
                     list_PV_BTVmodel.BaiViet("","max(ID) as ID").then(
                         rows => {
                             var IDBaiViet=rows[0].ID;
-                            tagabc.forEach(function(item){
-                                list_PV_BTVmodel.addTags(item,IDBaiViet);
-                            });
+                            if(tagabc!=null){
+                                tagabc.forEach(function(item){
+                                    list_PV_BTVmodel.addTags(item,IDBaiViet);
+                                });
+                            }
+                          
                         });    
                     res.redirect("../../PV_BTV/PV/show=1");
                 }).catch(err => {
@@ -56,11 +57,12 @@ router.post("/postbaiviet", urlencodedParser, (req, res) => {
                     res.end('error occured.');
                 });
         } else {
-            list_PV_BTVmodel.editBaiViet(TieuDe, TomTat, NoiDung, ChuDe, AnhDaiDien, ID)
-                .then(rows => {   
+            list_PV_BTVmodel.editBaiViet(TieuDe, TomTat, NoiDung,CheDo, ChuDe, AnhDaiDien," ", ID)
+                .then(rows => {  
+                    if(tagabc!=null){ 
                             tagabc.forEach(function(item){
                                 list_PV_BTVmodel.addTags(item,ID);
-                        });  
+                        }); } 
                     res.redirect("../../PV_BTV/PV/show=1");
                 }).catch(err => {
                     console.log(err);
@@ -78,10 +80,11 @@ router.post("/BTVDuyetBaiViet", urlencodedParser, (req, res) => {
         var TrangThai = req.body.Duyet;
         var GioDang = req.body.GioDang;
         var id = req.body.IDBaiViet;
+        var TuChoi = req.body.TuChoi;
         var IDBTV = req.user.ID;
         console.log("Trang Thai: " + TrangThai);
         console.log("id:" + id);
-        Promise.all([list_PV_BTVmodel.editDuyetBaiViet(TrangThai, id,GioDang),list_PV_BTVmodel.addLSD_BTV(IDBTV,id,TrangThai)])
+        Promise.all([list_PV_BTVmodel.editDuyetBaiViet(TrangThai, id,GioDang,TuChoi),list_PV_BTVmodel.addLSD_BTV(IDBTV,id,TrangThai)])
             .then(rows => {
                 res.redirect("../../PV_BTV/BTV");
             }).catch(err => {

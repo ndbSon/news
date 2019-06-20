@@ -31,8 +31,8 @@ module.exports = {
     editTenChuDe: (TenChuDe, IDTenTheLoai, ID) => {
         return db.load('UPDATE `news`.`chude` SET `TenChuDe` = "' + TenChuDe + '",`IDTheLoai`=' + IDTenTheLoai + ' WHERE (`ID` = ' + ID + ');')
     },
-    editDuyetBaiViet: (TrangThai, ID,GioDang) => {
-        return db.load('UPDATE `news`.`baiviet` SET `TrangThai` = ' + TrangThai + ', `GioDang` = "' + GioDang + '" WHERE (`ID` = ' + ID + ');')
+    editDuyetBaiViet: (TrangThai, ID,GioDang,TuChoi) => {
+        return db.load('UPDATE `news`.`baiviet` SET `TrangThai` = ' + TrangThai + ', `GioDang` = "' + GioDang + '",`TuChoi` = "' + TuChoi + '" WHERE (`ID` = ' + ID + ');')
     },
     editTags: (TenTags, ID) => {
         return db.load('UPDATE `news`.`tags` SET `TenTags` = "'+TenTags+'" WHERE (`ID` = "'+ID+'");')

@@ -1,5 +1,6 @@
 var express = require('express');
 var adminmodel = require("../../model/admin.model");
+var list_PV_BTVmodel = require("../../model/list_PV_BTV.model");
 var router = express.Router();
 
 router.get("/dashboard", function(req, res) {
@@ -45,11 +46,13 @@ router.get("/BaiViet/show=:id", function(req, res) {
 router.get('/duyetbaiviet/id=:id',(req,res)=>{
     if (req.isAuthenticated()) {
         var id = req.params.id;
-        var user = req.user.Loai;
+        var user = req.user;
         var sql = " where id = "+id;
-        adminmodel.BaiViet(sql, " * ").then(rows => {
+        Promise.all([adminmodel.BaiViet(sql, " * "),list_PV_BTVmodel.Tags(id)])
+        .then(rows => {
             res.render("./admin/DuyetBaiViet", {
-                BaiViet: rows[0],
+                BaiViet: rows[0][0],
+                Tags:  rows[1],
                 user: user,
             });
         })
