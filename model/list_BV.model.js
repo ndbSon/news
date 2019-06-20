@@ -22,6 +22,9 @@ module.exports = {
     BaiVietPhu: () => {
         return db.load('SELECT bv.ID,bv.ChuDe,bv.TacGia,bv.CheDo,bv.AnhDaiDien,bv.TieuDe,bv.TomTat,DATE_FORMAT(bv.GioDang,"%d/%m/%Y") as GioDang,bv.SoLuotXem FROM news.baiviet as bv where bv.TrangThai=1 order by SoLuotThich limit 2')
     },
+    CungChuyenMuc: () => {
+        return db.load('SELECT bv.ID,bv.CheDo,bv.AnhDaiDien,bv.TieuDe,bv.TacGia,DATE_FORMAT(bv.GioDang,"%d/%m/%Y") as GioDang,bv.ChuDe FROM news.baiviet as bv where bv.TrangThai=1 ORDER BY bv.GioDang asc LIMIT 5')
+    },
     Tag: () => {
         return db.load('SELECT distinct * FROM tags as t')
     },
