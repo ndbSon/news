@@ -133,7 +133,7 @@
                             </thead>
                             <tbody>
                                 <%DocGia.forEach(function(i){%>
-                                <%if(i.Loai==1){%>
+                                <%if(i.Loai==1||i.Loai==0){%>
                                 <tr>
                                     
                                     <td>
@@ -145,7 +145,12 @@
                                     <td>
                                         <%=i.ThoiGianHetHan%>
                                     </td>
-                                    <td><span class="label label-warning">Premium</span></td>
+                                    <%if(i.Loai==1){%>
+                                        <td><span class="label label-warning">Premium</span></td>
+                                    <%}else{%>
+                                        <td><span class="label label-primary">Normal</span></td>
+                                    <%}%>
+                                    
 
                                     <td><button id="btnGiaHan"
                                             onclick="document.getElementById('GiaHan').style.display='block'"

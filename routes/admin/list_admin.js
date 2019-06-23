@@ -64,7 +64,7 @@ router.get('/duyetbaiviet/id=:id',(req,res)=>{
 
 router.get("/NguoiDung", function(req, res) {
     if (req.isAuthenticated()) {
-        var sql = " as u, news.docgia as dg where u.ID=dg.IDUser and u.Loai=1";
+        var sql = " as u, news.docgia as dg where u.ID=dg.IDUser and (u.Loai=1 or u.Loai=0)";
         var sqlPV = " where Loai=2 ";
         var sqlBTV = " as u, news.bientapvien as btv,news.theloai as tl where Loai=3 && u.ID=btv.IDUser and tl.ID=btv.IDTheLoai";
         Promise.all([adminmodel.NguoiDung(sql), adminmodel.TheLoai(""), adminmodel.NguoiDung(sqlPV), adminmodel.NguoiDung(sqlBTV)])
